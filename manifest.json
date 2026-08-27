@@ -1,0 +1,17 @@
+{
+  "name": "IELTS Vocabulary Notebook",
+  "short_name": "IELTS Vocab",
+  "description": "Learn IELTS vocabulary with a parent-set daily word target, Listening/Speaking/Reading/Writing tests, 2 levels for 2 accounts.",
+  "start_url": "./ielts-vocab-band-4-5.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EEF2EF",
+  "theme_color": "#2A4F44",
+  "lang": "en",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
