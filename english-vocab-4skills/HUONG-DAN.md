@@ -6,17 +6,21 @@ App tự học từ vựng cho 2 con: **10 từ/ngày**, học đủ **3 ngày t
 - Tiến độ lưu trong máy/điện thoại của từng con (localStorage) — mỗi điện thoại là một tiến độ riêng.
 - Bộ từ: **Movers (A1) 1.344 từ = 134 ngày** · **B1 (PET) 889 từ = 88 ngày** — tổng **2.233 từ**. Nguồn: danh sách Oxford 3000 phân theo CEFR (A1+A2 cho hồ sơ Movers, B1 cho hồ sơ B1), cộng bộ từ theo chủ đề kiểu đề Cambridge. Nghĩa Việt và câu ví dụ do em soạn, đã kiểm tự động 100%.
 
-## 1. Phát hành (làm 1 lần, 2 phút)
+## 1. Link cho 2 con (đã phát hành xong)
 
-Bản demo xem nhanh: https://claude.ai/artifact/8bF92FdtG1knXD9Znm99FJ
-Trong khung demo, **micro và Telegram bị chặn** (giống app TNTX trước đây). Muốn dùng đủ 4 kỹ năng thì phải phát hành thật:
+### 👉 https://sinhim.github.io/Vocabulary/english-vocab-4skills/
 
-1. Mở https://app.netlify.com/drop trên máy tính.
-2. Kéo **cả thư mục** `C:\Agent_company\app-tu-vung-con` vào ô giữa trang.
-3. Netlify cho ngay một link dạng `https://ten-ngau-nhien.netlify.app` — đó là link gửi cho 2 con.
-4. Trên điện thoại con: mở link → bấm **Chia sẻ → Thêm vào màn hình chính** để thành icon như app.
+Đó là link gửi cho hai con. Trên điện thoại con: mở link → bấm **Chia sẻ → Thêm vào màn hình chính** để thành icon như một app thật.
 
-> GitHub Pages cũng chạy, nhưng repo phải **public**. Netlify Drop nhanh hơn và không cần repo.
+App nằm trong repo **SinhIM/Vocabulary** (public), thư mục `english-vocab-4skills/`. App IELTS cũ ở `https://sinhim.github.io/Vocabulary/` vẫn chạy bình thường, không bị ảnh hưởng.
+
+**Khi nào cần dùng link này chứ không phải bản demo:** micro (kỹ năng Nói) và việc gửi Telegram chỉ chạy trên trang HTTPS thật. Bản demo `https://claude.ai/artifact/8bF92FdtG1knXD9Znm99FJ` chỉ để xem nhanh giao diện — trong khung demo micro và Telegram bị chặn.
+
+### Sửa app rồi đưa bản mới lên
+
+Sửa file trong `C:\Agent_company\app-tu-vung-con` (hoặc nhờ Claude sửa), rồi **bấm đúp vào `dua-len-github.cmd`** trong thư mục đó. Script sẽ: kiểm bộ từ → nếu có lỗi thì dừng và báo → nếu sạch thì đưa lên GitHub. Đợi khoảng 1 phút rồi tải lại trang trên điện thoại.
+
+**Tiến độ học của con không bị mất khi cập nhật app** — tiến độ nằm trong bộ nhớ trình duyệt của điện thoại, không nằm trong file.
 
 ## 2. Cài bot Telegram để nhận báo cáo
 
