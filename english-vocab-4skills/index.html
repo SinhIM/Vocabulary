@@ -1,0 +1,2894 @@
+<!doctype html><!--STRIP-->
+<html lang="vi"><!--STRIP-->
+<head><!--STRIP-->
+<meta charset="utf-8"><!--STRIP-->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><!--STRIP-->
+<title>Sổ Từ Mỗi Ngày</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: một cột dọc, thẻ xếp tầng như quyển sổ tay; thanh dưới cố định cho ngón tay bấm. */
+:root{
+  --ink:#16323c; --paper:#f6f2e9; --card:#fffdf8; --line:#ddd3c2;
+  --teal:#0f6e68; --coral:#e0572e; --gold:#d79a24; --muted:#6b7b80;
+  --good:#1f8a52; --bad:#c43b2e;
+  --fd:'Baloo 2',"Segoe UI",system-ui,sans-serif;
+  --fb:'Be Vietnam Pro',"Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#eef2ef; --paper:#101b1f; --card:#17262b; --line:#2b3f46;
+  --teal:#4fc9bd; --coral:#ff8a5f; --gold:#f0bf52; --muted:#9db0b5;
+  --good:#5fd394; --bad:#ff8277; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --ink:#eef2ef; --paper:#101b1f; --card:#17262b; --line:#2b3f46;
+  --teal:#4fc9bd; --coral:#ff8a5f; --gold:#f0bf52; --muted:#9db0b5;
+  --good:#5fd394; --bad:#ff8277; color-scheme:dark;}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--fb);font-size:16px;line-height:1.5;
+  -webkit-text-size-adjust:100%}
+.wrap{max-width:560px;margin:0 auto;padding-inline:16px;padding-block:14px 110px}
+h1,h2,h3{font-family:var(--fd);margin:0;text-wrap:balance;letter-spacing:.2px}
+h1{font-size:1.45rem;font-weight:800}
+h2{font-size:1.15rem;font-weight:700}
+.sub{color:var(--muted);font-size:.86rem}
+.lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row>*{min-width:0}
+.grow{flex:1 1 140px}
+button{font-family:var(--fb);font-size:1rem;font-weight:600;border-radius:12px;border:1px solid var(--line);
+  background:var(--card);color:var(--ink);padding:12px 14px;cursor:pointer;min-height:48px}
+button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+button:disabled{opacity:.45}
+.b-main{background:var(--teal);border-color:var(--teal);color:#fff}
+.b-hot{background:var(--coral);border-color:var(--coral);color:#fff}
+.b-wide{width:100%}
+.b-sm{min-height:40px;padding:8px 12px;font-size:.9rem}
+input[type=text],input[type=password]{font:inherit;width:100%;padding:12px;border-radius:12px;
+  border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+.bar{height:10px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--teal);transition:width .3s}
+.kid{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:14px}
+.ava{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-family:var(--fd);
+  font-size:1.3rem;font-weight:800;color:#fff;flex:none}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:99px;
+  background:color-mix(in srgb,var(--teal) 16%,transparent);color:var(--teal);letter-spacing:.04em}
+.pill.g{background:color-mix(in srgb,var(--gold) 20%,transparent);color:var(--gold)}
+.word{font-family:var(--fd);font-size:2.3rem;font-weight:800;line-height:1.1;word-break:break-word}
+.vn{font-size:1.15rem;font-weight:600;color:var(--teal)}
+.ex{font-size:.98rem;color:var(--ink);background:var(--paper);border-left:3px solid var(--gold);
+  padding:10px 12px;border-radius:0 10px 10px 0}
+.dots{display:flex;gap:5px;flex-wrap:wrap}
+.dots i{width:10px;height:10px;border-radius:99px;background:var(--line)}
+.dots i.on{background:var(--teal)}
+.opt{width:100%;text-align:left;display:block}
+.opt.ok{background:color-mix(in srgb,var(--good) 18%,var(--card));border-color:var(--good)}
+.opt.no{background:color-mix(in srgb,var(--bad) 16%,var(--card));border-color:var(--bad)}
+.nums{font-variant-numeric:tabular-nums}
+.sk{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.skb{border:1px solid var(--line);border-radius:14px;padding:10px 12px;background:var(--paper)}
+.skb b{font-family:var(--fd);font-size:1.5rem;display:block}
+.meter{height:7px;border-radius:99px;background:var(--line);margin-top:6px;overflow:hidden}
+.meter>i{display:block;height:100%}
+.tag{display:inline-block;font-size:.82rem;padding:4px 10px;border-radius:99px;border:1px solid var(--line);
+  background:var(--paper);margin:0 6px 6px 0}
+.foot{position:fixed;left:0;right:0;bottom:0;background:color-mix(in srgb,var(--paper) 92%,transparent);
+  border-top:1px solid var(--line);backdrop-filter:blur(8px);
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}
+.foot .in{max-width:560px;margin:0 auto;display:flex;gap:10px}
+.foot button{flex:1}
+.hdr{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:14px}
+.mono{font-family:ui-monospace,"JetBrains Mono",monospace;font-size:.8rem;white-space:pre-wrap;word-break:break-word}
+.note{font-size:.84rem;color:var(--muted)}
+.mic{width:84px;height:84px;border-radius:99px;font-size:2rem;display:grid;place-items:center;margin:0 auto}
+.mic.live{animation:p 1.1s infinite}
+@keyframes p{50%{transform:scale(1.08);box-shadow:0 0 0 12px color-mix(in srgb,var(--coral) 25%,transparent)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.hist{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line)}
+</style>
+</head><!--STRIP-->
+<body><!--STRIP-->
+<div class="wrap" id="app"></div>
+<div class="foot" id="foot" hidden><div class="in" id="footin"></div></div>
+<script>
+/* Bộ từ: [từ, nghĩa tiếng Việt, câu ví dụ có chứa đúng từ đó] */
+const MOVERS=[
+["bat","con dơi","A bat sleeps in the dark cave.","animal"],
+["bear","con gấu","The brown bear is looking for fish.","animal"],
+["dolphin","cá heo","A dolphin can jump very high.","animal"],
+["duck","con vịt","The duck swims on the lake.","animal"],
+["kangaroo","chuột túi","A kangaroo lives in Australia.","animal"],
+["lion","con sư tử","The lion has a loud roar.","animal"],
+["monkey","con khỉ","The monkey eats a banana.","animal"],
+["mouse","con chuột","A small mouse ran under the table.","animal"],
+["panda","gấu trúc","The panda is eating bamboo.","animal"],
+["parrot","con vẹt","My parrot can say my name.","animal"],
+["penguin","chim cánh cụt","A penguin walks on the ice.","animal"],
+["puppy","cún con","Our puppy sleeps in a basket.","animal"],
+["rabbit","con thỏ","The rabbit has long ears.","animal"],
+["shark","cá mập","A shark has sharp teeth.","animal"],
+["sheep","con cừu","Ten sheep are in the field.","animal"],
+["snail","con ốc sên","A snail moves very slowly.","animal"],
+["snake","con rắn","The snake is long and green.","animal"],
+["spider","con nhện","A spider made a web in my room.","animal"],
+["swan","con thiên nga","The white swan is beautiful.","animal"],
+["tiger","con hổ","The tiger is sleeping in the sun.","animal"],
+["whale","cá voi","A whale is the biggest animal in the sea.","animal"],
+["goat","con dê","The goat is eating grass.","animal"],
+["kitten","mèo con","My kitten likes to play with a ball.","animal"],
+["lizard","con thạch sùng","A lizard is on the wall.","animal"],
+["octopus","con bạch tuộc","An octopus has eight arms.","animal"],
+["camel","con lạc đà","The camel walks in the desert.","animal"],
+["cow","con bò","The cow gives us milk.","animal"],
+["donkey","con lừa","A donkey is carrying boxes.","animal"],
+["bee","con ong","A bee is on the flower.","animal"],
+["insect","côn trùng","That insect has six legs.","animal"],
+["shoulder","vai","My bag hurts my shoulder.","body"],
+["neck","cổ","The giraffe has a long neck.","body"],
+["tooth","cái răng","My tooth hurts today.","body"],
+["tongue","lưỡi","Do not show me your tongue!","body"],
+["thumb","ngón tay cái","I hurt my thumb with the door.","body"],
+["finger","ngón tay","She points with one finger.","body"],
+["knee","đầu gối","I fell and hurt my knee.","body"],
+["toe","ngón chân","My little toe is cold.","body"],
+["beard","râu","My grandpa has a white beard.","body"],
+["stomach","dạ dày, bụng","My stomach hurts after lunch.","body"],
+["back","lưng","Please sit with a straight back.","body"],
+["chest","lồng ngực","The doctor listened to my chest.","body"],
+["headache","đau đầu","I have a headache today.","body"],
+["cough","ho","That cough sounds bad.","body"],
+["medicine","thuốc","Take this medicine after dinner.","body"],
+["nurse","điều dưỡng","The nurse is very kind.","body"],
+["dentist","nha sĩ","I visit the dentist every year.","body"],
+["ill","bị bệnh","My brother is ill in bed.","body"],
+["hurt","đau, làm đau","Does your arm hurt?","body"],
+["healthy","khỏe mạnh","Fruit makes you healthy.","body"],
+["belt","dây lưng","My belt is black.","clothes"],
+["scarf","khăn quàng cổ","Wear a scarf when it is cold.","clothes"],
+["glove","găng tay","I lost one glove at school.","clothes"],
+["sock","chiếc tất","This sock has a hole.","clothes"],
+["boot","đôi bốt","My boot is full of sand.","clothes"],
+["sweater","áo len","Grandma made me a warm sweater.","clothes"],
+["jacket","áo khoác","Put on your jacket, please.","clothes"],
+["skirt","chân váy","Her skirt is yellow.","clothes"],
+["shorts","quần ngắn","He wears shorts to play football.","clothes"],
+["cap","mũ lưỡi trai","My cap is too small now.","clothes"],
+["helmet","mũ bảo hiểm","Wear a helmet on your bike.","clothes"],
+["pocket","túi áo, túi quần","My key is in my pocket.","clothes"],
+["uniform","đồng phục","We wear a uniform at school.","clothes"],
+["trainers","giày thể thao","My new trainers are very light.","clothes"],
+["bread","bánh mì","I eat bread for breakfast.","food"],
+["butter","bơ","Put some butter on the bread.","food"],
+["cheese","phô mai","This cheese smells strong.","food"],
+["chocolate","sô cô la","I love dark chocolate.","food"],
+["egg","trứng","I want one egg, please.","food"],
+["fruit","trái cây","Fruit is good for you.","food"],
+["grape","quả nho","This grape is very sweet.","food"],
+["honey","mật ong","Bees make honey.","food"],
+["jam","mứt","I like strawberry jam.","food"],
+["juice","nước ép","A glass of orange juice, please.","food"],
+["lemon","quả chanh vàng","The lemon is very sour.","food"],
+["mango","quả xoài","This mango is ripe.","food"],
+["meat","thịt","My sister never eats meat.","food"],
+["onion","củ hành","Cut the onion into small pieces.","food"],
+["pancake","bánh kếp","Mum made a big pancake.","food"],
+["pasta","mì Ý","We had pasta for dinner.","food"],
+["pear","quả lê","A pear is green and sweet.","food"],
+["pineapple","quả dứa","The pineapple tastes fresh.","food"],
+["potato","củ khoai tây","Each potato is very big.","food"],
+["rice","gạo, cơm","We eat rice every day.","food"],
+["salad","món salad","I made a salad with tomatoes.","food"],
+["sausage","xúc xích","One sausage is left on the plate.","food"],
+["soup","món súp","This soup is too hot.","food"],
+["sugar","đường","Do not put sugar in my tea.","food"],
+["vegetable","rau củ","Carrot is my favourite vegetable.","food"],
+["balcony","ban công","We dry clothes on the balcony.","home"],
+["bathroom","nhà tắm","The bathroom is upstairs.","home"],
+["bedroom","phòng ngủ","My bedroom is small but tidy.","home"],
+["blanket","cái chăn","I need a warm blanket tonight.","home"],
+["bookcase","giá sách","The bookcase is full of books.","home"],
+["bowl","cái bát","Put the rice in a bowl.","home"],
+["cupboard","tủ bếp","The cups are in the cupboard.","home"],
+["curtain","tấm rèm","Open the curtain, please.","home"],
+["fridge","tủ lạnh","The milk is in the fridge.","home"],
+["garage","nhà để xe","Dad keeps the car in the garage.","home"],
+["kitchen","nhà bếp","Mum is cooking in the kitchen.","home"],
+["lamp","đèn","Turn on the lamp to read.","home"],
+["mirror","cái gương","She looks in the mirror.","home"],
+["pillow","cái gối","My pillow is very soft.","home"],
+["plate","cái đĩa","Your plate is empty.","home"],
+["roof","mái nhà","A bird sits on the roof.","home"],
+["shelf","cái kệ","The box is on the top shelf.","home"],
+["sofa","ghế sofa","We watch TV on the sofa.","home"],
+["stairs","bậc thang","Run up the stairs quickly.","home"],
+["towel","khăn tắm","Dry your hands with this towel.","clothes"],
+["upstairs","trên gác","My room is upstairs.","home"],
+["downstairs","dưới tầng","The kitchen is downstairs.","home"],
+["wall","tường","There is a map on the wall.","home"],
+["basement","tầng hầm","The basement is dark and cold.","home"],
+["board","bảng","Look at the board, please.","school"],
+["dictionary","từ điển","Find the word in your dictionary.","school"],
+["eraser","cục gôm","May I borrow your eraser?","school"],
+["glue","keo dán","I need glue for this project.","school"],
+["homework","bài tập về nhà","I finish my homework before dinner.","school"],
+["lesson","bài học","This lesson is about animals.","school"],
+["notebook","vở","Write it in your notebook.","school"],
+["pencil","bút chì","My pencil is broken.","school"],
+["project","dự án, bài tập lớn","Our project is about water.","school"],
+["ruler","thước kẻ","Draw a line with a ruler.","school"],
+["scissors","cái kéo","Be careful with the scissors.","school"],
+["subject","môn học","Maths is my best subject.","school"],
+["classroom","lớp học","Our classroom is on the first floor.","school"],
+["answer","câu trả lời","Your answer is correct.","school"],
+["page","trang","Open your book at page ten.","school"],
+["cloud","đám mây","Look at that big white cloud.","nature"],
+["rain","mưa","The rain is very heavy.","nature"],
+["snow","tuyết","Children play in the snow.","nature"],
+["storm","cơn bão","The storm broke a big tree.","nature"],
+["sunny","có nắng","It is sunny today.","nature"],
+["cloudy","nhiều mây","The sky is cloudy this morning.","nature"],
+["windy","có gió","It is too windy for kites.","nature"],
+["rainbow","cầu vồng","A rainbow has many colours.","nature"],
+["moon","mặt trăng","The moon is bright tonight.","nature"],
+["star","ngôi sao","I can see one star.","nature"],
+["sky","trời","The sky is blue.","nature"],
+["ice","băng","There is ice on the road.","food"],
+["grass","cỏ","The grass is wet.","nature"],
+["leaf","chiếc lá","One leaf fell on my head.","nature"],
+["flower","hoa","This flower smells nice.","nature"],
+["forest","rừng","We walked in the forest.","nature"],
+["river","con sông","The river is deep here.","nature"],
+["lake","hồ","We swim in the lake in summer.","nature"],
+["mountain","núi","That mountain is very high.","nature"],
+["beach","bãi biển","We play on the beach all day.","place"],
+["island","hòn đảo","The island is small and quiet.","nature"],
+["field","cánh đồng","Cows are in the field.","nature"],
+["sand","cát","The sand is hot.","nature"],
+["jungle","rừng rậm","Monkeys live in the jungle.","nature"],
+["airport","sân bay","We waited at the airport.","move"],
+["bridge","cây cầu","Walk over the bridge.","place"],
+["cafe","quán cà phê","We met at a small cafe.","place"],
+["cinema","rạp chiếu phim","The cinema is next to the market.","place"],
+["farm","nông trại","My uncle works on a farm.","place"],
+["hospital","bệnh viện","The hospital is very big.","place"],
+["hotel","khách sạn","We stayed in a hotel near the sea.","place"],
+["library","thư viện","Be quiet in the library.","school"],
+["market","chợ","Mum buys fish at the market.","place"],
+["museum","viện bảo tàng","The museum has old bikes.","place"],
+["park","công viên","We ride bikes in the park.","place"],
+["playground","sân chơi","The playground is full of children.","place"],
+["restaurant","nhà hàng","This restaurant is new.","place"],
+["station","nhà ga, bến","The train leaves the station at six.","place"],
+["village","làng","My grandma lives in a village.","place"],
+["zoo","sở thú","We saw tigers at the zoo.","animal"],
+["bike","xe đạp","My bike is red.","move"],
+["boat","thuyền","The boat is on the river.","move"],
+["helicopter","máy bay trực thăng","A helicopter flew over our house.","move"],
+["lorry","xe tải","The lorry carries sand.","move"],
+["motorbike","xe máy","Dad goes to work by motorbike.","move"],
+["plane","máy bay","The plane is very fast.","move"],
+["ship","con tàu","That ship is huge.","move"],
+["taxi","xe taxi","We took a taxi to the airport.","move"],
+["train","tàu hỏa","The train is late again.","move"],
+["tractor","máy kéo","A tractor works in the field.","move"],
+["badminton","cầu lông","We play badminton after school.","sport"],
+["baseball","bóng chày","He hits the baseball hard.","sport"],
+["basketball","bóng rổ","My brother is good at basketball.","sport"],
+["football","bóng đá","We play football every Sunday.","sport"],
+["hockey","khúc côn cầu","Hockey is popular in Canada.","sport"],
+["skating","trượt băng, trượt ván","Skating is my new hobby.","sport"],
+["swimming","bơi lội","Swimming makes me strong.","sport"],
+["tennis","quần vợt","Let us play tennis at four.","sport"],
+["volleyball","bóng chuyền","Our volleyball team won.","sport"],
+["camping","cắm trại","We went camping near the lake.","sport"],
+["cartoon","phim hoạt hình","This cartoon is funny.","art"],
+["comic","truyện tranh","I read a comic every night.","art"],
+["puzzle","trò xếp hình","This puzzle has 100 pieces.","school"],
+["hobby","sở thích","My hobby is drawing.","sport"],
+["fishing","câu cá","Dad takes me fishing.","sport"],
+["bounce","nảy lên","Watch the ball bounce high.","sport"],
+["break","làm vỡ","Do not break the glass.","verb"],
+["bring","mang đến","Please bring me a chair.","verb"],
+["carry","mang, bế","Can you carry this box?","verb"],
+["catch","bắt, chụp lấy","Catch the ball with two hands.","verb"],
+["choose","chọn","Choose one colour.","mind"],
+["climb","leo","We climb the big tree.","sport"],
+["collect","thu thập, sưu tầm","I collect old coins.","verb"],
+["cook","nấu ăn","I can cook rice now.","food"],
+["cry","khóc","The baby started to cry.","feel"],
+["dance","nhảy múa","They dance very well.","art"],
+["draw","vẽ","Draw a cat, please.","art"],
+["dream","mơ","I dream about flying.","mind"],
+["drive","lái xe","Mum can drive a car.","move"],
+["drop","làm rơi","Do not drop your phone.","verb"],
+["fall","rơi, té","Be careful, you can fall.","verb"],
+["find","tìm thấy","I cannot find my shoes.","verb"],
+["finish","hoàn thành","Finish your homework first.","verb"],
+["fly","bay","Birds fly to the south.","move"],
+["forget","quên","Do not forget your key.","mind"],
+["hide","ẩn, giấu","Let us hide behind the door.","verb"],
+["hurry","nhanh lên","Hurry up, the bus is here.","verb"],
+["invite","mời","I invite you to my party.","verb"],
+["jump","nhảy","Can you jump over this?","verb"],
+["kick","đá","Kick the ball to me.","sport"],
+["laugh","cười","They laugh at the clown.","feel"],
+["learn","học","We learn ten words a day.","school"],
+["lift","nâng lên","Can you lift this bag?","sport"],
+["lose","mất, thua","Do not lose your ticket.","verb"],
+["mend","sửa, vá","Dad will mend my bike.","verb"],
+["miss","bỏ lỡ, nhớ","Do not miss the train.","verb"],
+["paint","sơn, vẽ màu","Let us paint the wall blue.","art"],
+["pick","hái, chọn","Pick a flower for Mum.","verb"],
+["point","chỉ tay","Do not point at people.","sport"],
+["pull","kéo","Pull the door to open it.","verb"],
+["push","đẩy","Push the button twice.","verb"],
+["ride","đi (xe đạp, ngựa)","I ride my bike to school.","move"],
+["sail","đi thuyền","They sail to the island.","sport"],
+["shout","hét lên","Do not shout in the classroom.","verb"],
+["sing","hát","We sing a song together.","art"],
+["sleep","ngủ","Cats sleep all day.","body"],
+["smile","cười tươi","Please smile for the photo.","feel"],
+["throw","ném","Throw the ball to him.","verb"],
+["understand","hiểu","I understand this lesson.","mind"],
+["wait","chờ","Wait for me, please.","verb"],
+["wake","thức giấc","I wake up at six.","verb"],
+["wash","rửa, giặt","Wash your hands before lunch.","verb"],
+["wear","mặc, đội","You must wear a helmet.","verb"],
+["win","thắng","Our team can win today.","sport"],
+["afraid","sợ","She is afraid of spiders.","feel"],
+["angry","tức giận","Dad looks angry today.","feel"],
+["beautiful","xinh đẹp","What a beautiful garden!","desc"],
+["brave","dũng cảm","The brave boy helped his friend.","feel"],
+["careful","cẩn thận","Be careful with hot soup.","feel"],
+["clever","thông minh","My sister is very clever.","feel"],
+["dangerous","nguy hiểm","This road is dangerous.","desc"],
+["dirty","bẩn","Your shoes are dirty.","desc"],
+["empty","trống rỗng","The box is empty.","desc"],
+["excited","háo hức","I am excited about the trip.","feel"],
+["famous","nổi tiếng","He is a famous singer.","desc"],
+["friendly","thân thiện","Our new teacher is friendly.","feel"],
+["frightened","hoảng sợ","The cat looks frightened.","feel"],
+["funny","vui, hài","That story is funny.","desc"],
+["heavy","nặng","This bag is too heavy.","desc"],
+["hungry","đói","I am hungry after sport.","body"],
+["kind","tử tế","She is kind to everyone.","feel"],
+["loud","ồn, to","The music is too loud.","desc"],
+["lucky","may mắn","You are lucky today.","feel"],
+["quiet","yên tĩnh","Please be quiet now.","desc"],
+["scary","đáng sợ","That film is scary.","feel"],
+["strong","mạnh, khỏe","He is strong enough to lift it.","desc"],
+["tired","mệt","I am tired after school.","body"],
+["wet","ướt","My hair is wet.","nature"],
+["wonderful","tuyệt vời","We had a wonderful day.","feel"],
+["afternoon","buổi chiều","See you this afternoon.","time"],
+["birthday","sinh nhật","My birthday is in May.","time"],
+["calendar","lịch","Look at the calendar.","time"],
+["holiday","kỳ nghỉ","Our holiday starts tomorrow.","time"],
+["hour","giờ (tiếng)","We waited for an hour.","time"],
+["minute","phút","Wait a minute, please.","time"],
+["month","tháng","Next month I turn twelve.","time"],
+["picnic","buổi dã ngoại","We had a picnic in the park.","sport"],
+["present","món quà","This present is for you.","art"],
+["prize","giải thưởng","She won first prize.","school"],
+["surprise","sự ngạc nhiên","What a nice surprise!","feel"],
+["weekend","cuối tuần","We play football at the weekend.","time"],
+["yesterday","hôm qua","I saw him yesterday.","time"],
+["tomorrow","ngày mai","We have a test tomorrow.","time"],
+["together","cùng nhau","Let us study together.","desc"],
+["always","luôn luôn","I always brush my teeth.","time"],
+["never","chưa bao giờ","He never eats fish.","time"],
+["often","thường xuyên","We often go swimming.","time"],
+["sometimes","thỉnh thoảng","Sometimes I walk to school.","time"],
+["usually","thường thì","I usually get up early.","time"]
+];
+const B1=[
+["ability","khả năng","She has the ability to learn fast.","mind"],
+["achieve","đạt được","He worked hard to achieve his goal.","mind"],
+["admire","ngưỡng mộ","I admire my coach very much.","feel"],
+["advantage","lợi thế","Living near school is a big advantage.","mind"],
+["advertise","quảng cáo","They advertise the shop online.","money"],
+["advice","lời khuyên","My teacher gave me useful advice.","mind"],
+["afford","có khả năng chi trả","We cannot afford a new car.","money"],
+["allow","cho phép","My parents allow me to play at six.","mind"],
+["ambition","hoài bão","His ambition is to become a pilot.","feel"],
+["announce","thông báo","They will announce the winner tonight.","mind"],
+["annoy","làm phiền","Loud noise can annoy the neighbours.","feel"],
+["apologize","xin lỗi","You should apologize to your sister.","mind"],
+["appear","xuất hiện","A rainbow may appear after rain.","verb"],
+["apply","nộp đơn, áp dụng","I will apply for the scholarship.","work"],
+["appointment","cuộc hẹn","I have an appointment at four.","time"],
+["appreciate","trân trọng, biết ơn","I appreciate your help.","feel"],
+["argue","tranh luận","They argue about football every day.","mind"],
+["arrange","sắp xếp","Let me arrange the chairs.","verb"],
+["attend","tham dự","All students must attend the meeting.","school"],
+["attitude","thái độ","His attitude in class is excellent.","feel"],
+["attract","thu hút","Bright colours attract children.","feel"],
+["audience","khán giả","The audience clapped loudly.","art"],
+["available","có sẵn","Only two seats are available.","desc"],
+["avoid","tránh","Try to avoid sugary drinks.","verb"],
+["aware","nhận thức, biết","I am aware of the rules.","mind"],
+["balance","sự cân bằng","You need balance between study and sport.","desc"],
+["behave","hành xử","Please behave well at the party.","feel"],
+["behaviour","hành vi","His behaviour has improved.","feel"],
+["believe","tin","I believe you can do it.","mind"],
+["belong","thuộc về","I belong to the school chess club.","mind"],
+["benefit","lợi ích","This app has one big benefit: it is free.","mind"],
+["borrow","vay, mượn","May I borrow your calculator?","money"],
+["breath","hơi thở","Take a deep breath and relax.","body"],
+["budget","ngân sách","Our trip budget is small.","money"],
+["cancel","hủy","They had to cancel the match.","verb"],
+["careless","bất cẩn","A careless mistake cost him the prize.","feel"],
+["celebrate","ăn mừng","We celebrate Tet with family.","time"],
+["challenge","thử thách","This exam is a real challenge.","mind"],
+["charity","tổ chức từ thiện","We gave old clothes to charity.","social"],
+["cheerful","vui vẻ","She has a cheerful voice.","feel"],
+["choice","sự lựa chọn","You made the right choice.","mind"],
+["comfortable","thoải mái","These shoes are very comfortable.","desc"],
+["communicate","giao tiếp","We communicate in English online.","mind"],
+["community","cộng đồng","Our community cleans the park.","social"],
+["compare","so sánh","Compare the two answers carefully.","mind"],
+["competition","cuộc thi","He won the writing competition.","sport"],
+["complain","phàn nàn","They complain about the noise.","mind"],
+["complete","hoàn thành","Please complete the form.","verb"],
+["concentrate","tập trung","I cannot concentrate with music on.","mind"],
+["confident","tự tin","She feels confident before the test.","feel"],
+["confuse","làm bối rối","These two words often confuse me.","mind"],
+["congratulate","chúc mừng","Let us congratulate the winners.","mind"],
+["connect","kết nối","Connect the printer to the laptop.","tech"],
+["consider","xem xét","Consider all the options first.","mind"],
+["contact","liên hệ","Contact me after school.","mind"],
+["continue","tiếp tục","Continue reading to page twenty.","verb"],
+["convenient","thuận tiện","Is Friday convenient for you?","desc"],
+["conversation","cuộc hội thoại","We had a long conversation.","mind"],
+["cope","đương đầu, xoay xở","He can cope with the pressure.","feel"],
+["courage","lòng can đảm","It takes courage to speak up.","feel"],
+["create","tạo ra","They create games for children.","art"],
+["crowded","đông đúc","The bus is crowded in the morning.","desc"],
+["cure","chữa khỏi","Doctors cannot cure every illness.","body"],
+["curious","tò mò","Children are curious about everything.","feel"],
+["damage","thiệt hại, làm hỏng","The storm did a lot of damage.","verb"],
+["decide","quyết định","We must decide before Monday.","mind"],
+["decrease","giảm","Prices decrease after the holiday.","desc"],
+["delay","trì hoãn, sự chậm trễ","The delay lasted two hours.","time"],
+["deliver","giao hàng","They deliver pizza until ten.","work"],
+["demand","yêu cầu, nhu cầu","Demand for tickets is high.","money"],
+["depend","phụ thuộc","Our trip will depend on the weather.","mind"],
+["describe","miêu tả","Describe your best friend.","mind"],
+["deserve","xứng đáng","You deserve this prize.","mind"],
+["develop","phát triển","The town will develop quickly.","mind"],
+["disappear","biến mất","My keys disappear every morning.","verb"],
+["disappointed","thất vọng","I was disappointed with my score.","feel"],
+["discover","phát hiện","Scientists discover new animals.","mind"],
+["discuss","thảo luận","Let us discuss the plan.","mind"],
+["distance","khoảng cách","The distance is five kilometres.","desc"],
+["divide","chia","Divide the class into four groups.","school"],
+["doubt","nghi ngờ","I doubt he will come.","mind"],
+["earn","kiếm được","He wants to earn his own money.","money"],
+["effort","nỗ lực","Your effort really shows.","mind"],
+["embarrassed","ngượng, xấu hổ","I felt embarrassed on stage.","feel"],
+["emergency","trường hợp khẩn cấp","Call this number in an emergency.","body"],
+["employ","tuyển dụng","The factory will employ more workers.","work"],
+["encourage","khuyến khích","My parents encourage me to read.","feel"],
+["energy","năng lượng","I have no energy after training.","tech"],
+["enormous","khổng lồ","They live in an enormous house.","desc"],
+["entertain","làm cho vui","The clowns entertain the children.","art"],
+["environment","môi trường","We must protect the environment.","nature"],
+["equal","bằng nhau","Give each person an equal share.","desc"],
+["escape","trốn thoát","The bird tried to escape.","verb"],
+["especially","đặc biệt là","I like fruit, especially mango.","desc"],
+["essential","thiết yếu","Water is essential for life.","desc"],
+["event","sự kiện","The sports event starts at eight.","time"],
+["examine","kiểm tra, khám","The doctor will examine your eyes.","body"],
+["excellent","xuất sắc","Your writing is excellent.","desc"],
+["exchange","trao đổi","We exchange emails every week.","money"],
+["exhausted","kiệt sức","I felt exhausted after the race.","body"],
+["expect","mong đợi","I expect good news today.","mind"],
+["experience","kinh nghiệm, trải nghiệm","She has years of experience.","mind"],
+["experiment","thí nghiệm","We did an experiment with water.","tech"],
+["explain","giải thích","Can you explain this rule?","mind"],
+["explore","khám phá","We want to explore the cave.","place"],
+["express","diễn đạt","Try to express your idea clearly.","mind"],
+["extremely","vô cùng","The film was extremely boring.","desc"],
+["fail","thất bại, trượt","Do not be afraid to fail.","school"],
+["familiar","quen thuộc","This song sounds familiar.","desc"],
+["fashionable","thời trang","That jacket is very fashionable.","clothes"],
+["fear","nỗi sợ","His fear of water is gone.","feel"],
+["figure","con số, hình","The figure on the chart is wrong.","school"],
+["finally","cuối cùng","We finally arrived at midnight.","time"],
+["flavour","hương vị","This ice cream has a strange flavour.","food"],
+["focus","tập trung","Focus on one task at a time.","mind"],
+["forecast","dự báo","The forecast says rain tomorrow.","nature"],
+["foreign","nước ngoài","He speaks three foreign languages.","place"],
+["forgive","tha thứ","Please forgive my mistake.","feel"],
+["fortunately","may mắn là","Fortunately, nobody was hurt.","desc"],
+["frequently","thường xuyên","He frequently arrives late.","time"],
+["friendship","tình bạn","Their friendship started in grade one.","feel"],
+["frustrated","bực bội, bất lực","I feel frustrated with this puzzle.","feel"],
+["generous","rộng lượng","She is generous with her time.","feel"],
+["gentle","nhẹ nhàng","Be gentle with the kitten.","feel"],
+["goal","mục tiêu","My goal is band seven.","sport"],
+["gradually","dần dần","The weather gradually got warmer.","desc"],
+["grateful","biết ơn","I am grateful for your advice.","feel"],
+["greet","chào hỏi","Greet the guests politely.","feel"],
+["growth","sự tăng trưởng","The growth of the city is fast.","mind"],
+["guess","đoán","Can you guess my age?","mind"],
+["guest","khách","One guest arrived very early.","family"],
+["guide","hướng dẫn, người dẫn","Our guide knows the forest well.","mind"],
+["habit","thói quen","Reading at night is a good habit.","mind"],
+["hardly","hầu như không","I hardly slept last night.","desc"],
+["harm","gây hại","Smoking can harm your lungs.","desc"],
+["headline","tiêu đề báo","The headline shocked everyone.","mind"],
+["hesitate","do dự","Do not hesitate to ask me.","feel"],
+["honest","trung thực","Be honest about your mistake.","feel"],
+["however","tuy nhiên","It rained; however, we went out.","desc"],
+["huge","to lớn","There was a huge crowd.","desc"],
+["humour","sự hóm hỉnh","I like his sense of humour.","feel"],
+["identify","nhận dạng","Can you identify this bird?","mind"],
+["ignore","phớt lờ","Do not ignore the warning.","feel"],
+["imagine","tưởng tượng","Imagine living on the moon.","feel"],
+["immediately","ngay lập tức","Call me immediately after the test.","desc"],
+["impress","gây ấn tượng","His speech did impress the judges.","feel"],
+["improve","cải thiện","I want to improve my speaking.","mind"],
+["include","bao gồm","The price does include breakfast.","verb"],
+["increase","tăng","Prices increase every year.","verb"],
+["independent","độc lập","Teenagers want to be independent.","desc"],
+["influence","ảnh hưởng","Friends influence our choices.","mind"],
+["inform","thông báo","Please inform your parents.","mind"],
+["injury","thương tích","The injury kept him off the field.","body"],
+["insist","khăng khăng","They insist on paying.","feel"],
+["instead","thay vì","Let us walk instead of driving.","desc"],
+["instruction","chỉ dẫn","Read the instruction carefully.","school"],
+["intelligent","thông minh","Dolphins are intelligent animals.","feel"],
+["intend","dự định","I intend to study tonight.","feel"],
+["interview","cuộc phỏng vấn","The interview lasted ten minutes.","mind"],
+["introduce","giới thiệu","Let me introduce my cousin.","verb"],
+["invent","phát minh","Who did invent the telephone?","mind"],
+["involve","liên quan, bao hàm","The job does involve travelling.","verb"],
+["issue","vấn đề","Traffic is a serious issue here.","mind"],
+["journey","hành trình","The journey takes four hours.","place"],
+["judge","phán xét, giám khảo","Do not judge people by clothes.","work"],
+["keen","háo hức, ham","He is keen on chess.","feel"],
+["knowledge","kiến thức","Her knowledge of history is deep.","school"],
+["lack","thiếu","We lack time, not ideas.","mind"],
+["leader","người lãnh đạo","A good leader listens first.","work"],
+["lend","cho vay, cho mượn","Can you lend me a pen?","verb"],
+["level","trình độ, mức","My English level is B1.","school"],
+["limit","giới hạn","There is a limit on luggage.","desc"],
+["local","địa phương","We shop at the local market.","place"],
+["lonely","cô đơn","He felt lonely in the new school.","feel"],
+["luckily","may thay","Luckily, I found my wallet.","feel"],
+["luggage","hành lý","Put your luggage in the car.","place"],
+["maintain","duy trì, bảo dưỡng","Maintain your bike every month.","work"],
+["manage","quản lý, xoay xở","Can you manage this alone?","work"],
+["measure","đo","Measure the room before buying.","mind"],
+["mention","đề cập","He did not mention the problem.","verb"],
+["mess","sự bừa bộn","Clean up this mess, please.","mind"],
+["method","phương pháp","This method saves time.","mind"],
+["mistake","lỗi","Everybody makes a mistake sometimes.","school"],
+["modern","hiện đại","The library looks very modern.","desc"],
+["mood","tâm trạng","She is in a good mood today.","feel"],
+["nearly","gần như","I nearly missed the bus.","desc"],
+["necessary","cần thiết","A passport is necessary.","desc"],
+["neighbour","người láng giềng","Our neighbour has two dogs.","family"],
+["nervous","lo lắng","I feel nervous before speaking.","feel"],
+["notice","để ý, thông báo","Did you notice the new sign?","mind"],
+["obvious","rõ ràng","The answer is obvious.","desc"],
+["occasion","dịp","We wear this on a special occasion.","time"],
+["offer","đề nghị, mời","They offer free lessons.","mind"],
+["opinion","ý kiến","In my opinion, the book is better.","mind"],
+["opportunity","cơ hội","This is a great opportunity.","mind"],
+["ordinary","bình thường","It was an ordinary Monday.","desc"],
+["organize","tổ chức","We organize a club every term.","verb"],
+["original","nguyên bản, độc đáo","Her idea is truly original.","desc"],
+["outdoor","ngoài trời","We love outdoor activities.","desc"],
+["overcome","vượt qua","He did overcome his fear.","verb"],
+["owe","nợ","I owe you ten thousand dong.","money"],
+["pain","cơn đau","The pain in my knee is gone.","body"],
+["patient","kiên nhẫn, bệnh nhân","Be patient with young learners.","body"],
+["pattern","mẫu, quy luật","Find the pattern in these numbers.","mind"],
+["perform","biểu diễn, thực hiện","They perform on Friday night.","work"],
+["permission","sự cho phép","Ask for permission first.","work"],
+["persuade","thuyết phục","I will persuade my dad to come.","feel"],
+["physical","thể chất","Physical exercise helps the brain.","body"],
+["plenty","nhiều, dư dả","We have plenty of time.","desc"],
+["polite","lịch sự","A polite answer is enough.","feel"],
+["pollution","sự ô nhiễm","Pollution is worse in big cities.","nature"],
+["popular","phổ biến","This game is popular at school.","desc"],
+["position","vị trí","He plays in a defensive position.","work"],
+["practical","thực tế, thiết thực","That is a practical solution.","sport"],
+["prefer","thích hơn","I prefer tea to coffee.","mind"],
+["prepare","chuẩn bị","Prepare your bag tonight.","verb"],
+["pressure","áp lực","Exam pressure makes me tired.","mind"],
+["prevent","ngăn ngừa","Wash hands to prevent illness.","verb"],
+["previous","trước đó","My previous teacher was British.","time"],
+["probably","có lẽ","He will probably be late.","desc"],
+["process","quá trình","Learning is a slow process.","mind"],
+["produce","sản xuất","The factory can produce 500 units.","work"],
+["progress","tiến bộ","Your progress is clear this month.","work"],
+["promise","hứa","I promise to study harder.","mind"],
+["pronounce","phát âm","How do you pronounce this word?","school"],
+["protect","bảo vệ","A helmet will protect your head.","verb"],
+["proud","tự hào","We are proud of you.","feel"],
+["provide","cung cấp","The school will provide books.","work"],
+["publish","xuất bản","They publish the results online.","work"],
+["punish","trừng phạt","Do not punish him for one mistake.","school"],
+["purpose","mục đích","What is the purpose of this app?","mind"],
+["quality","chất lượng","The sound quality is poor.","mind"],
+["quantity","số lượng","Buy a small quantity first.","mind"],
+["quarrel","cãi nhau","They had a short quarrel.","feel"],
+["queue","hàng, xếp hàng","The queue is very long.","social"],
+["raise","nâng lên, nuôi","Raise your hand to answer.","verb"],
+["rarely","ít khi","He rarely watches TV.","time"],
+["reach","tới, đạt được","We reach the top at noon.","verb"],
+["realize","nhận ra","I realize my mistake now.","mind"],
+["reason","lý do","Give me one good reason.","mind"],
+["receive","nhận được","Did you receive my message?","verb"],
+["recent","gần đây","In recent years, prices rose.","time"],
+["recipe","công thức nấu ăn","This recipe needs four eggs.","mind"],
+["recognize","nhận ra","I did not recognize your voice.","mind"],
+["recommend","giới thiệu, khuyên dùng","I recommend this dictionary.","mind"],
+["reduce","giảm bớt","Reduce your screen time.","money"],
+["refuse","từ chối","He did refuse the offer.","mind"],
+["regret","hối hận","I regret saying that.","feel"],
+["regular","đều đặn, thường xuyên","Regular practice is the key.","desc"],
+["relax","thư giãn","Relax for ten minutes.","feel"],
+["reliable","đáng tin cậy","He is a reliable friend.","feel"],
+["remind","nhắc nhở","Remind me at seven.","mind"],
+["remove","loại bỏ","Remove your shoes here.","verb"],
+["repair","sửa chữa","They will repair the road.","verb"],
+["replace","thay thế","Replace the old battery.","verb"],
+["reply","trả lời","Please reply before Friday.","mind"],
+["request","yêu cầu","Your request was accepted.","mind"],
+["require","đòi hỏi","This job does require patience.","mind"],
+["rescue","cứu hộ","They rescue animals after floods.","verb"],
+["research","nghiên cứu","My research is about sleep.","mind"],
+["respect","tôn trọng","Respect other people and their time.","feel"],
+["responsible","có trách nhiệm","You are responsible for your bag.","feel"],
+["result","kết quả","The result arrives tomorrow.","mind"],
+["review","xem lại, ôn lại","Review the words before the test.","mind"],
+["reward","phần thưởng","Hard work brings a reward.","mind"],
+["risk","rủi ro","There is a risk of rain.","mind"],
+["routine","thói quen hằng ngày","My morning routine takes an hour.","mind"],
+["rubbish","rác","Put the rubbish in the bin.","social"],
+["rude","thô lỗ","That answer sounded rude.","feel"],
+["rush","hối hả","Do not rush your writing.","verb"],
+["safety","sự an toàn","Safety comes first.","social"],
+["satisfied","hài lòng","I am satisfied with my score.","feel"],
+["scared","sợ hãi","He is scared of the dark.","feel"],
+["schedule","lịch trình","The schedule changed again.","mind"],
+["search","tìm kiếm","We search online for answers.","mind"],
+["select","chọn ra","Select the correct word.","verb"],
+["sense","cảm giác, ý nghĩa","That makes perfect sense.","mind"],
+["separate","riêng biệt, tách ra","Keep the two files separate.","verb"],
+["serious","nghiêm trọng, nghiêm túc","This is a serious problem.","feel"],
+["serve","phục vụ","They serve breakfast until nine.","work"],
+["several","vài","I called you several times.","desc"],
+["share","chia sẻ","Share your notes with me.","verb"],
+["sight","tầm nhìn, cảnh","The sight from the hill is lovely.","body"],
+["signal","tín hiệu","The phone signal is weak.","tech"],
+["silent","im lặng","The room went silent.","desc"],
+["similar","tương tự","These two words are similar.","desc"],
+["simple","đơn giản","Keep your sentences simple.","desc"],
+["situation","tình huống","Explain the situation clearly.","mind"],
+["skill","kỹ năng","Listening is a hard skill.","sport"],
+["solve","giải quyết","Let us solve this together.","verb"],
+["special","đặc biệt","Today is a special day.","desc"],
+["spend","tiêu, dành (thời gian)","I spend an hour on homework.","money"],
+["spoil","làm hỏng","Rain can spoil our picnic.","verb"],
+["stage","sân khấu, giai đoạn","She walked onto the stage.","art"],
+["standard","tiêu chuẩn","The standard is quite high.","mind"],
+["strange","lạ","I heard a strange noise.","desc"],
+["stress","căng thẳng","Sport reduces stress.","feel"],
+["strict","nghiêm khắc","My teacher is strict but fair.","feel"],
+["succeed","thành công","You will succeed with practice.","mind"],
+["suffer","chịu đựng","Many people suffer from allergies.","feel"],
+["suggest","gợi ý","I suggest a short break.","mind"],
+["suitable","phù hợp","This film is suitable for children.","desc"],
+["supply","cung cấp, nguồn cung","The water supply stopped.","work"],
+["support","hỗ trợ","Thank you for your support.","work"],
+["suppose","cho rằng","I suppose he forgot.","mind"],
+["surface","bề mặt","The surface is still wet.","mind"],
+["surround","bao quanh","Trees surround the house.","verb"],
+["survive","sống sót","Cactus can survive without water.","verb"],
+["talent","tài năng","She has a talent for music.","feel"],
+["tasty","ngon","The soup was really tasty.","food"],
+["terrible","tồi tệ","The traffic was terrible.","feel"],
+["thick","dày","This book is very thick.","desc"],
+["thin","mỏng, gầy","Cut the bread thin.","body"],
+["thought","suy nghĩ","That is an interesting thought.","mind"],
+["tidy","gọn gàng","Keep your desk tidy.","verb"],
+["tiny","bé xíu","A tiny insect landed on me.","desc"],
+["tough","khó, cứng rắn","That was a tough question.","feel"],
+["traffic","giao thông","Traffic is heavy at five.","move"],
+["translate","dịch","Can you translate this sentence?","school"],
+["treat","đối xử, điều trị","Treat others with respect.","verb"],
+["trend","xu hướng","Online learning is a new trend.","mind"],
+["trust","tin tưởng","I trust my brother.","feel"],
+["truth","sự thật","Tell me the truth.","mind"],
+["typical","điển hình","This is a typical exam question.","desc"],
+["unable","không thể","He was unable to come.","desc"],
+["unfair","không công bằng","The rule seems unfair.","feel"],
+["unusual","khác thường","It is unusual to snow here.","desc"],
+["upset","buồn, khó chịu","She felt upset about the news.","feel"],
+["urgent","cấp bách","This message is urgent.","desc"],
+["useful","hữu ích","Your advice was very useful.","desc"],
+["valuable","có giá trị","Time is valuable.","desc"],
+["variety","sự đa dạng","The shop has a variety of books.","desc"],
+["vehicle","xe cộ","No vehicle can pass here.","move"],
+["volunteer","tình nguyện viên","I volunteer at the library.","social"],
+["warn","cảnh báo","They warn us about the storm.","social"],
+["waste","lãng phí","Do not waste paper.","social"],
+["weak","yếu","The signal is weak inside.","body"],
+["wealthy","giàu có","The family is quite wealthy.","money"],
+["weigh","cân, nặng","How much do you weigh?","body"],
+["whole","toàn bộ","I read the whole book.","desc"],
+["wise","sáng suốt","That was a wise decision.","feel"],
+["wonder","tự hỏi","I wonder where she is.","feel"],
+["worth","đáng giá","This film is worth watching.","money"],
+["wrap","bọc, gói","Wrap the gift in blue paper.","verb"],
+["youth","tuổi trẻ","Youth is the time to learn.","family"]
+];
+const MOVERS2=[
+["action","hành động","Now it is time for action.","verb"],
+["activity","hoạt động","My favourite activity is swimming.","sport"],
+["actor","nam diễn viên","That actor is very famous.","art"],
+["actress","nữ diễn viên","The actress smiled at the camera.","art"],
+["add","thêm vào","Add some salt to the soup.","mind"],
+["address","địa chỉ","Write your address on the form.","family"],
+["adult","người lớn","One adult and two children, please.","family"],
+["age","tuổi","What is your age?","family"],
+["ago","cách đây","We moved here two years ago.","time"],
+["agree","đồng ý","I agree with my teacher.","mind"],
+["air","không khí","The air is fresh in the morning.","nature"],
+["amazing","tuyệt diệu","The show was amazing.","desc"],
+["animal","động vật","A tiger is a wild animal.","animal"],
+["apartment","căn hộ","They live in a small apartment.","home"],
+["apple","quả táo","I eat an apple every day.","food"],
+["April","tháng Tư","My birthday is in April.","time"],
+["area","khu vực","This area is very quiet.","place"],
+["arm","cánh tay","My arm hurts after tennis.","body"],
+["around","xung quanh","Trees grow around the house.","desc"],
+["arrive","đến","We arrive at school at seven.","move"],
+["art","nghệ thuật, môn mỹ thuật","Art is my favourite subject.","art"],
+["article","bài báo","I read an article about dogs.","mind"],
+["artist","nghệ sĩ, họa sĩ","My sister wants to be an artist.","art"],
+["ask","hỏi","Ask the teacher for help.","mind"],
+["August","tháng Tám","School starts in August.","time"],
+["aunt","cô, dì","My aunt lives in Hanoi.","family"],
+["autumn","mùa thu","Leaves fall in autumn.","time"],
+["away","đi xa, cách xa","The school is two kilometres away.","desc"],
+["baby","em bé","The baby is sleeping now.","family"],
+["bad","tệ, xấu","The weather is bad today.","desc"],
+["bag","cái túi, cặp","My bag is very heavy.","clothes"],
+["ball","quả bóng","Throw the ball to me.","sport"],
+["banana","quả chuối","A banana is yellow.","food"],
+["band","ban nhạc","My brother plays in a band.","art"],
+["bank","ngân hàng","The bank opens at eight.","money"],
+["bath","bồn tắm, việc tắm","I take a bath every evening.","home"],
+["become","trở thành","He wants to become a pilot.","verb"],
+["bed","cái giường","Go to bed before ten.","home"],
+["begin","bắt đầu","The lesson will begin soon.","verb"],
+["beginning","phần đầu, sự bắt đầu","Read the beginning of the story.","time"],
+["behind","phía sau","The cat is behind the door.","desc"],
+["best","tốt nhất","This is the best day ever.","desc"],
+["better","tốt hơn","My writing is better now.","desc"],
+["bicycle","xe đạp","My bicycle has a new bell.","move"],
+["big","to, lớn","They have a big garden.","desc"],
+["bill","hóa đơn","Dad paid the bill.","money"],
+["bird","con chim","A bird is singing outside.","animal"],
+["black","màu đen","My shoes are black.","desc"],
+["blog","trang blog","She writes a blog about food.","tech"],
+["blue","màu xanh dương","The sky is blue today.","desc"],
+["body","cơ thể","Water is good for your body.","body"],
+["book","quyển sách","This book has many pictures.","school"],
+["bored","thấy nhàm chán","I feel bored at home.","feel"],
+["boring","nhàm chán","That film was boring.","desc"],
+["born","được sinh ra","I was born in Dong Nai.","family"],
+["bottle","cái chai","Bring a bottle of water.","food"],
+["box","cái hộp","Put the toys in the box.","home"],
+["boy","cậu bé","That boy is my cousin.","family"],
+["breakfast","bữa sáng","I have breakfast at six.","food"],
+["brother","anh, em trai","My brother is taller than me.","family"],
+["brown","màu nâu","The dog is brown and white.","desc"],
+["build","xây","They build houses near the river.","work"],
+["building","toà nhà","That building is very tall.","place"],
+["bus","xe buýt","The bus is full.","move"],
+["business","việc kinh doanh","My uncle runs a small business.","money"],
+["busy","bận","Mum is busy this morning.","desc"],
+["buy","mua","I want to buy a new ball.","money"],
+["cake","bánh ngọt","The birthday cake is chocolate.","food"],
+["call","gọi","Call me after dinner.","mind"],
+["camera","máy ảnh","My camera is in the bag.","tech"],
+["capital","thủ đô","Hanoi is the capital of Vietnam.","place"],
+["car","xe hơi","Our car is old but good.","move"],
+["card","tấm thiếp, thẻ","I made a card for Mum.","art"],
+["career","nghề nghiệp","Teaching is a good career.","work"],
+["carrot","củ cà rốt","A carrot is orange.","food"],
+["cat","con mèo","My cat sleeps all day.","animal"],
+["centre","trung tâm","The shop is in the centre of town.","place"],
+["century","thế kỷ","This house is a century old.","time"],
+["chair","cái ghế","Sit on this chair, please.","home"],
+["change","thay đổi","The weather can change quickly.","verb"],
+["chart","biểu đồ","Look at the chart on page five.","school"],
+["cheap","rẻ","These books are cheap.","money"],
+["check","kiểm tra","Check your answers again.","verb"],
+["chicken","thịt gà, con gà","We had chicken for dinner.","food"],
+["child","đứa trẻ","Every child needs sleep.","family"],
+["city","thành phố","Ho Chi Minh City is a big city.","place"],
+["class","lớp học","My class has thirty students.","school"],
+["clean","sạch, dọn sạch","Please clean your desk.","home"],
+["clock","đồng hồ","The clock on the wall is slow.","home"],
+["close","đóng","Close the window, please.","verb"],
+["clothes","quần áo","Put your clothes in the wardrobe.","clothes"],
+["club","câu lạc bộ","I joined the chess club.","sport"],
+["coat","áo măng tô","Wear a coat, it is cold.","clothes"],
+["coffee","cà phê","Dad drinks coffee at six.","food"],
+["cold","lạnh","The water is too cold.","body"],
+["college","trường cao đẳng","My cousin studies at a college.","school"],
+["colour","màu sắc","What colour is your bike?","desc"],
+["come","đến","Come here, please.","verb"],
+["common","phổ biến, thường gặp","That name is very common.","desc"],
+["company","công ty","My father works for a big company.","money"],
+["computer","máy tính","The computer is new.","tech"],
+["concert","buổi hoà nhạc","The concert starts at eight.","art"],
+["cooking","việc nấu ăn","Cooking is fun with Mum.","food"],
+["cool","mát, hay tuyệt","The evening air is cool.","desc"],
+["correct","đúng, chính xác","Your answer is correct.","school"],
+["cost","giá, trị giá","How much does it cost?","money"],
+["country","quốc gia","Vietnam is a beautiful country.","place"],
+["course","khoá học","I take an English course.","school"],
+["cousin","anh chị em họ","My cousin is ten years old.","family"],
+["cream","kem, chất kem","Put cream on the cake.","food"],
+["culture","văn hoá","Food is part of our culture.","social"],
+["cup","cái cốc","A cup of tea, please.","home"],
+["customer","khách hàng","The customer is waiting.","money"],
+["cut","cắt","Cut the paper in half.","verb"],
+["dad","bố","My dad drives a lorry.","family"],
+["dancer","người múa","She is a good dancer.","art"],
+["dark","tối","The room is dark at night.","desc"],
+["date","ngày tháng","What is the date today?","time"],
+["daughter","con gái","Their daughter is five.","family"],
+["day","ngày","Today is a sunny day.","time"],
+["December","tháng Mười Hai","We have a party in December.","time"],
+["delicious","ngon tuyệt","The soup is delicious.","food"],
+["description","lời miêu tả","Write a description of your room.","mind"],
+["design","thiết kế","I like the design of this bag.","art"],
+["desk","bàn học","My books are on the desk.","school"],
+["dialogue","đoạn hội thoại","Read the dialogue with a friend.","school"],
+["die","chết","The plant will die without water.","body"],
+["diet","chế độ ăn","A good diet keeps you healthy.","food"],
+["difference","sự khác biệt","What is the difference between them?","mind"],
+["different","khác nhau","These two bags are different.","desc"],
+["difficult","khó","This question is difficult.","desc"],
+["dinner","bữa tối","We have dinner at seven.","food"],
+["dish","món ăn, cái đĩa","This dish is very spicy.","food"],
+["doctor","bác sĩ","The doctor is very busy.","body"],
+["dog","con chó","My dog likes to run.","animal"],
+["door","cái cửa","Please close the door.","home"],
+["dress","váy liền","Her dress is new.","clothes"],
+["drink","uống","Drink more water today.","food"],
+["driver","người lái xe","The bus driver is friendly.","move"],
+["ear","cái tai","My ear hurts a little.","body"],
+["early","sớm","I get up early every day.","time"],
+["east","phía đông","The sun rises in the east.","place"],
+["easy","dễ","This game is easy.","desc"],
+["eat","ăn","We eat rice every day.","food"],
+["eighteen","mười tám","My brother is eighteen.","time"],
+["eighty","tám mươi","Grandma is eighty years old.","time"],
+["elephant","con voi","An elephant is very big.","animal"],
+["email","thư điện tử","Send me an email tonight.","tech"],
+["end","kết thúc, phần cuối","The end of the film is sad.","time"],
+["enjoy","thưởng thức, thích","I enjoy playing football.","feel"],
+["euro","đồng euro","This book costs one euro.","money"],
+["evening","buổi tối","We study in the evening.","time"],
+["exam","kỳ thi","The exam is on Monday.","school"],
+["example","ví dụ","Give me one example.","school"],
+["exciting","hấp dẫn, hào hứng","The match was exciting.","desc"],
+["exercise","bài tập, luyện tập","Do exercise every morning.","sport"],
+["expensive","đắt","That phone is expensive.","money"],
+["extra","thêm, phụ","I need extra paper.","desc"],
+["eye","con mắt","My left eye is itchy.","body"],
+["face","khuôn mặt","Wash your face, please.","body"],
+["fact","sự thật, dữ kiện","That is an interesting fact.","mind"],
+["false","sai, giả","This sentence is false.","mind"],
+["family","gia đình","My family has five people.","family"],
+["fantastic","tuyệt vời","Your drawing is fantastic.","desc"],
+["farmer","nông dân","The farmer grows rice.","work"],
+["fast","nhanh","That car is very fast.","desc"],
+["fat","béo","The cat is getting fat.","body"],
+["father","cha","My father works at a factory.","family"],
+["favourite","yêu thích nhất","Blue is my favourite colour.","desc"],
+["February","tháng Hai","Tet is often in February.","time"],
+["feel","cảm thấy","I feel happy today.","feel"],
+["feeling","cảm giác","That is a strange feeling.","feel"],
+["festival","lễ hội","The festival lasts three days.","time"],
+["fifteen","mười lăm","My sister is fifteen.","time"],
+["fifth","thứ năm","This is my fifth try.","time"],
+["fill","làm đầy, điền","Fill the glass with water.","verb"],
+["film","bộ phim","This film is for children.","art"],
+["final","cuối cùng","This is the final question.","desc"],
+["fine","ổn, tốt","I am fine, thank you.","desc"],
+["fire","ngọn lửa, đám cháy","Do not play with fire.","home"],
+["fish","con cá","The fish is in the bowl.","animal"],
+["flat","căn hộ, phẳng","Their flat is on the fifth floor.","home"],
+["flight","chuyến bay","Our flight leaves at noon.","move"],
+["floor","sàn nhà, tầng","The floor is wet.","home"],
+["follow","theo sau","Follow me, please.","verb"],
+["food","thức ăn","The food smells good.","food"],
+["foot","bàn chân","My foot is cold.","body"],
+["form","mẫu đơn, hình thức","Fill in this form.","work"],
+["fourteen","mười bốn","I am fourteen years old.","time"],
+["fourth","thứ tư","This is my fourth book.","time"],
+["free","miễn phí, tự do","The entry is free.","money"],
+["Friday","thứ Sáu","We have sport on Friday.","time"],
+["friend","người bạn","My friend lives next door.","family"],
+["front","phía trước","Sit at the front of the bus.","desc"],
+["full","đầy","My glass is full.","desc"],
+["fun","niềm vui","The game was great fun.","feel"],
+["future","tương lai","In the future I will be an engineer.","time"],
+["game","trò chơi, trận đấu","This game needs two players.","sport"],
+["garden","khu vườn","Flowers grow in our garden.","home"],
+["geography","môn địa lý","Geography is about maps and places.","school"],
+["girl","cô bé","That girl is my sister.","family"],
+["give","cho, đưa","Give me the book, please.","verb"],
+["glass","cái ly, thuỷ tinh","The glass is broken.","home"],
+["good","tốt","You did a good job.","desc"],
+["grandfather","ông","My grandfather tells funny stories.","family"],
+["grandmother","bà","My grandmother cooks very well.","family"],
+["grandparent","ông bà","Each grandparent gave me a gift.","family"],
+["great","tuyệt, lớn lao","That is a great idea.","desc"],
+["green","màu xanh lá","The grass is green.","desc"],
+["grey","màu xám","The sky looks grey.","desc"],
+["group","nhóm","Work in a group of four.","social"],
+["grow","trồng, lớn lên","Plants grow fast in summer.","verb"],
+["guitar","đàn ghi ta","He plays the guitar well.","art"],
+["gym","phòng tập","We play games in the gym.","sport"],
+["hair","tóc","Her hair is long and black.","body"],
+["half","một nửa","Give me half the cake.","desc"],
+["hand","bàn tay","Raise your hand to answer.","body"],
+["happen","xảy ra","What did happen yesterday?","verb"],
+["happy","vui, hạnh phúc","I am happy to see you.","feel"],
+["hard","khó, cứng","This test is hard.","desc"],
+["hat","cái mũ","Wear a hat in the sun.","clothes"],
+["hate","ghét","I hate cold rain.","feel"],
+["head","cái đầu","My head is hot.","body"],
+["health","sức khoẻ","Sleep is good for your health.","body"],
+["hear","nghe thấy","I can hear a bird.","body"],
+["help","giúp đỡ","Can you help me?","verb"],
+["high","cao","The wall is too high.","desc"],
+["history","môn lịch sử","History is full of stories.","school"],
+["home","nhà, ở nhà","I go home at five.","home"],
+["hope","hy vọng","I hope you feel better.","feel"],
+["horse","con ngựa","The horse runs fast.","animal"],
+["hot","nóng","The soup is hot.","desc"],
+["house","ngôi nhà","Our house has a red roof.","place"],
+["husband","người chồng","Her husband is a doctor.","family"],
+["idea","ý tưởng","That is a good idea.","mind"],
+["important","quan trọng","Sleep is important for children.","mind"],
+["information","thông tin","I need more information.","mind"],
+["interest","sự quan tâm, hứng thú","He has an interest in robots.","feel"],
+["interested","thấy quan tâm","I am interested in science.","feel"],
+["interesting","thú vị","This story is interesting.","mind"],
+["internet","mạng internet","We study on the internet.","tech"],
+["January","tháng Một","The new year starts in January.","time"],
+["jeans","quần bò","My jeans are too long.","clothes"],
+["job","công việc","My mother has a new job.","work"],
+["join","tham gia","Join our team, please.","verb"],
+["July","tháng Bảy","July is very hot here.","time"],
+["June","tháng Sáu","School ends in June.","time"],
+["keep","giữ","Keep your room tidy.","verb"],
+["key","chìa khoá","The key is in my pocket.","home"],
+["kilometre","ki lô mét","School is one kilometre away.","move"],
+["know","biết","I know the answer.","school"],
+["land","đất, mặt đất","The land near the river is wet.","nature"],
+["language","ngôn ngữ","English is a world language.","school"],
+["large","lớn, rộng","They need a large table.","desc"],
+["last","cuối cùng, vừa qua","This is my last question.","time"],
+["late","muộn","The bus is late today.","time"],
+["later","muộn hơn, sau đó","See you later.","time"],
+["leave","rời đi, để lại","We leave at eight.","verb"],
+["left","bên trái","Turn left at the school.","desc"],
+["leg","cái chân","My leg hurts after running.","body"],
+["letter","lá thư, chữ cái","I wrote a letter to Grandma.","school"],
+["life","cuộc sống","Life in the village is quiet.","mind"],
+["light","ánh sáng, nhẹ","Turn on the light, please.","home"],
+["line","dòng, đường kẻ","Read the first line again.","school"],
+["list","danh sách","Write a list of words.","school"],
+["listen","lắng nghe","Listen to the teacher.","school"],
+["live","sống","We live near the market.","verb"],
+["long","dài","The river is very long.","desc"],
+["look","nhìn","Look at this photo.","verb"],
+["love","yêu, thích lắm","I love my family.","feel"],
+["lunch","bữa trưa","We have lunch at school.","food"],
+["machine","cái máy","This machine washes clothes.","work"],
+["magazine","tạp chí","I read a magazine about cars.","art"],
+["main","chính, chủ yếu","The main road is busy.","desc"],
+["make","làm, chế tạo","Make a list, please.","verb"],
+["man","người đàn ông","That man is my teacher.","family"],
+["map","bản đồ","Look at the map of Vietnam.","place"],
+["March","tháng Ba","The rain starts in March.","time"],
+["married","đã kết hôn","My cousin is married.","family"],
+["match","trận đấu, que diêm","The match starts at four.","sport"],
+["meal","bữa ăn","Dinner is my favourite meal.","food"],
+["mean","có nghĩa là","What does this word mean?","mind"],
+["meaning","nghĩa","I know the meaning of this word.","mind"],
+["meet","gặp","Let us meet at the park.","verb"],
+["meeting","cuộc họp","The meeting is on Monday.","work"],
+["member","thành viên","She is a member of our club.","family"],
+["menu","thực đơn","Look at the menu, please.","food"],
+["message","tin nhắn","I sent you a message.","mind"],
+["metre","mét","This room is one metre wide.","move"],
+["midnight","nửa đêm","The train arrives at midnight.","time"],
+["mile","dặm","We walked one mile.","move"],
+["milk","sữa","Drink your milk, please.","food"],
+["model","mô hình, người mẫu","He makes model planes.","art"],
+["moment","khoảnh khắc","Wait a moment, please.","time"],
+["Monday","thứ Hai","We have maths on Monday.","time"],
+["money","tiền","Keep your money in a safe place.","money"],
+["morning","buổi sáng","I run every morning.","time"],
+["mother","mẹ","My mother is a teacher.","family"],
+["mouth","cái miệng","Open your mouth, please.","body"],
+["move","di chuyển","Move your chair back.","move"],
+["movie","bộ phim","We watched a funny movie.","art"],
+["mum","mẹ","My mum cooks very well.","family"],
+["music","âm nhạc","I listen to music at night.","art"],
+["name","tên","What is your name?","family"],
+["natural","tự nhiên","Honey is a natural food.","nature"],
+["need","cần","I need a new pencil.","verb"],
+["negative","tiêu cực, phủ định","Do not be negative.","desc"],
+["new","mới","My shoes are new.","desc"],
+["news","tin tức","The news starts at seven.","social"],
+["newspaper","tờ báo","Dad reads the newspaper.","social"],
+["nice","dễ thương, tử tế","That is a nice hat.","desc"],
+["night","ban đêm","The stars shine at night.","time"],
+["nineteen","mười chín","My brother is nineteen.","time"],
+["ninety","chín mươi","The old man is ninety.","time"],
+["north","phía bắc","Hanoi is in the north.","place"],
+["nose","cái mũi","My nose is cold.","body"],
+["note","ghi chú","Take a note in your book.","school"],
+["November","tháng Mười Một","The weather cools in November.","time"],
+["number","con số","Write your phone number.","school"],
+["object","vật thể","What is this object?","mind"],
+["October","tháng Mười","It rains a lot in October.","time"],
+["office","văn phòng","Dad works in an office.","work"],
+["old","cũ, già","My bike is old.","desc"],
+["online","trực tuyến","We study online on Sunday.","tech"],
+["open","mở","Open your books, please.","verb"],
+["opposite","đối diện, trái ngược","The shop is opposite the school.","desc"],
+["orange","quả cam, màu da cam","I drink orange juice.","food"],
+["order","gọi món, thứ tự","Put the words in order.","verb"],
+["painting","bức tranh","That painting is beautiful.","art"],
+["pair","đôi, cặp","I need a new pair of shoes.","desc"],
+["paper","giấy","Write on this paper.","school"],
+["paragraph","đoạn văn","Write a short paragraph.","school"],
+["parent","cha mẹ","Each parent signs the form.","family"],
+["part","phần","This part is difficult.","desc"],
+["partner","bạn cùng cặp","Work with your partner.","family"],
+["party","tiệc","The party starts at five.","time"],
+["passport","hộ chiếu","My passport is new.","place"],
+["past","quá khứ, đã qua","In the past we had no phone.","time"],
+["pay","trả tiền","I will pay for the tickets.","work"],
+["pen","bút mực","May I borrow your pen?","school"],
+["people","mọi người","Many people live here.","family"],
+["pepper","hạt tiêu, ớt","Add a little pepper.","food"],
+["perfect","hoàn hảo","Your writing is perfect.","desc"],
+["period","giai đoạn, tiết học","The first period is maths.","time"],
+["person","người","That person is my neighbour.","family"],
+["personal","cá nhân","This is my personal notebook.","family"],
+["phone","điện thoại","My phone is on the desk.","tech"],
+["photo","ảnh","Take a photo of us.","art"],
+["photograph","bức ảnh","This photograph is old.","art"],
+["phrase","cụm từ","Learn this phrase by heart.","school"],
+["piano","đàn piano","She plays the piano well.","art"],
+["picture","bức tranh, hình","Draw a picture of your family.","art"],
+["piece","miếng, mảnh","Give me a piece of cake.","desc"],
+["pig","con heo","The pig is very big.","animal"],
+["pink","màu hồng","Her bag is pink.","desc"],
+["place","địa điểm","This place is quiet.","place"],
+["plan","kế hoạch","We have a plan for Sunday.","mind"],
+["plant","cây, trồng","Water the plant every day.","nature"],
+["play","chơi","We play football after school.","sport"],
+["player","người chơi, cầu thủ","He is the best player.","sport"],
+["police","cảnh sát","Call the police, please.","social"],
+["pool","hồ bơi","The pool is cold today.","place"],
+["poor","nghèo, kém","The poor man needs help.","feel"],
+["positive","tích cực","Keep a positive mind.","feel"],
+["possible","có thể","Is it possible to start now?","desc"],
+["post","gửi thư, bài đăng","Post this letter for me.","work"],
+["practice","sự luyện tập","Practice makes perfect.","school"],
+["practise","luyện tập","Practise ten words a day.","school"],
+["pretty","xinh, khá là","That flower is pretty.","desc"],
+["price","giá","The price is too high.","money"],
+["problem","vấn đề","We have a small problem.","mind"],
+["product","sản phẩm","This product is new.","work"],
+["programme","chương trình","My favourite programme is on now.","art"],
+["purple","màu tím","Her dress is purple.","desc"],
+["put","đặt, để","Put the book on the shelf.","verb"],
+["quarter","một phần tư","A quarter of the cake is left.","time"],
+["question","câu hỏi","Ask one question, please.","mind"],
+["quick","nhanh","Be quick, we are late.","desc"],
+["quickly","một cách nhanh chóng","Walk quickly to the gate.","desc"],
+["radio","radio","Dad listens to the radio.","art"],
+["read","đọc","I read before bed.","verb"],
+["reader","người đọc","She is a fast reader.","mind"],
+["reading","việc đọc","Reading is my hobby.","mind"],
+["ready","sẵn sàng","Are you ready to start?","desc"],
+["real","thật","Is that a real gold ring?","desc"],
+["red","màu đỏ","My bike is red.","desc"],
+["remember","nhớ","Remember your homework.","mind"],
+["repeat","nhắc lại","Repeat after me, please.","school"],
+["report","báo cáo","I wrote a report about water.","work"],
+["return","trở về, trả lại","Return the book tomorrow.","verb"],
+["rich","giàu","The rich man helps the school.","money"],
+["road","con đường","This road goes to the sea.","move"],
+["room","căn phòng","My room is small.","home"],
+["rule","quy tắc","Follow the rule, please.","mind"],
+["run","chạy","I run every morning.","sport"],
+["sad","buồn","Why do you look sad?","feel"],
+["salt","muối","Put a little salt in the soup.","food"],
+["sandwich","bánh sandwich","I ate a cheese sandwich.","food"],
+["Saturday","thứ Bảy","We visit Grandma on Saturday.","time"],
+["say","nói","Say it again, please.","verb"],
+["school","trường học","My school is near the market.","school"],
+["science","môn khoa học","Science is very interesting.","tech"],
+["scientist","nhà khoa học","The scientist works in a lab.","tech"],
+["sea","biển","The sea is warm today.","nature"],
+["section","phần, mục","Read section two.","school"],
+["see","nhìn thấy","I can see the moon.","verb"],
+["sell","bán","They sell fruit at the market.","money"],
+["send","gửi","Send me a photo.","verb"],
+["sentence","câu","Write one sentence about you.","school"],
+["September","tháng Chín","School starts in September.","time"],
+["seventeen","mười bảy","My sister is seventeen.","time"],
+["seventy","bảy mươi","Grandpa is seventy.","time"],
+["shirt","áo sơ mi","My shirt is white.","clothes"],
+["shoe","chiếc giày","One shoe is missing.","clothes"],
+["shop","cửa hàng","The shop closes at nine.","money"],
+["shopping","việc mua sắm","Mum goes shopping on Sunday.","money"],
+["short","ngắn, thấp","My hair is short.","desc"],
+["show","chỉ cho xem, buổi diễn","Show me your drawing.","art"],
+["shower","vòi sen, việc tắm","I take a shower after sport.","home"],
+["sick","bị bệnh","My brother is sick today.","body"],
+["singer","ca sĩ","That singer is young.","art"],
+["sister","chị, em gái","My sister plays the piano.","family"],
+["sit","ngồi","Sit down, please.","verb"],
+["sixteen","mười sáu","He is sixteen years old.","time"],
+["sixty","sáu mươi","My grandma is sixty.","time"],
+["slow","chậm","This computer is slow.","desc"],
+["small","nhỏ","My room is small.","desc"],
+["son","con trai","Their son is a pilot.","family"],
+["song","bài hát","This song is easy to sing.","art"],
+["soon","sớm, chẳng bao lâu","The bus will come soon.","time"],
+["sorry","xin lỗi","I am sorry for the mistake.","feel"],
+["sound","âm thanh","What is that sound?","art"],
+["south","phía nam","My city is in the south.","nature"],
+["space","không gian, vũ trụ","There is no space on the desk.","tech"],
+["speak","nói","I speak English at school.","mind"],
+["spell","đánh vần","Can you spell your name?","school"],
+["spelling","chính tả","My spelling is getting better.","school"],
+["sport","môn thể thao","Football is my favourite sport.","sport"],
+["spring","mùa xuân","Flowers open in spring.","nature"],
+["stand","đứng","Stand near the door.","verb"],
+["start","bắt đầu","We start at eight.","time"],
+["statement","lời phát biểu","Is this statement true?","mind"],
+["stay","ở lại","Stay at home today.","time"],
+["stop","dừng","Stop at the red light.","verb"],
+["story","câu chuyện","Tell me a story.","art"],
+["street","đường phố","Our street is quiet.","place"],
+["student","học sinh","Every student needs a book.","school"],
+["study","học","I study every evening.","school"],
+["style","phong cách","I like her style.","art"],
+["success","sự thành công","Hard work brings success.","mind"],
+["summer","mùa hè","We swim in summer.","nature"],
+["sun","mặt trời","The sun is bright.","nature"],
+["Sunday","Chủ Nhật","We rest on Sunday.","time"],
+["supermarket","siêu thị","Mum is at the supermarket.","money"],
+["sure","chắc chắn","Are you sure about that?","feel"],
+["swim","bơi","I swim every weekend.","sport"],
+["table","cái bàn","Put the plates on the table.","home"],
+["take","lấy, mang","Take this book home.","verb"],
+["talk","nói chuyện","Do not talk in class.","verb"],
+["tall","cao","My brother is tall.","desc"],
+["tea","trà","Grandpa drinks green tea.","food"],
+["teach","dạy","I want to teach English one day.","school"],
+["team","đội","Our team won the match.","sport"],
+["teenager","thiếu niên","My brother is a teenager.","family"],
+["telephone","điện thoại","The telephone is ringing.","tech"],
+["television","tivi","Turn off the television.","art"],
+["tell","kể, nói cho biết","Tell me the truth.","verb"],
+["test","bài kiểm tra","The test is tomorrow.","school"],
+["text","văn bản, tin nhắn","Read the text twice.","school"],
+["thank","cảm ơn","I thank you for your help.","feel"],
+["theatre","nhà hát","We went to the theatre.","art"],
+["thing","đồ vật, điều","What is this thing?","mind"],
+["think","nghĩ","I think it will rain.","mind"],
+["thirsty","khát","I am thirsty after running.","body"],
+["thirteen","mười ba","My cousin is thirteen.","time"],
+["Thursday","thứ Năm","We have music on Thursday.","time"],
+["ticket","vé","My ticket costs ten dollars.","move"],
+["time","thời gian","What time is it?","time"],
+["title","tiêu đề","Write the title here.","school"],
+["today","hôm nay","Today is my birthday.","time"],
+["toilet","nhà vệ sinh","The toilet is on the left.","home"],
+["tomato","quả cà chua","A tomato is red.","food"],
+["tonight","tối nay","We study tonight.","time"],
+["topic","chủ đề","Our topic is animals.","school"],
+["tourist","khách du lịch","A tourist asked for help.","place"],
+["town","thị trấn","Our town is small and quiet.","place"],
+["travel","đi du lịch","I want to travel to Japan.","move"],
+["tree","cái cây","The tree is very old.","nature"],
+["trip","chuyến đi","Our school trip is on Friday.","move"],
+["trousers","cái quần dài","My trousers are blue.","clothes"],
+["true","đúng, thật","That story is true.","desc"],
+["try","thử, cố gắng","Try again, please.","verb"],
+["Tuesday","thứ Ba","We have English on Tuesday.","time"],
+["turn","quay, lượt","It is my turn now.","move"],
+["twice","hai lần","I read it twice.","time"],
+["type","loại, gõ chữ","What type of music do you like?","desc"],
+["umbrella","cái dù","Take an umbrella, it may rain.","clothes"],
+["uncle","chú, bác","My uncle lives in Hue.","family"],
+["university","trường đại học","My sister studies at a university.","school"],
+["use","sử dụng","May I use your pen?","verb"],
+["vacation","kỳ nghỉ","Our vacation starts in June.","place"],
+["video","đoạn phim","Watch this video about bees.","art"],
+["visit","thăm","We visit Grandma every month.","place"],
+["visitor","khách đến thăm","One visitor is waiting.","place"],
+["waiter","người phục vụ","The waiter brought our soup.","work"],
+["walk","đi bộ","I walk to school.","move"],
+["want","muốn","I want a glass of water.","verb"],
+["warm","ấm","The water is warm.","desc"],
+["watch","xem, đồng hồ","We watch cartoons on Sunday.","verb"],
+["water","nước","Drink more water.","nature"],
+["way","cách, đường","This is the best way.","social"],
+["weather","thời tiết","The weather is nice today.","nature"],
+["website","trang web","This website helps students.","tech"],
+["Wednesday","thứ Tư","We have art on Wednesday.","time"],
+["week","tuần","We have a test next week.","time"],
+["welcome","chào mừng","Welcome to our class.","social"],
+["west","phía tây","The sun sets in the west.","nature"],
+["white","màu trắng","My shirt is white.","desc"],
+["wife","người vợ","His wife is a nurse.","family"],
+["window","cửa sổ","Open the window, please.","home"],
+["winter","mùa đông","It is cold in winter.","nature"],
+["woman","người phụ nữ","That woman is my teacher.","family"],
+["word","từ","Write one new word here.","school"],
+["work","làm việc, công việc","My parents work hard.","work"],
+["worker","công nhân","Every worker wears a helmet.","work"],
+["world","thế giới","The world is very big.","place"],
+["write","viết","Write your name here.","school"],
+["writer","nhà văn","She is a famous writer.","school"],
+["writing","việc viết, bài viết","Your writing is neat.","school"],
+["wrong","sai","This answer is wrong.","desc"],
+["year","năm","I am twelve years old this year.","time"],
+["yellow","màu vàng","The sun looks yellow.","desc"],
+["young","trẻ","My teacher is young.","desc"],
+["yourself","chính bạn","Draw yourself in the picture.","family"],
+["abroad","ở nước ngoài","My cousin studies abroad.","place"],
+["accept","chấp nhận","Please accept my apology.","verb"],
+["accident","tai nạn","There was an accident on the road.","move"],
+["act","diễn, hành động","She can act very well.","art"],
+["active","năng động","Keep your body active.","desc"],
+["actually","thực ra","Actually, I like maths.","desc"],
+["adventure","cuộc phiêu lưu","The book is about an adventure.","place"],
+["advertisement","quảng cáo","I saw an advertisement for bikes.","money"],
+["advertising","việc quảng cáo","Advertising is everywhere online.","money"],
+["affect","ảnh hưởng tới","Noise can affect your sleep.","mind"],
+["airline","hãng hàng không","This airline is cheap.","move"],
+["alive","còn sống","The fish is still alive.","body"],
+["alone","một mình","I stayed home alone.","feel"],
+["alternative","lựa chọn khác","We need an alternative plan.","mind"],
+["amount","lượng, số lượng","Add a small amount of salt.","desc"],
+["ancient","cổ xưa","This is an ancient city.","time"],
+["ankle","mắt cá chân","I hurt my ankle in the match.","body"],
+["anywhere","bất cứ đâu","I cannot find it anywhere.","place"],
+["app","ứng dụng","This app teaches ten words a day.","tech"],
+["appearance","ngoại hình, sự xuất hiện","Her appearance surprised us.","body"],
+["architect","kiến trúc sư","My uncle is an architect.","work"],
+["architecture","kiến trúc","I love the architecture of this temple.","art"],
+["argument","cuộc tranh luận","They had a short argument.","mind"],
+["army","quân đội","His father is in the army.","social"],
+["arrangement","sự sắp xếp","The seat arrangement is new.","verb"],
+["asleep","đang ngủ","The baby is asleep.","body"],
+["assistant","trợ lý","The shop assistant was helpful.","work"],
+["athlete","vận động viên","An athlete trains every day.","sport"],
+["attention","sự chú ý","Pay attention to the board.","mind"],
+["attractive","hấp dẫn, ưa nhìn","The garden looks attractive.","desc"],
+["author","tác giả","Who is the author of this book?","art"],
+["average","trung bình","My average score is eight.","desc"],
+["award","giải thưởng","She won an award for singing.","sport"],
+["awful","tồi tệ","The smell is awful.","desc"],
+["background","phông, bối cảnh","The background of the photo is green.","art"],
+["badly","một cách tệ","He played badly today.","desc"],
+["bar","thanh, quầy","I ate a bar of chocolate.","food"],
+["based","dựa trên","The film is based on a book.","mind"],
+["bean","hạt đậu","This bean soup is tasty.","food"],
+["beat","đánh bại, đập","We can beat that team.","sport"],
+["beef","thịt bò","The beef is very soft.","food"],
+["billion","tỷ","A billion is a big number.","time"],
+["bin","thùng rác","Put the paper in the bin.","home"],
+["biology","môn sinh học","Biology is about living things.","school"],
+["birth","sự ra đời","The birth of my sister was in May.","family"],
+["biscuit","bánh quy","I ate one biscuit.","food"],
+["bit","một chút","I am a bit tired.","desc"],
+["blank","trống, chỗ trống","Fill in the blank.","school"],
+["blood","máu","Blood is red.","body"],
+["blow","thổi","Blow out the candles.","verb"],
+["boil","đun sôi","Boil the water first.","food"],
+["bone","xương","The dog has a big bone.","body"],
+["boss","người quản lý","Her boss is very kind.","work"],
+["bottom","phần dưới cùng","Look at the bottom of the page.","desc"],
+["brain","não","Sleep helps your brain.","body"],
+["bright","sáng, rực rỡ","The room is bright.","desc"],
+["brilliant","xuất sắc","That is a brilliant idea.","desc"],
+["broken","bị hỏng","My watch is broken.","desc"],
+["brush","bàn chải, cọ","Use a brush to paint.","home"],
+["burn","cháy, làm cháy","Do not burn the rice.","verb"],
+["businessman","doanh nhân","The businessman travels a lot.","work"],
+["button","cái nút","Press the green button.","clothes"],
+["camp","trại, cắm trại","We camp near the lake.","sport"],
+["care","sự chăm sóc, quan tâm","Take care of your little sister.","feel"],
+["carefully","một cách cẩn thận","Read the question carefully.","desc"],
+["carpet","tấm thảm","The carpet is dirty.","home"],
+["case","trường hợp, cái hộp","In that case, we stay home.","desc"],
+["cash","tiền mặt","I paid in cash.","money"],
+["castle","lâu đài","The castle is very old.","place"],
+["cause","nguyên nhân, gây ra","Rain can cause floods.","mind"],
+["celebrity","người nổi tiếng","That singer is a celebrity.","art"],
+["certain","chắc chắn, nhất định","I am certain about the answer.","mind"],
+["certainly","chắc chắn là","I will certainly come.","desc"],
+["chance","cơ hội","Give me one more chance.","mind"],
+["character","nhân vật, tính cách","My favourite character is the dog.","art"],
+["chat","nói chuyện, tán gẫu","We chat after class.","mind"],
+["chef","đầu bếp","The chef cooks very fast.","work"],
+["chemistry","môn hoá học","Chemistry is about materials.","school"],
+["chip","khoai tây chiên, con chip","I ate one chip.","food"],
+["church","nhà thờ","The church is near the park.","place"],
+["circle","hình tròn","Draw a circle here.","school"],
+["classical","cổ điển","My mum likes classical music.","art"],
+["clear","rõ ràng, trong","The water is clear.","desc"],
+["clearly","một cách rõ ràng","Speak clearly, please.","desc"],
+["climate","khí hậu","The climate here is hot.","nature"],
+["closed","đã đóng","The shop is closed today.","desc"],
+["clothing","quần áo","This clothing is for winter.","clothes"],
+["coach","huấn luyện viên","Our coach is very strict.","sport"],
+["coast","bờ biển","We drove along the coast.","place"],
+["code","mã","The door code is secret.","tech"],
+["colleague","đồng nghiệp","My colleague helped me.","work"],
+["column","cột","Write it in the first column.","school"],
+["comedy","phim hài","This comedy made me laugh.","art"],
+["comment","lời nhận xét","Write a short comment.","mind"],
+["compete","tranh tài","Ten schools compete today.","sport"],
+["completely","hoàn toàn","I completely forgot.","desc"],
+["condition","điều kiện, tình trạng","The bike is in good condition.","desc"],
+["conference","hội nghị","Dad is at a conference.","work"],
+["connected","được kết nối","The printer is connected.","tech"],
+["contain","chứa","These boxes contain books.","desc"],
+["context","ngữ cảnh","Guess the word from the context.","school"],
+["continent","lục địa","Asia is a big continent.","place"],
+["control","kiểm soát","Control the ball with one foot.","verb"],
+["cooker","bếp nấu","The cooker is hot.","home"],
+["copy","bản sao, sao chép","Copy this sentence.","school"],
+["corner","góc","The shop is on the corner.","place"],
+["correctly","một cách chính xác","Spell the word correctly.","desc"],
+["count","đếm","Count to twenty.","school"],
+["couple","một đôi, một vài","A couple of friends came.","family"],
+["cover","che, bìa","Cover the pot, please.","verb"],
+["crazy","điên, phát điên","That noise makes me crazy.","feel"],
+["creative","sáng tạo","She is a creative student.","feel"],
+["credit","tín dụng, công nhận","Dad paid by credit card.","money"],
+["cross","đi qua, bắt chéo","Cross the road carefully.","move"],
+["crowd","đám đông","A big crowd watched the match.","social"],
+["cycle","đạp xe, vòng tuần hoàn","We cycle to school.","move"],
+["daily","hằng ngày","This is my daily routine.","time"],
+["danger","sự nguy hiểm","There is no danger here.","social"],
+["data","dữ liệu","The data is on my laptop.","tech"],
+["deal","thoả thuận, giải quyết","That is a good deal.","money"],
+["decision","quyết định","It was a hard decision.","mind"],
+["deep","sâu","The river is deep here.","desc"],
+["degree","độ, bằng cấp","My sister studies for a degree.","school"],
+["department","bộ phận, khoa","My father leads a department.","work"],
+["desert","sa mạc","A camel lives in the desert.","nature"],
+["designer","nhà thiết kế","She is a game designer.","work"],
+["destroy","phá huỷ","The storm did destroy the roof.","verb"],
+["detective","thám tử","The detective found the answer.","work"],
+["device","thiết bị","This device measures heat.","tech"],
+["diary","sổ tay, nhật ký","I write a diary at night.","school"],
+["differently","một cách khác","He thinks differently.","desc"],
+["digital","số, kỹ thuật số","My watch is digital.","tech"],
+["direct","trực tiếp","This is a direct flight.","move"],
+["direction","phương hướng","Which direction is the sea?","move"],
+["director","giám đốc","The director spoke first.","work"],
+["disagree","không đồng ý","I disagree with that idea.","mind"],
+["disaster","thảm hoạ","The flood was a disaster.","nature"],
+["discovery","phát hiện","That was a great discovery.","tech"],
+["discussion","cuộc thảo luận","We had a short discussion.","mind"],
+["disease","bệnh","Clean hands stop disease.","body"],
+["document","tài liệu","Print this document, please.","work"],
+["double","đôi, gấp đôi","I need a double portion.","desc"],
+["download","tải xuống","Download the file now.","tech"],
+["drama","môn kịch, kịch tính","We have a drama class.","art"],
+["drawing","bức vẽ","Your drawing is lovely.","art"],
+["driving","việc lái xe","Driving at night is hard.","move"],
+["dry","khô","My towel is dry.","desc"],
+["earth","trái đất, đất","The Earth goes round the sun.","nature"],
+["easily","một cách dễ dàng","He solved it easily.","desc"],
+["education","giáo dục","Education opens many doors.","school"],
+["effect","tác động","Sugar has a bad effect on teeth.","mind"],
+["electric","điện","This is an electric car.","tech"],
+["electrical","về điện","Do not touch electrical wires.","tech"],
+["electricity","điện","The electricity went off.","tech"],
+["electronic","điện tử","My electronic dictionary is small.","tech"],
+["employee","nhân viên","Every employee has a card.","work"],
+["employer","người tuyển dụng","His employer is kind.","work"],
+["ending","đoạn kết","The ending is happy.","art"],
+["engine","động cơ","The engine is loud.","move"],
+["engineer","kỹ sư","My father is an engineer.","work"],
+["enter","đi vào, nhập vào","Enter the room quietly.","verb"],
+["equipment","thiết bị","Put the sport equipment away.","sport"],
+["error","lỗi","There is one error here.","school"],
+["essay","bài luận","I wrote an essay about water.","school"],
+["everyday","thường ngày","These are everyday words.","desc"],
+["everywhere","khắp nơi","Toys are everywhere.","place"],
+["evidence","bằng chứng","We need more evidence.","mind"],
+["exact","chính xác","Give me the exact number.","desc"],
+["exactly","chính xác là","That is exactly right.","desc"],
+["exist","tồn tại","Dragons do not exist.","mind"],
+["expert","chuyên gia","She is an expert on birds.","work"],
+["explanation","lời giải thích","Your explanation is clear.","mind"],
+["expression","cách diễn đạt, biểu cảm","Learn this useful expression.","mind"],
+["extreme","cực độ","The heat was extreme.","desc"],
+["factor","yếu tố","Sleep is one factor in health.","mind"],
+["factory","nhà máy","My mother works in a factory.","work"],
+["fair","công bằng","That rule is fair.","feel"],
+["fan","người hâm mộ, cái quạt","I am a fan of this team.","sport"],
+["farming","việc làm nông","Farming is hard work.","work"],
+["fashion","thời trang","She reads about fashion.","clothes"],
+["feature","đặc điểm","This phone has a new feature.","desc"],
+["feed","cho ăn","Feed the cat, please.","animal"],
+["female","giống nữ, cái","A female bird built the nest.","family"],
+["fiction","truyện hư cấu","I read fiction every night.","art"],
+["fight","đánh nhau, chiến đấu","Do not fight with your brother.","social"],
+["firstly","thứ nhất","Firstly, open your book.","desc"],
+["fit","vừa, khoẻ","These shoes do not fit.","body"],
+["fix","sửa","Can you fix my bike?","verb"],
+["flu","bệnh cúm","He has the flu.","body"],
+["flying","việc bay","Flying is faster than driving.","move"],
+["following","sau đây","Answer the following question.","desc"],
+["fork","cái nĩa","Use a fork, please.","home"],
+["formal","trang trọng","This is a formal letter.","desc"],
+["forward","về phía trước","Move forward one step.","desc"],
+["fresh","tươi","The fruit is fresh.","food"],
+["frog","con ếch","A frog jumped into the water.","animal"],
+["furniture","đồ nội thất","The furniture is new.","home"],
+["further","xa hơn","Walk a little further.","desc"],
+["gallery","phòng tranh","The gallery shows new art.","place"],
+["gap","khoảng trống","Fill the gap with one word.","mind"],
+["gas","khí, ga","The gas cooker is hot.","nature"],
+["gate","cổng","Wait at the school gate.","home"],
+["general","chung, tổng quát","This is a general rule.","desc"],
+["gift","món quà","Thank you for the gift.","money"],
+["gold","vàng","Her ring is gold.","money"],
+["golf","môn golf","My uncle plays golf.","sport"],
+["government","chính phủ","The government built the bridge.","work"],
+["ground","mặt đất","Sit on the ground.","nature"],
+["guy","anh chàng","That guy is my neighbour.","family"],
+["hall","hội trường, hành lang","The meeting is in the hall.","home"],
+["heart","trái tim","Sport is good for your heart.","body"],
+["heat","nhiệt, hơi nóng","The heat in May is strong.","nature"],
+["height","chiều cao","What is your height?","body"],
+["helpful","hữu ích","Your advice was helpful.","feel"],
+["hero","người hùng","My dad is my hero.","feel"],
+["herself","chính cô ấy","She made the cake herself.","family"],
+["hill","đồi","We climbed the hill.","nature"],
+["himself","chính anh ấy","He fixed the bike himself.","desc"],
+["hit","đánh, va vào","The ball hit the window.","verb"],
+["hold","giữ, cầm","Hold my hand, please.","verb"],
+["hole","cái lỗ","There is a hole in my sock.","home"],
+["human","con người","Every human needs water.","family"],
+["ideal","lý tưởng","This is an ideal place to study.","desc"],
+["illness","bệnh tật","A short illness kept him home.","body"],
+["image","hình ảnh","This image is clear.","mind"],
+["impossible","không thể","Nothing is impossible.","desc"],
+["included","được bao gồm","Breakfast is included.","mind"],
+["including","bao gồm cả","Ten people came, including me.","mind"],
+["incredible","khó tin, phi thường","The view was incredible.","desc"],
+["individual","cá nhân, riêng lẻ","Each individual gets one book.","desc"],
+["industry","ngành công nghiệp","The car industry is big.","social"],
+["informal","thân mật, không trang trọng","This is an informal email.","desc"],
+["instructor","người hướng dẫn","Our swimming instructor is young.","school"],
+["instrument","nhạc cụ, dụng cụ","The piano is my favourite instrument.","art"],
+["international","quốc tế","This is an international school.","tech"],
+["introduction","phần giới thiệu","Read the introduction first.","mind"],
+["invention","phát minh","The wheel was a great invention.","mind"],
+["invitation","thiệp mời","Thank you for the invitation.","mind"],
+["item","món, mục","Each item costs five dollars.","mind"],
+["jewellery","đồ trang sức","Her jewellery is simple.","clothes"],
+["joke","chuyện cười","He told a funny joke.","art"],
+["journalist","nhà báo","A journalist asked questions.","work"],
+["kid","đứa trẻ","Every kid loves this game.","family"],
+["king","vua","The king lived in a castle.","family"],
+["knife","con dao","Be careful with the knife.","home"],
+["knock","gõ cửa","Knock before you enter.","verb"],
+["lab","phòng thí nghiệm","We did a test in the lab.","school"],
+["lady","người phụ nữ","The lady next door is kind.","family"],
+["laptop","máy tính xách tay","My laptop is slow.","tech"],
+["laughter","tiếng cười","I heard laughter outside.","art"],
+["law","luật","Everyone must follow the law.","social"],
+["lawyer","luật sư","Her mother is a lawyer.","work"],
+["lazy","lười","Do not be lazy today.","feel"],
+["lead","dẫn đầu, dẫn tới","This road will lead to the sea.","verb"],
+["learning","việc học","Learning a language takes time.","school"],
+["lecture","bài giảng","The lecture was long.","school"],
+["lifestyle","lối sống","An active lifestyle is healthy.","social"],
+["likely","có khả năng","Rain is likely tonight.","desc"],
+["link","liên kết","Click this link.","mind"],
+["listener","người nghe","Be a good listener.","mind"],
+["lock","ổ khoá, khoá lại","Lock the door, please.","home"],
+["lost","bị mất, lạc","My key is lost.","desc"],
+["loudly","một cách ồn ào","Do not speak loudly here.","desc"],
+["lovely","đáng yêu","What a lovely garden!","feel"],
+["low","thấp","The chair is too low.","desc"],
+["luck","sự may mắn","Good luck with your test!","feel"],
+["mail","thư từ","The mail arrives at nine.","work"],
+["major","chủ yếu, lớn","This is a major problem.","work"],
+["male","giống nam, đực","A male lion has long hair.","family"],
+["manager","người quản lý","The manager opened the shop.","work"],
+["manner","cách thức, thái độ","He answered in a polite manner.","desc"],
+["mark","điểm, dấu","My mark was eight out of ten.","school"],
+["marry","cưới","My cousin will marry in June.","family"],
+["material","vật liệu","Wood is a strong material.","tech"],
+["mathematics","toán học","Mathematics needs practice.","school"],
+["maths","môn toán","Maths is my best subject.","school"],
+["matter","vấn đề, quan trọng","What is the matter?","mind"],
+["media","truyền thông","The media reported the flood.","mind"],
+["medical","về y tế","She needs medical help.","body"],
+["memory","ký ức, bộ nhớ","I have a good memory for words.","mind"],
+["metal","kim loại","The gate is made of metal.","tech"],
+["middle","giữa","Stand in the middle.","desc"],
+["mind","tâm trí, để ý","Keep your mind on the test.","mind"],
+["missing","bị thiếu, mất tích","One page is missing.","desc"],
+["mobile","di động","My mobile phone is new.","tech"],
+["mostly","chủ yếu là","We mostly speak English here.","desc"],
+["motorcycle","xe máy","His motorcycle is loud.","move"],
+["movement","sự chuyển động","I saw a movement in the grass.","move"],
+["musical","về âm nhạc","She has musical talent.","art"],
+["musician","nhạc sĩ, nhạc công","The musician played all night.","art"],
+["myself","chính tôi","I made this cake myself.","family"],
+["narrow","hẹp","This street is narrow.","desc"],
+["national","quốc gia","Today is a national holiday.","place"],
+["nature","thiên nhiên","I love walking in nature.","nature"],
+["network","mạng lưới","The network is slow today.","tech"],
+["noise","tiếng ồn","That noise woke me up.","desc"],
+["noisy","ồn ào","The class is noisy today.","desc"],
+["normal","bình thường","This is a normal week.","desc"],
+["normally","thường thì","I normally walk to school.","desc"],
+["novel","tiểu thuyết","This novel has 300 pages.","art"],
+["nowhere","không ở đâu","The cat is nowhere in the house.","desc"],
+["nut","hạt, quả hạch","A nut fell from the tree.","food"],
+["ocean","đại dương","The ocean is deep.","nature"],
+["officer","viên chức, sĩ quan","A police officer helped us.","work"],
+["oil","dầu","Add a little oil to the pan.","nature"],
+["option","chọn lựa","Choose the best option.","mind"],
+["organization","tổ chức","This organization helps children.","social"],
+["oven","lò nướng","The cake is in the oven.","home"],
+["owner","người chủ","The owner of the dog came.","work"],
+["pack","đóng gói","Pack your bag tonight.","work"],
+["painter","hoạ sĩ, thợ sơn","The painter finished the wall.","art"],
+["palace","cung điện","The palace is open to visitors.","place"],
+["pants","quần","My pants are too short.","clothes"],
+["parking","việc đỗ xe","Parking here is not allowed.","place"],
+["particular","cụ thể, đặc biệt","I want this particular book.","desc"],
+["pass","đi qua, thi đậu","I hope to pass the test.","move"],
+["passenger","hành khách","Every passenger needs a ticket.","move"],
+["peace","hoà bình, sự yên bình","We want peace and quiet.","social"],
+["penny","đồng xu","I saved every penny.","money"],
+["personality","tính cách","She has a friendly personality.","family"],
+["pet","vật nuôi","My pet is a rabbit.","animal"],
+["petrol","xăng","The car needs petrol.","move"],
+["physics","môn vật lý","Physics explains how things move.","school"],
+["pilot","phi công","The pilot spoke to us.","move"],
+["planet","hành tinh","Earth is our planet.","nature"],
+["plastic","nhựa","This bottle is plastic.","desc"],
+["platform","sân ga, bệ","The train leaves from platform two.","move"],
+["pleased","hài lòng, vui","I am pleased with your work.","feel"],
+["pop","nhạc pop","She listens to pop music.","art"],
+["population","dân số","The population of our town is small.","social"],
+["possession","vật sở hữu","This bike is my favourite possession.","money"],
+["possibility","khả năng","There is a possibility of rain.","mind"],
+["poster","áp phích","I put a poster on the wall.","art"],
+["power","sức mạnh, điện","The power went off last night.","money"],
+["predict","dự đoán","Can you predict the weather?","mind"],
+["president","chủ tịch, tổng thống","The club president spoke first.","social"],
+["print","in","Print two copies, please.","tech"],
+["printer","máy in","The printer is out of paper.","tech"],
+["prison","nhà tù","The thief went to prison.","social"],
+["professional","chuyên nghiệp","He is a professional player.","work"],
+["professor","giáo sư","The professor teaches history.","school"],
+["profile","trang cá nhân, lý lịch","Each child has a profile in the app.","mind"],
+["program","chương trình","This program teaches English.","work"],
+["public","công cộng","This is a public library.","desc"],
+["quietly","một cách lặng lẽ","Walk quietly in the hall.","desc"],
+["race","cuộc đua","I won the race.","move"],
+["railway","đường sắt","The railway goes to Hanoi.","move"],
+["rate","tỷ lệ, mức giá","The hotel rate is high.","money"],
+["react","phản ứng","How did he react?","mind"],
+["recently","gần đây","I recently joined the club.","time"],
+["reception","quầy tiếp tân","Wait at the reception.","work"],
+["record","ghi lại, kỷ lục","She broke the school record.","art"],
+["recording","bản ghi âm","Listen to the recording twice.","art"],
+["recycle","tái chế","We recycle paper at school.","verb"],
+["refer","nhắc tới, tham khảo","Refer to page ten.","mind"],
+["region","vùng","This region grows coffee.","social"],
+["relationship","mối quan hệ","They have a good relationship.","mind"],
+["reporter","phóng viên","A reporter came to our school.","work"],
+["researcher","nhà nghiên cứu","The researcher studies bees.","work"],
+["respond","phản hồi","Please respond to my email.","mind"],
+["response","câu trả lời, phản hồi","Her response was quick.","mind"],
+["rest","nghỉ ngơi, phần còn lại","Take a rest for ten minutes.","verb"],
+["ring","chiếc nhẫn, reo","The phone began to ring.","verb"],
+["rise","tăng lên, mọc","Prices rise every year.","verb"],
+["rock","tảng đá, nhạc rock","Do not sit on that rock.","nature"],
+["role","vai, vai trò","She has the main role.","art"],
+["route","lộ trình","This route is shorter.","move"],
+["runner","người chạy","The runner won easily.","sport"],
+["running","việc chạy bộ","Running keeps me fit.","sport"],
+["sadly","đáng buồn là","Sadly, the match was cancelled.","feel"],
+["safe","an toàn","This place is safe for children.","social"],
+["sailing","việc đi thuyền","Sailing is fun in summer.","sport"],
+["salary","tiền lương","His salary is enough.","work"],
+["sale","việc bán, đợt giảm giá","The shoes are on sale.","money"],
+["sauce","nước xốt","This sauce is spicy.","food"],
+["save","tiết kiệm, cứu","Save your money for a bike.","money"],
+["scene","cảnh (phim)","My favourite scene is the first one.","art"],
+["score","điểm số, ghi điểm","My score was nineteen.","sport"],
+["screen","màn hình","The screen is too bright.","tech"],
+["season","mùa","Autumn is my favourite season.","nature"],
+["seat","chỗ ngồi","This seat is free.","move"],
+["secondly","thứ hai là","Secondly, write your name.","desc"],
+["secret","điều bí mật","Can you keep a secret?","mind"],
+["secretary","thư ký","The secretary answered the phone.","work"],
+["seem","dường như","You seem tired today.","mind"],
+["series","loạt, bộ phim nhiều phần","I watch this series every week.","art"],
+["service","dịch vụ","The service here is fast.","work"],
+["shake","lắc, rung","Shake the bottle first.","verb"],
+["shape","hình dạng","What shape is this?","school"],
+["sheet","tờ, tấm","Take a sheet of paper.","school"],
+["shut","đóng lại","Shut the gate, please.","verb"],
+["side","phía, bên","Stand on this side.","desc"],
+["sign","dấu hiệu, biển báo, ký tên","Read the sign at the gate.","social"],
+["silver","bạc","Her ring is silver.","desc"],
+["singing","việc ca hát","Singing makes me happy.","art"],
+["single","đơn, độc nhất","Not a single student was late.","desc"],
+["site","địa điểm, trang web","This site is useful.","tech"],
+["size","kích cỡ","What size are your shoes?","desc"],
+["ski","trượt tuyết","They ski in winter.","sport"],
+["skiing","việc trượt tuyết","Skiing looks difficult.","sport"],
+["skin","da","Protect your skin from the sun.","body"],
+["slowly","một cách chậm rãi","Read slowly and clearly.","desc"],
+["smartphone","điện thoại thông minh","My smartphone needs charging.","tech"],
+["smell","mùi, ngửi","I smell fresh bread.","body"],
+["soap","xà phòng","Wash with soap and water.","social"],
+["soccer","bóng đá","We play soccer at lunchtime.","sport"],
+["social","xã hội","Our social club meets on Friday.","social"],
+["society","xã hội","Teachers are important in society.","social"],
+["soft","mềm","This pillow is soft.","desc"],
+["soldier","người lính","The soldier helped the family.","social"],
+["solution","giải pháp","We found a simple solution.","tech"],
+["sort","loại, phân loại","Sort the words into two groups.","verb"],
+["source","nguồn","This river is our water source.","tech"],
+["speaker","người nói, loa","The speaker is too loud.","tech"],
+["specific","cụ thể","Give me a specific example.","desc"],
+["speech","bài phát biểu","His speech was short.","mind"],
+["speed","tốc độ","Reduce your speed here.","desc"],
+["spoon","cái thìa","Eat the soup with a spoon.","home"],
+["square","hình vuông, quảng trường","Draw a square here.","school"],
+["stair","bậc thang","The first stair is broken.","home"],
+["stamp","con tem","I need one stamp for this letter.","work"],
+["state","trạng thái, phát biểu","State your name clearly.","mind"],
+["stone","viên đá","Do not throw that stone.","nature"],
+["store","cửa hàng, lưu trữ","The store opens at eight.","money"],
+["straight","thẳng","Draw a straight line.","desc"],
+["strategy","chiến lược","Our team needs a new strategy.","mind"],
+["structure","cấu trúc","The sentence structure is correct.","mind"],
+["stupid","ngốc","That was a stupid mistake.","feel"],
+["successful","thành công","The show was successful.","mind"],
+["suddenly","bỗng nhiên","Suddenly the lights went off.","desc"],
+["suggestion","lời đề nghị","Thank you for your suggestion.","mind"],
+["suit","bộ đồ, phù hợp","Dad wears a suit to work.","clothes"],
+["surprised","ngạc nhiên","I was surprised by the gift.","feel"],
+["surprising","gây ngạc nhiên","The result is surprising.","desc"],
+["survey","cuộc khảo sát","We did a survey in class.","mind"],
+["sweet","ngọt","This mango is sweet.","food"],
+["symbol","biểu tượng","This symbol means water.","mind"],
+["system","hệ thống","The school has a new system.","tech"],
+["tablet","máy tính bảng, viên thuốc","I read on my tablet.","tech"],
+["target","mục tiêu","My target is ten words a day.","mind"],
+["task","nhiệm vụ","Finish this task first.","work"],
+["taste","vị, nếm","Taste the soup, please.","food"],
+["teaching","việc dạy học","Teaching children is hard work.","school"],
+["technology","công nghệ","Technology changes fast.","tech"],
+["teenage","tuổi thiếu niên","My teenage brother sleeps late.","family"],
+["temperature","nhiệt độ","The temperature is thirty degrees.","nature"],
+["term","học kỳ, thuật ngữ","The new term starts in August.","school"],
+["thief","kẻ trộm","The thief ran away.","social"],
+["thinking","việc suy nghĩ","Clear thinking helps in tests.","mind"],
+["tie","cà vạt, buộc","Tie your shoes, please.","clothes"],
+["tip","mẹo, tiền tip","Here is a useful tip.","mind"],
+["tool","dụng cụ","A hammer is a useful tool.","tech"],
+["top","đỉnh, trên cùng","The book is on the top shelf.","desc"],
+["touch","chạm","Do not touch the hot pan.","verb"],
+["tour","chuyến tham quan","We joined a city tour.","place"],
+["tourism","ngành du lịch","Tourism brings money to the town.","place"],
+["tower","tháp","The tower is very tall.","place"],
+["toy","đồ chơi","My little sister broke her toy.","art"],
+["track","đường chạy, dấu vết","We run on the school track.","move"],
+["tradition","truyền thống","Tet is a family tradition.","social"],
+["traditional","truyền thống","This is a traditional dish.","social"],
+["trainer","huấn luyện viên","Our trainer is patient.","sport"],
+["training","việc huấn luyện","Football training is on Tuesday.","sport"],
+["transport","giao thông, vận chuyển","Public transport is cheap here.","move"],
+["traveller","người đi du lịch","The traveller carried one bag.","move"],
+["trouble","rắc rối","I am in trouble with Mum.","feel"],
+["truck","xe tải","The truck carries fruit.","move"],
+["twin","sinh đôi","My twin brother looks like me.","family"],
+["underground","tàu điện ngầm, dưới đất","The train goes underground.","move"],
+["understanding","sự hiểu biết","Her understanding of maths is good.","mind"],
+["unfortunately","không may là","Unfortunately, it rained.","desc"],
+["unhappy","không vui","He looks unhappy today.","feel"],
+["unit","đơn vị, bài học","Unit three is about animals.","social"],
+["united","thống nhất","A united team wins.","social"],
+["used","đã qua sử dụng, từng","This is a used bike.","desc"],
+["user","người dùng","Each user has a password.","tech"],
+["usual","thông thường","We met at the usual place.","desc"],
+["valley","thung lũng","The valley is green.","nature"],
+["van","xe tải nhỏ","The van brings bread.","move"],
+["view","tầm nhìn, quan điểm","The view from here is lovely.","social"],
+["virus","vi rút","A virus made him ill.","tech"],
+["voice","giọng nói","Her voice is clear.","tech"],
+["war","chiến tranh","The war ended long ago.","social"],
+["washing","việc giặt giũ","The washing is on the line.","home"],
+["wave","con sóng, vẫy tay","A big wave hit the boat.","nature"],
+["web","mạng web, mạng nhện","I found it on the web.","tech"],
+["wedding","lễ cưới","Their wedding is in May.","family"],
+["weight","trọng lượng","What is the weight of this box?","body"],
+["wheel","bánh xe","One wheel is broken.","move"],
+["wide","rộng","The river is very wide.","desc"],
+["wild","hoang dã","A wild bird built a nest.","nature"],
+["wind","gió","The wind is strong today.","nature"],
+["winner","người thắng","The winner gets a prize.","sport"],
+["wish","mong muốn","I wish you good luck.","feel"],
+["wood","gỗ, rừng nhỏ","This table is made of wood.","home"],
+["wooden","bằng gỗ","We sat on a wooden bench.","home"],
+["working","đang hoạt động","The printer is working now.","work"],
+["worried","lo lắng","Mum is worried about the test.","feel"],
+["worry","lo lắng","Do not worry about it.","feel"],
+["worse","tệ hơn","The traffic is worse today.","desc"],
+["worst","tệ nhất","That was the worst day.","desc"],
+["zero","số không","The temperature fell to zero.","time"],
+["teacher","giáo viên","My teacher is very patient.","school"],
+["detail","chi tiết","Explain one detail more.","mind"],
+["dollar","đô la","This book costs five dollar notes.","money"],
+["cent","xu","A cent is a small coin.","money"],
+["pound","đồng pound, pao","The cake weighs one pound.","money"],
+["boyfriend","bạn trai","Her boyfriend plays football.","family"],
+["girlfriend","bạn gái","His girlfriend studies here too.","family"],
+["dancing","việc nhảy múa","Dancing is good exercise.","art"],
+["dear","thân mến","Dear Mum, I miss you.","family"],
+["goodbye","lời tạm biệt","Say goodbye to your friends.","feel"],
+["thanks","lời cảm ơn","Many thanks for your help.","feel"],
+["policeman","cảnh sát viên","A policeman helped the old lady.","social"],
+["queen","hoàng hậu, nữ hoàng","The queen visited the school.","family"],
+["step","bước, bậc","Take one step forward.","verb"],
+["lie","nói dối","It is wrong to lie.","verb"],
+["happily","một cách vui vẻ","The children played happily.","feel"],
+["curly","xoăn","My sister has curly hair.","body"],
+["definitely","chắc chắn là","I will definitely come.","desc"],
+["jazz","nhạc jazz","My dad likes jazz music.","art"],
+["blonde","tóc vàng","The girl has blonde hair.","body"],
+["attack","tấn công","A wild dog may attack.","social"]
+];
+const B1X=[
+["absolutely","hoàn toàn","You are absolutely right.","desc"],
+["academic","học thuật","The academic year starts in August.","mind"],
+["access","sự truy cập, lối vào","Students have access to the library.","tech"],
+["accommodation","chỗ ở","The accommodation is near the beach.","place"],
+["account","tài khoản","I opened a bank account.","money"],
+["achievement","thành tựu","Winning was a great achievement.","work"],
+["addition","sự thêm vào","In addition, we need more chairs.","mind"],
+["admit","thừa nhận","He did admit his mistake.","mind"],
+["advanced","nâng cao","This is an advanced lesson.","desc"],
+["advise","khuyên","I advise you to rest.","mind"],
+["aged","ở độ tuổi","Children aged ten can join.","family"],
+["agent","đại lý, người đại diện","A travel agent booked our flight.","work"],
+["agreement","sự thoả thuận","We reached an agreement.","mind"],
+["ahead","phía trước","Look ahead, not back.","desc"],
+["aim","mục đích, nhắm tới","Our aim is 2000 words.","mind"],
+["alarm","báo động, đồng hồ báo thức","My alarm rings at six.","home"],
+["album","album nhạc, album ảnh","Her new album is excellent.","art"],
+["amazed","sửng sốt","I was amazed by the result.","feel"],
+["ambitious","đầy tham vọng","She is an ambitious student.","feel"],
+["analyse","phân tích","Analyse the data carefully.","mind"],
+["analysis","sự phân tích","His analysis was correct.","mind"],
+["announcement","lời thông báo","Listen to the announcement.","mind"],
+["annoyed","bực mình","Dad looked annoyed.","feel"],
+["annoying","gây khó chịu","That sound is annoying.","feel"],
+["apart","cách xa, riêng ra","The two houses are far apart.","desc"],
+["application","đơn xin, ứng dụng","Send your application today.","work"],
+["approximately","xấp xỉ","The trip takes approximately two hours.","desc"],
+["arrest","bắt giữ","The police did arrest the thief.","social"],
+["arrival","sự đến","Our arrival time is noon.","move"],
+["assignment","bài tập được giao","The assignment is due Friday.","school"],
+["assist","hỗ trợ","I will assist the new student.","verb"],
+["atmosphere","không khí, bầu khí quyển","The atmosphere in class was happy.","nature"],
+["attach","đính kèm","Attach the file to the email.","tech"],
+["attraction","điểm thu hút","The lake is a tourist attraction.","place"],
+["authority","thẩm quyền, cơ quan","The teacher has full authority here.","social"],
+["backwards","về phía sau","Count backwards from ten.","desc"],
+["bake","nướng bánh","Mum will bake a cake.","food"],
+["ban","cấm","They ban phones in class.","social"],
+["base","nền tảng, cơ sở","The base of the tower is wide.","desc"],
+["basic","cơ bản","These are basic rules.","desc"],
+["basis","cơ sở, nền tảng","We meet on a weekly basis.","mind"],
+["battery","pin","My battery is low.","tech"],
+["battle","cuộc chiến, trận đánh","The battle lasted two days.","social"],
+["beauty","vẻ đẹp","The beauty of the valley is famous.","desc"],
+["belief","niềm tin","That is an old belief.","mind"],
+["bell","cái chuông","The school bell rang.","school"],
+["bend","uốn, cúi","Bend your knees slowly.","verb"],
+["bite","cắn","Do not bite your nails.","body"],
+["block","khối, chặn","A block of ice melted.","desc"],
+["border","biên giới","The border is two hours away.","place"],
+["bother","làm phiền","Do not bother your sister.","feel"],
+["branch","nhánh cây, chi nhánh","A branch fell in the storm.","nature"],
+["brand","thương hiệu","This brand is popular.","money"],
+["breathe","hít thở","Breathe through your nose.","body"],
+["breathing","việc hô hấp","His breathing was fast.","body"],
+["bride","cô dâu","The bride wore white.","family"],
+["bubble","bong bóng","The soap makes a bubble.","nature"],
+["bury","chôn, vùi","Dogs bury bones.","verb"],
+["calm","bình tĩnh","Stay calm during the test.","feel"],
+["campaign","chiến dịch","The clean water campaign started.","social"],
+["campus","khu trường học","The campus has three buildings.","school"],
+["candidate","thí sinh, ứng viên","Each candidate has ten minutes.","work"],
+["captain","đội trưởng, thuyền trưởng","Our captain scored twice.","sport"],
+["category","hạng mục","This word is in another category.","mind"],
+["ceiling","trần nhà","The ceiling is white.","home"],
+["celebration","lễ mừng","The celebration lasted all day.","time"],
+["central","trung tâm","We live in central Bien Hoa.","place"],
+["ceremony","buổi lễ","The ceremony starts at eight.","time"],
+["chain","chuỗi, dây chuyền","My bike chain is loose.","clothes"],
+["champion","nhà vô địch","She is the school champion.","sport"],
+["channel","kênh","Change the channel, please.","art"],
+["chapter","chương sách","Read chapter three tonight.","school"],
+["charge","phí, sạc điện","There is no charge for children.","money"],
+["cheat","gian lận","Never cheat in a test.","school"],
+["chemical","hoá chất","Keep the chemical away from food.","tech"],
+["childhood","thời thơ ấu","My childhood was happy.","family"],
+["claim","khẳng định, yêu cầu","They claim the water is clean.","mind"],
+["clause","mệnh đề","This clause needs a verb.","school"],
+["click","nhấn chuột","Click the blue button.","tech"],
+["client","khách hàng","The client called twice.","money"],
+["cloth","vải, khăn lau","Clean the desk with a cloth.","clothes"],
+["clue","dấu hiệu, manh mối","Give me one clue.","mind"],
+["coal","than đá","They burn coal in winter.","nature"],
+["coin","đồng xu","I found an old coin.","money"],
+["collection","bộ sưu tập","My coin collection is growing.","art"],
+["coloured","có màu","Use coloured pencils.","desc"],
+["combine","kết hợp","Combine the two lists.","verb"],
+["commercial","thương mại","This is a commercial website.","money"],
+["commit","cam kết, thực hiện","Commit to ten words a day.","mind"],
+["communication","sự giao tiếp","Good communication saves time.","mind"],
+["comparison","sự so sánh","Make a comparison of the two.","mind"],
+["competitive","có tính cạnh tranh","He is very competitive.","feel"],
+["competitor","đối thủ","Every competitor gets a number.","sport"],
+["complaint","lời phàn nàn","We received one complaint.","mind"],
+["complex","phức tạp","This problem is complex.","desc"],
+["conclude","kết luận","We can conclude that sleep helps.","mind"],
+["conclusion","kết luận","Write a short conclusion.","mind"],
+["confirm","xác nhận","Please confirm your seat.","mind"],
+["confused","bối rối","I feel confused about this rule.","feel"],
+["connection","sự kết nối","The internet connection is weak.","tech"],
+["consequence","hệ quả","Every choice has a consequence.","mind"],
+["consist","bao gồm","The test will consist of twenty questions.","mind"],
+["consume","tiêu thụ","We consume too much sugar.","money"],
+["consumer","người tiêu dùng","The consumer has many choices.","money"],
+["container","thùng chứa, công ten nơ","Put the rice in a container.","move"],
+["content","nội dung","The content of the book is useful.","mind"],
+["continuous","liên tục","We had three days of continuous rain.","desc"],
+["contrast","sự tương phản","There is a clear contrast between them.","mind"],
+["convince","thuyết phục","I will convince my dad.","mind"],
+["costume","phục trang","Her costume is beautiful.","clothes"],
+["cottage","nhà nhỏ ở quê","They stayed in a small cottage.","home"],
+["cotton","bông, vải cotton","This shirt is cotton.","clothes"],
+["countryside","vùng nông thôn","The countryside is quiet.","place"],
+["court","sân (thể thao), toà án","The tennis court is wet.","sport"],
+["covered","được che phủ","The hill is covered with trees.","desc"],
+["criminal","tội phạm","The criminal was caught.","social"],
+["cruel","tàn nhẫn","Do not be cruel to animals.","feel"],
+["cultural","về văn hoá","We joined a cultural event.","social"],
+["currency","tiền tệ","The currency here is dong.","money"],
+["current","hiện tại, dòng chảy","What is the current score?","time"],
+["currently","hiện nay","I am currently in grade eight.","time"],
+["custom","tập quán","That is a local custom.","social"],
+["decade","thập kỷ","The school opened a decade ago.","time"],
+["decorate","trang trí","We decorate the class for Tet.","home"],
+["define","định nghĩa","Define this word in English.","mind"],
+["definite","rõ ràng, dứt khoát","We need a definite answer.","mind"],
+["definition","định nghĩa","Read the definition aloud.","school"],
+["departure","sự khởi hành","Our departure is at six.","move"],
+["despite","mặc dù","We played despite the rain.","desc"],
+["destination","điểm đến","Our destination is Da Lat.","move"],
+["determine","xác định, quyết định","The test will determine your level.","mind"],
+["determined","quyết tâm","She is determined to win.","feel"],
+["development","sự phát triển","The development of the app took a week.","mind"],
+["diagram","sơ đồ","Look at the diagram on page six.","school"],
+["diamond","kim cương, hình thoi","The ring has one diamond.","money"],
+["difficulty","sự khó khăn","I had difficulty with question five.","mind"],
+["directly","trực tiếp","Go directly home after school.","desc"],
+["dirt","đất bẩn","There is dirt on your shoes.","home"],
+["disadvantage","điểm bất lợi","The high price is a disadvantage.","mind"],
+["disappointing","gây thất vọng","The result was disappointing.","desc"],
+["discount","giảm giá","We got a ten percent discount.","money"],
+["dislike","không thích","I dislike cold soup.","feel"],
+["documentary","phim tài liệu","We watched a documentary about whales.","art"],
+["donate","quyên tặng","We donate old books to school.","social"],
+["dressed","đã mặc quần áo","Get dressed quickly.","clothes"],
+["drum","cái trống","He plays the drum in a band.","art"],
+["due","đến hạn, do bởi","The homework is due tomorrow.","time"],
+["dust","bụi","There is dust on the shelf.","home"],
+["duty","nhiệm vụ","It is my duty to help.","work"],
+["earthquake","trận động đất","The earthquake lasted ten seconds.","nature"],
+["eastern","phía đông","Eastern Vietnam faces the sea.","place"],
+["economic","về kinh tế","The economic news is good.","money"],
+["economy","nền kinh tế","The economy is growing.","money"],
+["edge","mép, bờ","Do not sit on the edge.","desc"],
+["editor","biên tập viên","The editor checked my article.","work"],
+["educate","giáo dục","Schools educate young people.","school"],
+["educated","có học vấn","She is a well educated woman.","school"],
+["educational","có tính giáo dục","This game is educational.","school"],
+["effective","hiệu quả","This method is effective.","desc"],
+["effectively","một cách hiệu quả","Study effectively, not longer.","desc"],
+["election","cuộc bầu cử","The class election is Friday.","social"],
+["element","yếu tố, nguyên tố","Water is an element of life.","tech"],
+["embarrassing","gây ngượng","That was an embarrassing moment.","desc"],
+["emotion","cảm xúc","Her voice showed real emotion.","feel"],
+["employment","việc làm","Employment here is easy to find.","work"],
+["enemy","kẻ địch","Fire is the enemy of wood.","social"],
+["engaged","đã hứa hôn, đang bận","My cousin is engaged.","family"],
+["engineering","ngành kỹ thuật","He studies engineering.","work"],
+["entertainment","sự giải trí","Music is good entertainment.","art"],
+["entrance","lối vào","Meet me at the entrance.","place"],
+["entry","lối vào, mục ghi","Entry is free for children.","place"],
+["environmental","về môi trường","This is an environmental problem.","nature"],
+["episode","tập (phim)","The first episode is funny.","art"],
+["equally","một cách bằng nhau","Share the cake equally.","desc"],
+["eventually","cuối cùng thì","Eventually the rain stopped.","time"],
+["excitement","sự háo hức","The excitement before the match was high.","feel"],
+["exhibition","cuộc triển lãm","We visited an art exhibition.","art"],
+["expand","mở rộng","They will expand the school.","desc"],
+["expected","được mong đợi","The expected result came true.","desc"],
+["expedition","chuyến thám hiểm","The expedition reached the top.","place"],
+["experienced","có kinh nghiệm","He is an experienced teacher.","work"],
+["explode","nổ","The balloon did explode.","tech"],
+["explosion","vụ nổ","We heard a loud explosion.","tech"],
+["export","xuất khẩu","They export coffee to Japan.","money"],
+["fairly","khá là","The test was fairly easy.","desc"],
+["fancy","sang trọng, muốn","That is a fancy hotel.","desc"],
+["fascinating","cực kỳ thú vị","The book is fascinating.","desc"],
+["fasten","buộc, cài chặt","Fasten your seat belt.","move"],
+["favour","sự giúp đỡ, ủng hộ","Can you do me a favour?","feel"],
+["fence","hàng rào","The fence is broken.","home"],
+["fighting","việc đánh nhau","Fighting solves nothing.","social"],
+["file","tập tin, tập hồ sơ","Save the file on my laptop.","tech"],
+["financial","về tài chính","The club has financial problems.","money"],
+["fitness","thể lực","Running improves fitness.","body"],
+["fixed","cố định","The price is fixed.","desc"],
+["flag","cờ","The flag is red and yellow.","social"],
+["flood","lũ lụt","The flood covered the road.","nature"],
+["flour","bột mì","We need flour for the cake.","food"],
+["flow","chảy","Let the water flow to the river.","nature"],
+["fold","gấp lại","Fold the paper in half.","verb"],
+["folk","dân gian","She sings folk songs.","art"],
+["force","lực, buộc","Do not force the door.","desc"],
+["forever","mãi mãi","Nothing lasts forever.","time"],
+["frame","khung","The photo frame is wooden.","art"],
+["freeze","đóng băng","Water will freeze at zero degrees.","nature"],
+["frighten","làm sợ","Loud noise can frighten the dog.","feel"],
+["frightening","đáng sợ","The storm was frightening.","desc"],
+["frozen","đông lạnh","The fish is frozen.","food"],
+["fry","chiên","Fry the egg for two minutes.","food"],
+["fuel","nhiên liệu","The car needs fuel.","move"],
+["function","chức năng","This button has one function.","tech"],
+["fur","bộ lông","The cat has soft fur.","animal"],
+["gather","tụ họp, thu thập","Students gather in the yard.","verb"],
+["generally","nói chung","I generally sleep early.","desc"],
+["generation","thế hệ","My generation grew up online.","time"],
+["gentleman","người đàn ông tử tế","A gentleman opened the door for us.","family"],
+["ghost","hồn ma","The story is about a ghost.","art"],
+["giant","khổng lồ","A giant tree fell down.","desc"],
+["glad","vui mừng","I am glad you came.","feel"],
+["global","toàn cầu","Climate change is a global issue.","desc"],
+["goods","hàng hoá","The lorry carries goods.","work"],
+["grade","lớp, điểm","My grade improved this term.","school"],
+["graduate","tốt nghiệp","My sister will graduate in June.","school"],
+["grain","hạt ngũ cốc","Rice is a grain.","food"],
+["guard","bảo vệ, canh giữ","The guard checked our bags.","work"],
+["guilty","có lỗi, phạm tội","I feel guilty about the mistake.","feel"],
+["hang","treo","Hang your coat here.","verb"],
+["happiness","niềm hạnh phúc","Family brings happiness.","feel"],
+["heating","hệ thống sưởi","The heating is off.","home"],
+["heavily","một cách nặng nề","It rained heavily last night.","desc"],
+["highlight","điểm nhấn, làm nổi bật","Highlight the new words.","mind"],
+["highly","rất, cao độ","This book is highly useful.","desc"],
+["hire","thuê","We hire bikes at the lake.","move"],
+["historic","có tính lịch sử","This is a historic building.","desc"],
+["historical","về lịch sử","I read a historical novel.","desc"],
+["horrible","khủng khiếp","The smell was horrible.","feel"],
+["horror","sự kinh hoàng","I never watch horror films.","feel"],
+["host","chủ nhà, người dẫn","Our host was very kind.","family"],
+["hunt","đi săn, tìm kiếm","Cats hunt at night.","sport"],
+["hurricane","bão lớn","The hurricane hit the coast.","nature"],
+["identity","danh tính","Show your identity card.","mind"],
+["illegal","trái pháp luật","Parking here is illegal.","social"],
+["imaginary","tưởng tượng","He has an imaginary friend.","mind"],
+["immediate","ngay lập tức","We need an immediate answer.","desc"],
+["immigrant","người nhập cư","My neighbour is an immigrant.","social"],
+["impact","tác động","Sport has a big impact on health.","mind"],
+["import","nhập khẩu","They import machines from Korea.","money"],
+["importance","tầm quan trọng","Do not forget the importance of sleep.","mind"],
+["impression","ấn tượng","You made a good impression.","feel"],
+["impressive","gây ấn tượng","Her score is impressive.","desc"],
+["improvement","sự cải thiện","There is a clear improvement.","mind"],
+["incredibly","vô cùng","The test was incredibly hard.","desc"],
+["indicate","chỉ ra","The sign can indicate danger.","mind"],
+["indirect","gián tiếp","That was an indirect answer.","desc"],
+["indoor","trong nhà","We have an indoor pool.","desc"],
+["indoors","ở trong nhà","Stay indoors during the storm.","desc"],
+["ingredient","nguyên liệu","Flour is the main ingredient.","food"],
+["injure","làm bị thương","Do not injure your knee.","body"],
+["injured","bị thương","Two players were injured.","body"],
+["innocent","vô tội, trong trắng","The boy is innocent.","social"],
+["intelligence","trí thông minh","Dolphins show high intelligence.","feel"],
+["intention","ý định","My intention was to help.","feel"],
+["invest","đầu tư","They invest in new machines.","money"],
+["investigate","điều tra","The police will investigate.","mind"],
+["involved","có liên quan","Ten students were involved.","mind"],
+["iron","sắt, bàn ủi","The gate is made of iron.","home"],
+["journal","tạp chí, sổ ghi","She keeps a journal.","art"],
+["keyboard","bàn phím","My keyboard is dirty.","tech"],
+["kiss","nụ hôn","Mum gave the baby a kiss.","feel"],
+["label","nhãn","Read the label on the bottle.","money"],
+["laboratory","phòng thí nghiệm","The laboratory is upstairs.","school"],
+["latest","mới nhất","This is the latest version.","time"],
+["lay","đặt, để","Lay the book on the table.","verb"],
+["layer","lớp","Add a layer of cream.","mind"],
+["leading","dẫn đầu","She is the leading student.","sport"],
+["leather","da (thuộc)","My bag is leather.","clothes"],
+["legal","hợp pháp","This contract is legal.","social"],
+["leisure","thời gian rảnh","I read in my leisure time.","social"],
+["length","chiều dài","Measure the length of the desk.","school"],
+["lie","nói dối, nằm","Do not lie to your parents.","verb"],
+["lip","môi","My lip is dry.","body"],
+["liquid","chất lỏng","Water is a liquid.","tech"],
+["literature","văn học","We study English literature.","school"],
+["living","sinh sống, đang sống","They are living in Hue.","mind"],
+["locate","định vị, tìm ra","Locate your city on the map.","place"],
+["located","được đặt tại","The school is located near the river.","place"],
+["location","vị trí","This location is perfect.","place"],
+["loss","sự mất mát","The loss of the match was hard.","mind"],
+["luxury","sự sang trọng","A big car is a luxury.","money"],
+["mad","điên, tức điên","That noise drives me mad.","feel"],
+["magic","phép thuật","The show was full of magic.","art"],
+["mainly","chủ yếu","We mainly study English here.","desc"],
+["mall","trung tâm mua sắm","The new mall opened today.","place"],
+["management","việc quản lý","Time management is a key skill.","work"],
+["marketing","việc tiếp thị","She works in marketing.","social"],
+["marriage","cuộc hôn nhân","Their marriage is happy.","family"],
+["meanwhile","trong khi đó","Meanwhile, I finished my homework.","time"],
+["medium","vừa, trung bình","I wear a medium shirt.","desc"],
+["mental","về tinh thần","Rest is good for mental health.","desc"],
+["mild","nhẹ, dịu","The weather is mild today.","desc"],
+["mix","trộn","Mix the flour and water.","verb"],
+["mixture","hỗn hợp","Pour the mixture into the pan.","food"],
+["mud","bùn","My shoes are full of mud.","nature"],
+["muscle","cơ, bắp thịt","Sport builds muscle.","body"],
+["mystery","điều bí ẩn","The missing key is a mystery.","art"],
+["nail","móng, đinh","Do not bite your nail.","body"],
+["narrative","bài kể, trần thuật","Write a short narrative.","art"],
+["nation","quốc gia","The whole nation watched the match.","place"],
+["native","bản xứ","She has a native accent.","mind"],
+["naturally","một cách tự nhiên","He speaks naturally.","desc"],
+["necessarily","nhất thiết","That is not necessarily true.","desc"],
+["needle","cây kim","Thread the needle, please.","home"],
+["neighbourhood","khu phố","Our neighbourhood is quiet.","social"],
+["net","lưới","The ball hit the net.","tech"],
+["northern","phía bắc","Northern Vietnam is cooler.","place"],
+["nuclear","hạt nhân","Nuclear power is complex.","tech"],
+["obviously","rõ ràng là","Obviously, we must study.","desc"],
+["occur","xảy ra","Floods occur every year.","verb"],
+["odd","lạ, lẻ","That is an odd question.","desc"],
+["official","chính thức, viên chức","This is the official result.","work"],
+["operation","ca mổ, hoạt động","The operation took two hours.","body"],
+["organized","có tổ chức, ngăn nắp","She is very organized.","social"],
+["organizer","người tổ chức","The organizer called us.","social"],
+["originally","ban đầu","Originally, the plan was different.","desc"],
+["outdoors","ngoài trời","We eat outdoors in summer.","desc"],
+["package","gói, bưu kiện","A package arrived for you.","work"],
+["painful","đau","The injury is painful.","body"],
+["pale","nhợt nhạt","You look pale today.","desc"],
+["pan","cái chảo","Heat the pan first.","home"],
+["participate","tham gia","All students participate in sport.","mind"],
+["particularly","đặc biệt là","I like fruit, particularly mango.","desc"],
+["passion","niềm say mê","Music is her passion.","mind"],
+["path","con đường nhỏ","The path goes to the lake.","place"],
+["payment","việc thanh toán","The payment is due Monday.","work"],
+["peaceful","yên bình","The village is peaceful.","desc"],
+["percentage","tỷ lệ phần trăm","What percentage did you get?","money"],
+["perfectly","một cách hoàn hảo","The shoes fit perfectly.","desc"],
+["performance","buổi diễn, thành tích","Her performance was excellent.","art"],
+["personally","về phần tôi","Personally, I prefer tea.","desc"],
+["photographer","nhà nhiếp ảnh","The photographer took our photo.","art"],
+["photography","nghệ thuật nhiếp ảnh","Photography is my new hobby.","art"],
+["pin","cái ghim","Use a pin to hold it.","home"],
+["pipe","cái ống","The water pipe is broken.","home"],
+["planning","việc lên kế hoạch","Good planning saves time.","mind"],
+["pleasant","dễ chịu","We had a pleasant evening.","desc"],
+["pleasure","niềm vui","It is a pleasure to help.","feel"],
+["plot","cốt truyện","The plot of the film is simple.","art"],
+["poem","bài thơ","I learned a short poem.","art"],
+["poet","nhà thơ","The poet read his work.","art"],
+["poetry","thơ ca","We study poetry this term.","art"],
+["poison","chất độc","Keep poison away from children.","body"],
+["poisonous","có độc","Some plants are poisonous.","body"],
+["policy","chính sách","The school policy is clear.","social"],
+["political","về chính trị","That is a political question.","social"],
+["politician","chính trị gia","The politician visited our town.","social"],
+["politics","chính trị","I do not follow politics.","social"],
+["port","cảng","The ship left the port.","place"],
+["portrait","chân dung","She painted a portrait of her dad.","art"],
+["possibly","có thể","He could possibly win.","desc"],
+["pot","cái nồi","The pot is on the cooker.","food"],
+["pour","rót","Pour the milk slowly.","food"],
+["poverty","sự nghèo khó","Education helps people out of poverty.","money"],
+["powder","bột, phấn","Add the powder to the water.","food"],
+["powerful","mạnh mẽ","That is a powerful engine.","desc"],
+["pray","cầu nguyện","They pray every morning.","social"],
+["prayer","lời cầu nguyện","She said a short prayer.","social"],
+["prediction","lời dự đoán","My prediction was wrong.","mind"],
+["prepared","đã chuẩn bị","Are you prepared for the test?","desc"],
+["presentation","bài trình bày","My presentation is about bees.","art"],
+["press","ấn, báo chí","Press the red button.","verb"],
+["pretend","giả vờ","Do not pretend to be asleep.","feel"],
+["previously","trước đây","Previously, we met in grade six.","time"],
+["priest","vị tu sĩ","The priest spoke to the family.","social"],
+["primary","tiểu học, chính yếu","My sister is in primary school.","desc"],
+["prince","hoàng tử","The prince lived in a castle.","social"],
+["princess","công chúa","The princess helped the village.","social"],
+["printing","việc in ấn","The printing took ten minutes.","work"],
+["prisoner","tù nhân","The prisoner was released.","social"],
+["private","riêng tư","This is a private message.","desc"],
+["producer","nhà sản xuất","The film producer came too.","work"],
+["production","việc sản xuất","Production starts in May.","work"],
+["profession","nghề chuyên môn","Teaching is a noble profession.","work"],
+["profit","lợi nhuận","The shop made a small profit.","work"],
+["promote","đẩy mạnh, thăng chức","They promote reading at school.","work"],
+["proper","đúng đắn, thích hợp","Wear proper shoes for sport.","desc"],
+["properly","một cách đúng đắn","Do the task properly.","desc"],
+["property","tài sản","Respect other people and their property.","work"],
+["protest","phản đối","The students protest about the noise.","mind"],
+["prove","chứng minh","Prove that your answer is right.","mind"],
+["punishment","sự trừng phạt","The punishment was fair.","school"],
+["qualification","bằng cấp","This job needs a qualification.","work"],
+["qualified","có đủ trình độ","She is a qualified nurse.","work"],
+["qualify","đủ điều kiện","Our team did qualify for the final.","work"],
+["quit","bỏ, từ bỏ","Never quit after one mistake.","verb"],
+["quotation","câu trích dẫn","Write the quotation in your book.","mind"],
+["quote","trích dẫn","He likes to quote his teacher.","mind"],
+["racing","việc đua","Car racing is dangerous.","sport"],
+["range","phạm vi, dãy","The shop has a wide range of books.","desc"],
+["rare","hiếm","This bird is rare here.","desc"],
+["reaction","phản ứng","Her reaction surprised me.","mind"],
+["reality","thực tế","In reality, the task is simple.","mind"],
+["receipt","hoá đơn","Keep the receipt, please.","work"],
+["recommendation","lời khuyên dùng","Thank you for the recommendation.","mind"],
+["reference","tài liệu tham khảo","Use this book as a reference.","mind"],
+["reflect","phản chiếu, suy ngẫm","The lake can reflect the sky.","mind"],
+["regularly","một cách đều đặn","Study regularly, not only before tests.","time"],
+["reject","từ chối, loại bỏ","They did reject my first plan.","mind"],
+["relate","liên hệ","These two words relate to food.","mind"],
+["related","có liên quan","The two problems are related.","mind"],
+["relation","mối liên hệ","There is no relation between them.","mind"],
+["relative","người thân","A relative visited us.","family"],
+["relaxed","thư thái","I feel relaxed after sport.","feel"],
+["relaxing","gây thư giãn","A walk is relaxing.","feel"],
+["release","phát hành, thả ra","They release the film in June.","mind"],
+["religion","tôn giáo","We learn about religion at school.","social"],
+["religious","về tôn giáo","This is a religious festival.","social"],
+["remain","vẫn còn, ở lại","Two seats remain free.","mind"],
+["remote","xa xôi, điều khiển","The village is remote.","social"],
+["rent","thuê, tiền thuê","We rent a small house.","money"],
+["repeated","được nhắc lại","Repeated practice works best.","desc"],
+["represent","đại diện","She will represent our class.","mind"],
+["reservation","việc đặt chỗ","I made a reservation for four.","mind"],
+["resource","nguồn lực","Water is a precious resource.","mind"],
+["responsibility","trách nhiệm","Feeding the dog is my responsibility.","mind"],
+["retire","nghỉ hưu","My grandpa will retire this year.","work"],
+["retired","đã nghỉ hưu","My neighbour is a retired teacher.","work"],
+["revise","ôn tập, sửa lại","Revise the words before bed.","mind"],
+["robot","người máy","The robot cleans the floor.","tech"],
+["roll","lăn, cuộn","Let the ball roll down the hill.","verb"],
+["romantic","lãng mạn","The film is romantic.","art"],
+["rope","sợi dây","Pull the rope hard.","social"],
+["rough","thô, gồ ghề","The road is rough.","desc"],
+["row","hàng, dãy","Sit in the first row.","social"],
+["royal","của hoàng gia","The royal family visited the town.","desc"],
+["rugby","môn bóng bầu dục","Rugby is popular in England.","sport"],
+["sailor","thuỷ thủ","The sailor knows the sea well.","social"],
+["sample","mẫu","Take a sample of the water.","social"],
+["scan","quét, đọc nhanh","Scan the text for new words.","tech"],
+["scientific","khoa học","This is a scientific fact.","tech"],
+["script","kịch bản","She wrote the script.","art"],
+["sculpture","tác phẩm điêu khắc","The sculpture is made of stone.","art"],
+["secondary","trung học, thứ cấp","My brother is in secondary school.","school"],
+["security","sự an ninh","Airport security is strict.","social"],
+["seed","hạt giống","Plant the seed in soft soil.","mind"],
+["sensible","hợp lý, biết suy xét","That is a sensible plan.","feel"],
+["seriously","một cách nghiêm túc","Take this test seriously.","feel"],
+["servant","người phục vụ","The servant opened the gate.","work"],
+["set","bộ, đặt","I bought a set of pens.","verb"],
+["setting","bối cảnh, thiết lập","The setting of the story is a farm.","art"],
+["sharp","sắc, nhọn","This knife is sharp.","desc"],
+["shell","vỏ (ốc, trứng)","I found a shell on the beach.","animal"],
+["shift","ca làm việc, dịch chuyển","Dad works the night shift.","work"],
+["shine","chiếu sáng","The stars shine brightly.","verb"],
+["shiny","sáng bóng","His shoes are shiny.","desc"],
+["shoot","bắn, sút","Shoot the ball now!","verb"],
+["shy","nhút nhát","He is shy with new people.","feel"],
+["silly","ngớ ngẩn","That was a silly answer.","feel"],
+["similarity","sự giống nhau","There is a similarity between them.","mind"],
+["similarly","tương tự như vậy","Similarly, we must practise speaking.","desc"],
+["simply","đơn giản là","Simply write your name here.","desc"],
+["sink","bồn rửa, chìm","The plates are in the sink.","home"],
+["slice","miếng cắt","I ate a slice of bread.","verb"],
+["slightly","hơi, một chút","The room is slightly warm.","desc"],
+["smart","thông minh, gọn gàng","That is a smart answer.","desc"],
+["smooth","mịn, trơn","The surface is smooth.","desc"],
+["software","phần mềm","This software is free.","tech"],
+["soil","đất trồng","The soil here is good.","nature"],
+["solid","rắn, chắc chắn","Ice is solid water.","desc"],
+["southern","phía nam","Southern Vietnam is hot.","nature"],
+["specifically","một cách cụ thể","I specifically asked for blue.","desc"],
+["spending","việc chi tiêu","Control your spending.","money"],
+["spicy","cay","This sauce is spicy.","food"],
+["spirit","tinh thần","Team spirit wins matches.","feel"],
+["spoken","nói (dạng nói)","Spoken English needs practice.","mind"],
+["spot","điểm, chỗ","There is a spot on my shirt.","desc"],
+["spread","lan ra, phết","Spread the butter on the bread.","verb"],
+["stadium","sân vận động","The stadium was full.","sport"],
+["staff","đội ngũ nhân viên","The school staff met today.","work"],
+["statistic","con số thống kê","That statistic surprised me.","social"],
+["statue","pho tượng","The statue stands in the park.","art"],
+["stick","cái gậy, dán","The dog carried a stick.","verb"],
+["stranger","người lạ","Do not talk to a stranger.","social"],
+["strength","sức mạnh","Swimming builds strength.","body"],
+["string","sợi dây, dây đàn","Tie it with a string.","home"],
+["strongly","một cách mạnh mẽ","I strongly agree with you.","desc"],
+["studio","phòng thu, xưởng vẽ","The band plays in a studio.","art"],
+["stuff","đồ đạc","Put your stuff in the box.","mind"],
+["substance","chất","This substance is safe.","mind"],
+["successfully","một cách thành công","She successfully passed the exam.","mind"],
+["sudden","bất ngờ","There was a sudden noise.","desc"],
+["summarize","tóm tắt","Summarize the story in three lines.","mind"],
+["summary","bản tóm tắt","Write a short summary.","mind"],
+["supporter","người ủng hộ","Every supporter wore red.","social"],
+["surely","chắc chắn","Surely you remember me.","feel"],
+["switch","công tắc, chuyển đổi","Switch off the light.","verb"],
+["symptom","triệu chứng","A cough is one symptom.","body"],
+["tail","cái đuôi","The dog wagged its tail.","animal"],
+["talented","có tài","She is a talented singer.","feel"],
+["tape","băng dính, băng ghi","Fix the box with tape.","tech"],
+["tax","thuế","Everyone pays tax.","work"],
+["technical","về kỹ thuật","This is a technical problem.","work"],
+["technique","kỹ thuật, phương pháp","Your swimming technique is good.","work"],
+["tend","có khuynh hướng","Children tend to learn fast.","feel"],
+["tent","cái lều","We slept in a tent.","sport"],
+["theme","chủ đề","The theme of the party is sport.","art"],
+["theory","lý thuyết","In theory, the plan works.","mind"],
+["throat","cổ họng","My throat hurts.","body"],
+["tight","chặt, bó sát","These shoes are too tight.","desc"],
+["tin","hộp thiếc, thiếc","Open the tin of beans.","food"],
+["tube","cái ống, tuýp","I need a tube of glue.","move"],
+["typically","thường thì","I typically study at night.","desc"],
+["tyre","lốp xe","My front tyre is flat.","move"],
+["ugly","xấu xí","The old gate looks ugly.","feel"],
+["uncomfortable","không thoải mái","This chair is uncomfortable.","feel"],
+["underwear","đồ lót","Pack clean underwear.","clothes"],
+["unemployed","thất nghiệp","He is unemployed at the moment.","social"],
+["unemployment","tình trạng thất nghiệp","Unemployment fell last year.","social"],
+["union","liên đoàn, sự hợp nhất","The workers formed a union.","social"],
+["unlike","không giống","Unlike me, he loves maths.","desc"],
+["unlikely","khó xảy ra","Rain is unlikely today.","desc"],
+["unnecessary","không cần thiết","That delay was unnecessary.","desc"],
+["unpleasant","không dễ chịu","The smell is unpleasant.","feel"],
+["update","cập nhật","Update the list, please.","mind"],
+["value","giá trị","The value of this coin is high.","money"],
+["various","đa dạng, khác nhau","We tried various methods.","desc"],
+["version","phiên bản","This is the new version.","tech"],
+["victim","nạn nhân","The flood victim needs help.","social"],
+["viewer","người xem","Every viewer can vote.","social"],
+["vote","bỏ phiếu","We vote for a class leader.","social"],
+["warning","lời cảnh báo","Read the warning on the box.","social"],
+["western","phía tây","Western Vietnam has many rivers.","nature"],
+["whenever","bất cứ khi nào","Call me whenever you need help.","desc"],
+["wing","cái cánh","The bird hurt one wing.","animal"],
+["wool","len","This sweater is wool.","home"],
+["worldwide","trên toàn thế giới","The app is used worldwide.","social"],
+["written","được viết, dạng viết","The written test is first.","school"],
+["yard","sân","The children play in the yard.","place"],
+["total","tổng cộng","The total is twenty points.","desc"],
+["totally","hoàn toàn","I totally agree with you.","desc"],
+["trade","mậu dịch, trao đổi","Trade between the two countries grew.","money"],
+["translation","bản dịch","Your translation is accurate.","mind"],
+["treatment","sự điều trị","The treatment lasted one week.","body"],
+["trick","mánh, mẹo","He showed us a card trick.","mind"],
+["throughout","suốt","It rained throughout the night.","social"]
+];
+
+/* ---------- Dữ liệu lưu máy ---------- */
+const KEY = 'sotu.v1';
+const BANK = { movers: MOVERS.concat(MOVERS2), b1: B1.concat(B1X) };
+const LVNAME = { movers: 'Movers (A1)', b1: 'B1 (PET)' };
+const PERDAY = 10, CYCLE = 3, PASS = 80;
+const TOPICS = [
+  ['family', 'Gia đình & con người', '\u{1F46A}'],
+  ['body', 'Cơ thể & sức khoẻ', '\u{1F9B7}'],
+  ['food', 'Ăn uống', '\u{1F35C}'],
+  ['clothes', 'Quần áo', '\u{1F455}'],
+  ['home', 'Nhà ở & đồ dùng', '\u{1F3E0}'],
+  ['school', 'Trường học', '\u{1F4DA}'],
+  ['animal', 'Động vật', '\u{1F418}'],
+  ['nature', 'Thiên nhiên & thời tiết', '\u{1F326}'],
+  ['place', 'Địa điểm & du lịch', '\u{1F5FA}'],
+  ['move', 'Giao thông & đi lại', '\u{1F68C}'],
+  ['sport', 'Thể thao & sở thích', '\u26BD'],
+  ['art', 'Nghệ thuật & giải trí', '\u{1F3B5}'],
+  ['time', 'Thời gian, số & lễ hội', '\u{1F4C5}'],
+  ['work', 'Công việc & nghề nghiệp', '\u{1F9F0}'],
+  ['money', 'Tiền & mua sắm', '\u{1F4B0}'],
+  ['feel', 'Cảm xúc & tính cách', '\u{1F60A}'],
+  ['verb', 'Hành động thường ngày', '\u{1F3C3}'],
+  ['desc', 'Mô tả & mức độ', '\u{1F50E}'],
+  ['mind', 'Tư duy & giao tiếp', '\u{1F4AD}'],
+  ['tech', 'Khoa học & công nghệ', '\u{1F52C}'],
+  ['social', 'Xã hội & đời sống', '\u{1F3DB}'],
+  ['seq', 'Theo thứ tự cũ', '\u{1F4D6}']
+];
+const TNAME = { all: 'Trộn tất cả chủ đề', etc: 'Khác' }, TICON = { all: '\u{1F3B2}', etc: '\u2B50' };
+TOPICS.forEach(t => { TNAME[t[0]] = t[1]; TICON[t[0]] = t[2]; });
+
+function freshKid(id, name, level, color) {
+  return { id, name, level, color, log: [], day: 0, tested: 0, cur: null, hist: [] };
+}
+const DEFAULT = {
+  kids: [
+    freshKid('k1', 'Con lớn', 'b1', 'var(--teal)'),
+    freshKid('k2', 'Con nhỏ', 'movers', 'var(--coral)')
+  ],
+  cfg: { token: '', chat: '', autosend: true }
+};
+
+let S = load();
+function load() {
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw) {
+      const o = JSON.parse(raw);
+      if (o && o.kids && o.kids.length === 2) return migrate(o);
+    }
+  } catch (e) {}
+  return JSON.parse(JSON.stringify(DEFAULT));
+}
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
+}
+
+/* ---------- Tiện ích ---------- */
+const $ = s => document.querySelector(s);
+const app = $('#app'), foot = $('#foot'), footin = $('#footin');
+const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const norm = t => String(t).toLowerCase().replace(/[^a-z ]/g, '').replace(/\s+/g, ' ').trim();
+const shuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+const words = k => BANK[k.level];
+const bank = k => BANK[k.level];
+function migrate(o) {
+  o.kids.forEach(k => {
+    if (!Array.isArray(k.log)) {
+      k.log = [];
+      const b = BANK[k.level] || [];
+      for (let d = 1; d <= (k.day || 0); d++) k.log.push({ t: 'seq', ws: b.slice((d - 1) * PERDAY, d * PERDAY).map(w => w[0]) });
+    }
+    if (k.cur && !k.cur.ws) k.cur = null;
+    k.day = k.log.length;
+  });
+  if (!o.cfg) o.cfg = { token: '', chat: '', autosend: true };
+  return o;
+}
+function learnedSet(k) { const s = new Set(); (k.log || []).forEach(e => e.ws.forEach(w => s.add(w))); return s; }
+function entryOf(k, w) { return bank(k).find(x => x[0] === w); }
+function topicAll(k, t) { return t === 'all' ? bank(k) : bank(k).filter(x => x[3] === t); }
+function topicLeft(k, t, learned) { const s = learned || learnedSet(k); return topicAll(k, t).filter(x => !s.has(x[0])); }
+const testDue = k => Math.floor(k.log.length / CYCLE) > k.tested;
+const blockRange = k => [k.tested * CYCLE + 1, k.tested * CYCLE + CYCLE];
+function blockLog(k) { return k.log.slice(k.tested * CYCLE, k.tested * CYCLE + CYCLE); }
+function blockWords(k) {
+  const out = [];
+  blockLog(k).forEach(e => e.ws.forEach(w => { const x = entryOf(k, w); if (x) out.push(x); }));
+  return out;
+}
+function blockTopics(k) {
+  return Array.from(new Set(blockLog(k).map(e => TNAME[e.t] || TNAME.etc))).join(', ');
+}
+function dstr(ts) {
+  const d = new Date(ts), p = n => String(n).padStart(2, '0');
+  return p(d.getDate()) + '/' + p(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+}
+function sim(a, b) {
+  a = norm(a); b = norm(b);
+  if (!a || !b) return 0;
+  if (a === b) return 1;
+  const m = a.length, n = b.length, dp = Array.from({ length: m + 1 }, (_, i) => [i].concat(Array(n).fill(0)));
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++) for (let j = 1; j <= n; j++)
+    dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+  return 1 - dp[m][n] / Math.max(m, n);
+}
+
+/* ---------- Đọc tiếng Anh (loa) ---------- */
+let voice = null;
+function pickVoice() {
+  if (!('speechSynthesis' in window)) return;
+  const vs = speechSynthesis.getVoices() || [];
+  voice = vs.find(v => /^en[-_]GB/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+}
+if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function say(text, rate) {
+  if (!('speechSynthesis' in window)) return;
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-GB'; u.rate = rate || .85; if (voice) u.voice = voice;
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+
+/* ---------- Nghe micro (nói) ---------- */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+function recordOnce(onDone, onState) {
+  if (!SR) { onDone(null); return null; }
+  let r;
+  try { r = new SR(); } catch (e) { onDone(null); return null; }
+  r.lang = 'en-GB'; r.interimResults = false; r.maxAlternatives = 3;
+  let got = false;
+  r.onresult = e => {
+    got = true;
+    const alts = [];
+    for (let i = 0; i < e.results[0].length; i++) alts.push(e.results[0][i].transcript);
+    onDone(alts);
+  };
+  r.onerror = () => { if (!got) onDone(null); };
+  r.onend = () => { onState && onState(false); if (!got) onDone(undefined); };
+  try { r.start(); onState && onState(true); } catch (e) { onDone(null); }
+  return r;
+}
+
+/* ---------- Khung điều hướng ---------- */
+let view = { name: 'home' };
+function go(name, data) { view = Object.assign({ name }, data || {}); render(); }
+function kidById(id) { return S.kids.find(k => k.id === id); }
+
+function render() {
+  foot.hidden = true; footin.innerHTML = '';
+  const f = { home: vHome, topics: vTopics, learn: vLearn, test: vTest, result: vResult, hist: vHist, cfg: vCfg }[view.name];
+  f();
+  app.scrollTop = 0; window.scrollTo(0, 0);
+}
+function setFoot(btns) {
+  foot.hidden = false;
+  footin.innerHTML = btns.map(b => '<button class="' + (b.cls || '') + '" data-act="' + b.act + '"' + (b.dis ? ' disabled' : '') + '>' + b.txt + '</button>').join('');
+}
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]');
+  if (el) { e.preventDefault(); handle(el.dataset.act, el); }
+});
+
+/* ---------- Trang chủ ---------- */
+function vHome() {
+  app.innerHTML = '<div class="hdr"><div><h1>Sổ Từ Mỗi Ngày</h1>'
+    + '<div class="sub">10 từ mỗi ngày · cứ 3 ngày kiểm tra nghe nói đọc viết</div></div>'
+    + '<button class="b-sm" data-act="cfg">Cài đặt</button></div>'
+    + '<div class="stack">' + S.kids.map(cardKid).join('') + '</div>';
+}
+function cardKid(k) {
+  const tot = bank(k).length, got = learnedSet(k).size, pct = Math.round(got / tot * 100);
+  const finished = got >= tot, due = testDue(k), [a, b] = blockRange(k);
+  const last = k.hist[k.hist.length - 1];
+  const resume = k.cur && k.cur.ws && k.cur.idx > 0;
+  return '<div class="card stack">'
+    + '<div class="row"><div class="ava" style="background:' + k.color + '">' + esc(k.name.trim().charAt(0).toUpperCase() || '?') + '</div>'
+    + '<div class="grow"><h2>' + esc(k.name) + '</h2>'
+    + '<span class="pill">' + LVNAME[k.level] + '</span> <span class="sub nums">đã học ' + got + '/' + tot + ' từ</span></div></div>'
+    + '<div class="bar"><i style="width:' + pct + '%"></i></div>'
+    + '<div class="row"><div class="grow sub nums">Đã xong ' + k.log.length + ' ngày</div>'
+    + (last ? '<div class="sub nums">Lần kiểm tra gần nhất: ' + last.pct + '%</div>' : '<div class="sub">Chưa có bài kiểm tra</div>') + '</div>'
+    + (due ? '<div class="ex">Đến hẹn kiểm tra ngày ' + a + '–' + b + ': ' + blockWords(k).length + ' từ của chủ đề ' + esc(blockTopics(k)) + '.</div>' : '')
+    + '<div class="row">'
+    + (due ? '<button class="b-hot grow" data-act="test" data-k="' + k.id + '">Làm bài kiểm tra</button>' : '')
+    + (finished ? '<button class="grow" disabled>Đã học hết bộ từ</button>'
+      : resume ? '<button class="' + (due ? '' : 'b-main') + ' grow" data-act="resume" data-k="' + k.id + '">Tiếp tục ' + esc(TNAME[k.cur.t] || '') + '</button>'
+        : '<button class="' + (due ? '' : 'b-main') + ' grow" data-act="topics" data-k="' + k.id + '">Chọn chủ đề học</button>')
+    + '<button class="b-sm" data-act="hist" data-k="' + k.id + '">Lịch sử</button>'
+    + '</div>'
+    + (resume && !finished ? '<button class="b-sm" data-act="topics" data-k="' + k.id + '">Bỏ dở, chọn chủ đề khác</button>' : '')
+    + '</div>';
+}
+
+/* ---------- Chọn chủ đề ---------- */
+function vTopics() {
+  const k = kidById(view.kid), s = learnedSet(k);
+  const leftAll = topicLeft(k, 'all', s).length;
+  const rows = TOPICS.filter(t => t[0] !== 'seq').map(t => {
+    const all = topicAll(k, t[0]).length;
+    if (!all) return '';
+    const left = topicLeft(k, t[0], s).length, got = all - left, pct = Math.round(got / all * 100);
+    return '<button class="kid card" data-act="pick" data-t="' + t[0] + '"' + (left ? '' : ' disabled') + '>'
+      + '<div class="ava" style="background:var(--paper);color:var(--ink)">' + t[2] + '</div>'
+      + '<div class="grow"><b>' + esc(t[1]) + '</b>'
+      + '<div class="sub nums">' + got + '/' + all + ' từ' + (left ? ' · còn ' + left : ' · đã xong') + '</div>'
+      + '<div class="meter"><i style="width:' + pct + '%;background:' + (left ? 'var(--teal)' : 'var(--good)') + '"></i></div></div></button>';
+  }).join('');
+  app.innerHTML = '<div class="hdr"><div><div class="lbl">' + esc(k.name) + ' · ' + LVNAME[k.level] + '</div>'
+    + '<h1>Hôm nay học chủ đề nào?</h1>'
+    + '<div class="sub">Chọn một chủ đề là có ngay 10 từ mới chưa học của chủ đề đó.</div></div>'
+    + '<button class="b-sm" data-act="home">Thoát</button></div>'
+    + '<div class="stack">'
+    + '<button class="kid card" data-act="pick" data-t="all"' + (leftAll ? '' : ' disabled') + '>'
+    + '<div class="ava" style="background:var(--gold)">' + TICON.all + '</div>'
+    + '<div class="grow"><b>' + TNAME.all + '</b><div class="sub nums">còn ' + leftAll + ' từ chưa học</div></div></button>'
+    + rows + '</div>';
+}
+
+/* ---------- Học 10 từ ---------- */
+function vLearn() {
+  const k = kidById(view.kid), c = k.cur, list = c.ws.map(w => entryOf(k, w)).filter(Boolean), i = c.idx;
+  if (i >= list.length) return finishDay(k);
+  const w = list[i];
+  app.innerHTML = '<div class="hdr"><div><div class="lbl">' + esc(k.name) + ' · ' + (TICON[c.t] || '') + ' ' + esc(TNAME[c.t] || '') + '</div>'
+    + '<h2 class="nums">Từ ' + (i + 1) + ' / ' + list.length + '</h2></div>'
+    + '<button class="b-sm" data-act="home">Thoát</button></div>'
+    + '<div class="dots" style="margin-bottom:12px">' + list.map((_, n) => '<i class="' + (n <= i ? 'on' : '') + '"></i>').join('') + '</div>'
+    + '<div class="card stack">'
+    + '<div class="word">' + esc(w[0]) + '</div>'
+    + '<div class="row"><button class="b-main" data-act="say" data-t="' + esc(w[0]) + '">Nghe từ</button>'
+    + '<button data-act="say" data-t="' + esc(w[2]) + '" data-r=".8">Nghe câu</button></div>'
+    + '<div class="vn">' + esc(w[1]) + '</div>'
+    + '<div class="ex">' + esc(w[2]) + '</div>'
+    + '<div class="lbl">Đọc theo</div>'
+    + '<button class="mic b-hot" data-act="mic" data-t="' + esc(w[0]) + '" id="micbtn">🎤</button>'
+    + '<div id="micmsg" class="note" style="text-align:center">Bấm micro rồi đọc to từ này.</div>'
+    + '</div>';
+  setFoot([
+    { txt: 'Nghe lại', act: 'say', cls: '' },
+    { txt: i + 1 === list.length ? 'Xong 10 từ' : 'Từ tiếp theo', act: 'next', cls: 'b-main' }
+  ]);
+  footin.firstChild.dataset.t = w[0];
+  say(w[0]);
+}
+function finishDay(k) {
+  const n = k.cur.ws.length, tp = TNAME[k.cur.t] || '';
+  k.log.push({ t: k.cur.t, ws: k.cur.ws });
+  k.day = k.log.length; k.cur = null; save();
+  const due = testDue(k), [a, b] = blockRange(k);
+  app.innerHTML = '<div class="card stack" style="text-align:center">'
+    + '<div style="font-size:3rem">🎉</div><h1>Xong ' + n + ' từ hôm nay!</h1>'
+    + '<div class="sub">' + esc(k.name) + ' đã học hết ngày ' + k.log.length + ' · chủ đề ' + esc(tp) + '.</div>'
+    + (due ? '<div class="ex" style="text-align:left">Đủ 3 ngày rồi. Làm bài kiểm tra 4 kỹ năng cho ngày ' + a + '–' + b + ' nhé — bố mẹ sẽ nhận báo cáo.</div>' : '<div class="note">Còn ' + (CYCLE - k.day % CYCLE) + ' ngày nữa là tới bài kiểm tra.</div>')
+    + '</div>';
+  setFoot(due
+    ? [{ txt: 'Về trang chủ', act: 'home' }, { txt: 'Kiểm tra ngay', act: 'test', cls: 'b-hot' }]
+    : [{ txt: 'Về trang chủ', act: 'home', cls: 'b-main' }]);
+  footin.querySelectorAll('button').forEach(b => b.dataset.k = k.id);
+}
+
+/* ---------- Soạn đề 4 kỹ năng ---------- */
+function blank(w) {
+  const re = new RegExp('\\b' + w[0].replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i');
+  return re.test(w[2]) ? w[2].replace(re, '_____') : null;
+}
+function wrongs(pool, w, n, field) {
+  return shuffle(pool.filter(x => x[0] !== w[0] && x[field] !== w[field])).slice(0, n);
+}
+function buildTest(k) {
+  const pool = blockWords(k), per = 5, qs = [];
+  const picks = s => shuffle(pool).slice(0, s);
+  picks(per).forEach(w => {
+    const opts = shuffle([w].concat(wrongs(pool, w, 3, 1))).map(x => x[1]);
+    qs.push({ skill: 'listen', w, opts, ans: w[1] });
+  });
+  picks(per).forEach(w => qs.push({ skill: 'speak', w }));
+  picks(per).forEach(w => {
+    const b = blank(w);
+    if (b) qs.push({ skill: 'read', w, text: b, opts: shuffle([w].concat(wrongs(pool, w, 3, 0))).map(x => x[0]), ans: w[0] });
+    else qs.push({ skill: 'read', w, text: null, opts: shuffle([w].concat(wrongs(pool, w, 3, 1))).map(x => x[1]), ans: w[1] });
+  });
+  picks(per).forEach(w => qs.push({ skill: 'write', w }));
+  return shuffle(qs);
+}
+const SKNAME = { listen: 'Nghe', speak: 'Nói', read: 'Đọc', write: 'Viết' };
+
+/* ---------- Làm bài ---------- */
+function vTest() {
+  const t = view.t, k = kidById(view.kid);
+  if (t.i >= t.qs.length) return gradeTest(k, t);
+  const q = t.qs[t.i], pct = Math.round(t.i / t.qs.length * 100);
+  let body = '';
+  if (q.skill === 'listen') {
+    body = '<div class="lbl">Nghe rồi chọn nghĩa đúng</div>'
+      + '<button class="b-main b-wide" data-act="say" data-t="' + esc(q.w[0]) + '">🔊 Nghe lại từ</button>'
+      + '<div class="stack">' + q.opts.map(o => '<button class="opt" data-act="ans" data-v="' + esc(o) + '">' + esc(o) + '</button>').join('') + '</div>';
+  } else if (q.skill === 'read') {
+    body = q.text
+      ? '<div class="lbl">Đọc câu và chọn từ còn thiếu</div><div class="ex">' + esc(q.text) + '</div>'
+      + '<div class="stack">' + q.opts.map(o => '<button class="opt" data-act="ans" data-v="' + esc(o) + '">' + esc(o) + '</button>').join('') + '</div>'
+      : '<div class="lbl">Từ này nghĩa là gì?</div><div class="word">' + esc(q.w[0]) + '</div>'
+      + '<div class="stack">' + q.opts.map(o => '<button class="opt" data-act="ans" data-v="' + esc(o) + '">' + esc(o) + '</button>').join('') + '</div>';
+  } else if (q.skill === 'write') {
+    body = '<div class="lbl">Nghe và viết lại từ tiếng Anh</div>'
+      + '<button class="b-main b-wide" data-act="say" data-t="' + esc(q.w[0]) + '">🔊 Nghe lại từ</button>'
+      + '<div class="vn">' + esc(q.w[1]) + '</div>'
+      + '<input type="text" id="wbox" autocapitalize="off" autocomplete="off" spellcheck="false" placeholder="Viết từ tiếng Anh">'
+      + '<button class="b-hot b-wide" data-act="answ">Kiểm tra</button>';
+  } else {
+    body = '<div class="lbl">Đọc to từ này</div><div class="word">' + esc(q.w[0]) + '</div>'
+      + '<div class="vn">' + esc(q.w[1]) + '</div>'
+      + '<button class="b-sm" data-act="say" data-t="' + esc(q.w[0]) + '">🔊 Nghe mẫu</button>'
+      + '<button class="mic b-hot" data-act="mict" id="micbtn">🎤</button>'
+      + '<div id="micmsg" class="note" style="text-align:center">' + (SR ? 'Bấm micro rồi đọc to.' : 'Thiết bị không nhận giọng nói — nghe mẫu, đọc to rồi tự chấm.') + '</div>'
+      + (SR ? '' : '<div class="row"><button class="grow" data-act="selfno">Đọc chưa đúng</button><button class="b-main grow" data-act="selfok">Đọc đúng</button></div>');
+  }
+  app.innerHTML = '<div class="hdr"><div><div class="lbl">' + esc(k.name) + ' · kiểm tra ngày ' + t.a + '–' + t.b + '</div>'
+    + '<h2 class="nums">Câu ' + (t.i + 1) + ' / ' + t.qs.length + ' · ' + SKNAME[q.skill] + '</h2></div>'
+    + '<button class="b-sm" data-act="home">Thoát</button></div>'
+    + '<div class="bar" style="margin-bottom:12px"><i style="width:' + pct + '%"></i></div>'
+    + '<div class="card stack">' + body + '</div>'
+    + '<div id="fb" class="stack" style="margin-top:12px"></div>';
+  if (q.skill === 'listen' || q.skill === 'write') say(q.w[0]);
+  if (q.skill === 'write') { const b = $('#wbox'); b.focus(); b.addEventListener('keydown', e => { if (e.key === 'Enter') handle('answ'); }); }
+}
+function mark(q, ok, said) {
+  const t = view.t;
+  t.score[q.skill] += ok ? 1 : 0;
+  if (!ok) t.wrong.push(q.w[0] + ' (' + SKNAME[q.skill] + ')');
+  app.querySelectorAll('[data-act="ans"],[data-act="answ"],[data-act="mict"],[data-act="selfok"],[data-act="selfno"]').forEach(b => b.disabled = true);
+  app.querySelectorAll('[data-act="ans"]').forEach(b => {
+    if (b.dataset.v === q.ans) b.classList.add('ok');
+    else if (!ok && b.dataset.v === said) b.classList.add('no');
+  });
+  $('#fb').innerHTML = '<div class="card stack">'
+    + '<h2 style="color:' + (ok ? 'var(--good)' : 'var(--bad)') + '">' + (ok ? '✓ Đúng rồi!' : '✗ Chưa đúng') + '</h2>'
+    + '<div><b>' + esc(q.w[0]) + '</b> — ' + esc(q.w[1]) + '</div>'
+    + (said ? '<div class="note">Em trả lời: ' + esc(said) + '</div>' : '')
+    + '<div class="ex">' + esc(q.w[2]) + '</div>'
+    + '<button class="b-main b-wide" data-act="nextq">' + (t.i + 1 === t.qs.length ? 'Xem kết quả' : 'Câu tiếp theo') + '</button></div>';
+  $('#fb').scrollIntoView({ block: 'end', behavior: 'smooth' });
+}
+function gradeTest(k, t) {
+  const total = Object.values(t.score).reduce((a, b) => a + b, 0), n = t.qs.length;
+  const rec = {
+    day: t.a + '–' + t.b, a: t.a, b: t.b, ts: Date.now(), score: t.score, n, topics: blockTopics(k),
+    total, pct: Math.round(total / n * 100), wrong: t.wrong, words: blockWords(k).length
+  };
+  k.hist.push(rec); k.tested += 1; save();
+  view = { name: 'result', kid: k.id, rec, sent: 'idle' };
+  if (S.cfg.autosend && S.cfg.token && S.cfg.chat) sendReport(k, rec);
+  render();
+}
+
+/* ---------- Kết quả + báo cáo ---------- */
+function reportText(k, r) {
+  const per = Object.keys(SKNAME).map(s => SKNAME[s] + ' ' + r.score[s] + '/5').join(' · ');
+  return '📚 BÁO CÁO HỌC TỪ VỰNG\n'
+    + '👦 ' + k.name + ' · ' + LVNAME[k.level] + '\n'
+    + '🗓 ' + dstr(r.ts) + '\n'
+    + '📖 Kiểm tra ngày ' + r.day + ' (' + r.words + ' từ đã học)\n'
+    + (r.topics ? '🏷 Chủ đề: ' + r.topics + '\n' : '') + '\n'
+    + per + '\n'
+    + '➡️ Tổng: ' + r.total + '/' + r.n + ' = ' + r.pct + '% — ' + (r.pct >= PASS ? 'ĐẠT ✅' : 'CHƯA ĐẠT ⚠️') + '\n'
+    + (r.wrong.length ? '\n❌ Cần học lại:\n• ' + r.wrong.join('\n• ') : '\n🌟 Không sai câu nào!');
+}
+function sendReport(k, r) {
+  const c = S.cfg;
+  if (!c.token || !c.chat) { view.sent = 'nocfg'; render(); return; }
+  view.sent = 'sending'; render();
+  fetch('https://api.telegram.org/bot' + c.token.trim() + '/sendMessage', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ chat_id: c.chat.trim(), text: reportText(k, r) })
+  }).then(res => res.json()).then(j => { view.sent = j && j.ok ? 'ok' : 'fail'; render(); })
+    .catch(() => { view.sent = 'fail'; render(); });
+}
+function vResult() {
+  const k = kidById(view.kid), r = view.rec, pass = r.pct >= PASS;
+  const msg = { idle: '', sending: 'Đang gửi báo cáo cho bố mẹ…', ok: '✅ Đã gửi báo cáo qua Telegram.', fail: '⚠️ Gửi Telegram không được (mạng chặn hoặc token sai). Anh copy báo cáo bên dưới gửi tay.', nocfg: 'Chưa cài bot Telegram — vào Cài đặt để nhập token và chat ID.' }[view.sent] || '';
+  app.innerHTML = '<div class="hdr"><div><div class="lbl">' + esc(k.name) + ' · ngày ' + r.day + '</div>'
+    + '<h1>' + (pass ? 'Đạt rồi!' : 'Cần ôn thêm') + '</h1></div>'
+    + '<button class="b-sm" data-act="home">Trang chủ</button></div>'
+    + '<div class="card stack">'
+    + '<div class="row"><div class="word nums" style="color:' + (pass ? 'var(--good)' : 'var(--bad)') + '">' + r.pct + '%</div>'
+    + '<div class="grow"><div class="nums">' + r.total + '/' + r.n + ' câu đúng</div><div class="sub">Mốc đạt: ' + PASS + '%</div></div></div>'
+    + '<div class="sk">' + Object.keys(SKNAME).map(s => {
+      const v = r.score[s], p = v / 5 * 100;
+      return '<div class="skb"><div class="lbl">' + SKNAME[s] + '</div><b class="nums">' + v + '/5</b>'
+        + '<div class="meter"><i style="width:' + p + '%;background:' + (p >= PASS ? 'var(--good)' : p >= 60 ? 'var(--gold)' : 'var(--bad)') + '"></i></div></div>';
+    }).join('') + '</div>'
+    + (r.wrong.length ? '<div><div class="lbl">Cần học lại</div>' + r.wrong.map(w => '<span class="tag">' + esc(w) + '</span>').join('') + '</div>' : '<div class="ex">Không sai câu nào. Tuyệt vời!</div>')
+    + '</div>'
+    + '<div class="card stack" style="margin-top:12px"><div class="lbl">Báo cáo cho bố mẹ</div>'
+    + (msg ? '<div class="note">' + esc(msg) + '</div>' : '')
+    + '<div class="mono" id="rep">' + esc(reportText(k, r)) + '</div>'
+    + '<div class="row"><button class="grow b-sm" data-act="copy">Copy báo cáo</button>'
+    + '<button class="grow b-sm b-main" data-act="resend">Gửi Telegram</button></div></div>';
+  setFoot([{ txt: 'Về trang chủ', act: 'home', cls: 'b-main' }]);
+}
+
+/* ---------- Lịch sử ---------- */
+function vHist() {
+  const k = kidById(view.kid);
+  app.innerHTML = '<div class="hdr"><div><div class="lbl">' + esc(k.name) + '</div><h1>Lịch sử kiểm tra</h1></div>'
+    + '<button class="b-sm" data-act="home">Trang chủ</button></div>'
+    + '<div class="card">' + (k.hist.length ? k.hist.slice().reverse().map(r =>
+      '<div class="hist"><div><b>Ngày ' + r.day + '</b><div class="sub nums">' + dstr(r.ts) + '</div>'
+      + '<div class="sub">' + Object.keys(SKNAME).map(s => SKNAME[s] + ' ' + r.score[s]).join(' · ') + '</div>'
+      + (r.topics ? '<div class="sub">' + esc(r.topics) + '</div>' : '') + '</div>'
+      + '<div style="text-align:right"><b class="nums" style="font-size:1.3rem;color:' + (r.pct >= PASS ? 'var(--good)' : 'var(--bad)') + '">' + r.pct + '%</b>'
+      + '<div class="sub nums">' + r.total + '/' + r.n + '</div></div></div>').join('')
+      : '<div class="note">Chưa có bài kiểm tra nào.</div>') + '</div>';
+  setFoot([{ txt: 'Về trang chủ', act: 'home', cls: 'b-main' }]);
+}
+
+/* ---------- Cài đặt ---------- */
+function vCfg() {
+  app.innerHTML = '<div class="hdr"><div><h1>Cài đặt</h1><div class="sub">Tên con, trình độ và bot Telegram của bố mẹ</div></div>'
+    + '<button class="b-sm" data-act="home">Xong</button></div>'
+    + '<div class="stack">'
+    + S.kids.map(k => '<div class="card stack"><div class="lbl">Hồ sơ ' + esc(k.id) + '</div>'
+      + '<input type="text" id="n_' + k.id + '" value="' + esc(k.name) + '" placeholder="Tên con">'
+      + '<div class="row"><button class="grow ' + (k.level === 'movers' ? 'b-main' : '') + '" data-act="lv" data-k="' + k.id + '" data-v="movers">Movers (A1)</button>'
+      + '<button class="grow ' + (k.level === 'b1' ? 'b-main' : '') + '" data-act="lv" data-k="' + k.id + '" data-v="b1">B1 (PET)</button></div>'
+      + '<div class="note nums">Đã học ' + learnedSet(k).size + '/' + bank(k).length + ' từ · ' + k.log.length + ' ngày · ' + k.hist.length + ' bài kiểm tra</div>'
+      + '<button class="b-sm" data-act="reset" data-k="' + k.id + '">Xóa tiến độ hồ sơ này</button></div>').join('')
+    + '<div class="card stack"><div class="lbl">Telegram báo cáo</div>'
+    + '<div class="note">Lấy token từ @BotFather, lấy chat ID bằng cách nhắn cho bot rồi mở api.telegram.org/bot&lt;token&gt;/getUpdates.</div>'
+    + '<input type="text" id="tk" value="' + esc(S.cfg.token) + '" placeholder="Bot token">'
+    + '<input type="text" id="ch" value="' + esc(S.cfg.chat) + '" placeholder="Chat ID của bố mẹ">'
+    + '<div class="row"><button class="grow ' + (S.cfg.autosend ? 'b-main' : '') + '" data-act="auto">Tự gửi sau mỗi bài: ' + (S.cfg.autosend ? 'BẬT' : 'TẮT') + '</button></div>'
+    + '<button class="b-sm" data-act="testtg">Gửi tin thử</button>'
+    + '<div id="tgmsg" class="note"></div></div>'
+    + '</div>';
+  setFoot([{ txt: 'Lưu cài đặt', act: 'savecfg', cls: 'b-main' }]);
+}
+function readCfg() {
+  S.kids.forEach(k => { const el = $('#n_' + k.id); if (el && el.value.trim()) k.name = el.value.trim(); });
+  const t = $('#tk'), c = $('#ch');
+  if (t) S.cfg.token = t.value.trim();
+  if (c) S.cfg.chat = c.value.trim();
+  save();
+}
+
+/* ---------- Xử lý bấm ---------- */
+let rec = null;
+function handle(act, el) {
+  const kid = el && el.dataset.k ? kidById(el.dataset.k) : kidById(view.kid);
+  if (act === 'home') { if (view.name === 'cfg') readCfg(); go('home'); return; }
+  if (act === 'cfg') { go('cfg'); return; }
+  if (act === 'hist') { go('hist', { kid: kid.id }); return; }
+  if (act === 'say') { say(el.dataset.t, el.dataset.r ? parseFloat(el.dataset.r) : .85); return; }
+
+  if (act === 'topics') { go('topics', { kid: kid.id }); return; }
+  if (act === 'resume') { go('learn', { kid: kid.id }); return; }
+  if (act === 'pick') {
+    const t = el.dataset.t, left = topicLeft(kid, t);
+    if (!left.length) return;
+    kid.cur = { t, ws: left.slice(0, PERDAY).map(w => w[0]), idx: 0 };
+    save(); go('learn', { kid: kid.id }); return;
+  }
+  if (act === 'next') { const k = kidById(view.kid); k.cur.idx++; save(); render(); return; }
+  if (act === 'mic') {
+    const msg = $('#micmsg'), btn = $('#micbtn'), target = el.dataset.t;
+    if (!SR) { msg.textContent = 'Thiết bị này không nhận giọng nói. Nghe mẫu rồi đọc to theo nhé.'; return; }
+    msg.textContent = 'Đang nghe… đọc to từ đi!'; btn.classList.add('live');
+    rec = recordOnce(alts => {
+      btn.classList.remove('live');
+      if (!alts) { msg.textContent = 'Không nghe được. Thử lại và nói to hơn.'; return; }
+      const best = Math.max.apply(null, alts.map(a => sim(a, target)));
+      msg.innerHTML = best >= .75
+        ? '<b style="color:var(--good)">✓ Đọc tốt lắm! (' + Math.round(best * 100) + '%)</b>'
+        : '<b style="color:var(--bad)">Nghe ra "' + esc(alts[0]) + '" — thử lại nhé</b>';
+    }, on => { if (!on) btn.classList.remove('live'); });
+    return;
+  }
+
+  if (act === 'test') {
+    const [a, b] = blockRange(kid);
+    const qs = buildTest(kid);
+    go('test', { kid: kid.id, t: { qs, i: 0, a, b, score: { listen: 0, speak: 0, read: 0, write: 0 }, wrong: [] } });
+    return;
+  }
+  if (act === 'ans') {
+    const q = view.t.qs[view.t.i];
+    mark(q, el.dataset.v === q.ans, el.dataset.v); return;
+  }
+  if (act === 'answ') {
+    const q = view.t.qs[view.t.i], v = ($('#wbox') || {}).value || '';
+    if (!v.trim()) { $('#wbox').focus(); return; }
+    mark(q, norm(v) === norm(q.w[0]), v.trim()); return;
+  }
+  if (act === 'mict') {
+    const q = view.t.qs[view.t.i], msg = $('#micmsg'), btn = $('#micbtn');
+    msg.textContent = 'Đang nghe… đọc to từ đi!'; btn.classList.add('live');
+    rec = recordOnce(alts => {
+      btn.classList.remove('live');
+      if (!alts) {
+        msg.innerHTML = 'Không nhận được giọng. <b>Tự chấm:</b>';
+        msg.insertAdjacentHTML('afterend', '<div class="row"><button class="grow" data-act="selfno">Đọc chưa đúng</button><button class="b-main grow" data-act="selfok">Đọc đúng</button></div>');
+        return;
+      }
+      const best = Math.max.apply(null, alts.map(a => sim(a, q.w[0])));
+      mark(q, best >= .75, alts[0] + ' (' + Math.round(best * 100) + '%)');
+    });
+    return;
+  }
+  if (act === 'selfok' || act === 'selfno') { mark(view.t.qs[view.t.i], act === 'selfok', 'tự chấm'); return; }
+  if (act === 'nextq') { view.t.i++; render(); return; }
+
+  if (act === 'copy') {
+    const txt = reportText(kidById(view.kid), view.rec);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(() => { el.textContent = 'Đã copy ✓'; }).catch(() => selectRep());
+    } else selectRep();
+    return;
+  }
+  if (act === 'resend') { sendReport(kidById(view.kid), view.rec); return; }
+
+  if (act === 'lv') { kid.level = el.dataset.v; kid.log = []; kid.day = 0; kid.tested = 0; kid.cur = null; kid.hist = []; readCfg(); render(); return; }
+  if (act === 'auto') { readCfg(); S.cfg.autosend = !S.cfg.autosend; save(); render(); return; }
+  if (act === 'reset') {
+    if (el.dataset.sure) {
+      const i = S.kids.findIndex(x => x.id === kid.id);
+      S.kids[i] = freshKid(kid.id, kid.name, kid.level, kid.color); save(); render();
+    } else { el.dataset.sure = '1'; el.textContent = 'Bấm lần nữa để xóa thật'; el.classList.add('b-hot'); }
+    return;
+  }
+  if (act === 'savecfg') { readCfg(); go('home'); return; }
+  if (act === 'testtg') {
+    readCfg();
+    const m = $('#tgmsg');
+    if (!S.cfg.token || !S.cfg.chat) { m.textContent = 'Nhập token và chat ID trước đã.'; return; }
+    m.textContent = 'Đang gửi…';
+    fetch('https://api.telegram.org/bot' + S.cfg.token + '/sendMessage', {
+      method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ chat_id: S.cfg.chat, text: 'Sổ Từ Mỗi Ngày: kết nối thành công. Bố mẹ sẽ nhận báo cáo ở đây.' })
+    }).then(r => r.json()).then(j => { m.textContent = j && j.ok ? '✅ Gửi được rồi.' : '⚠️ Lỗi: ' + ((j && j.description) || 'không rõ'); })
+      .catch(() => { m.textContent = '⚠️ Không gọi được Telegram. Nếu đang xem trong khung preview thì phải mở app sau khi deploy.'; });
+    return;
+  }
+}
+function selectRep() {
+  const n = $('#rep'), r = document.createRange(); r.selectNodeContents(n);
+  const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+}
+
+render();
+</script>
+</body><!--STRIP-->
+</html><!--STRIP-->
