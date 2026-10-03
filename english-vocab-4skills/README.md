@@ -2,7 +2,7 @@
 
 🔗 **Bản đang chạy:** https://sinhim.github.io/Vocabulary/english-vocab-4skills/
 
-App web tự học từ vựng tiếng Anh cho hai trình độ **Cambridge A1 Movers** và **B1 (PET)**: mỗi ngày 10 từ theo chủ đề người học tự chọn, cứ đủ 3 ngày thì kiểm tra **nghe – nói – đọc – viết** trên đúng số từ vừa học, rồi gửi báo cáo kết quả về Telegram cho bố mẹ.
+App web tự học từ vựng tiếng Anh cho hai trình độ **Cambridge A1 Movers** và **B1 (PET)**: mỗi ngày 10 từ theo chủ đề người học tự chọn, **học xong là kiểm tra ngay 4 kỹ năng** nghe – nói – đọc – viết trên đúng 10 từ đó, rồi **cứ 3 ngày kiểm tra lại** 30 từ của cả ba ngày. Mỗi lần kiểm tra đều gửi báo cáo kết quả về Telegram cho bố mẹ.
 
 👉 **Dùng ngay:** mở `index.html` trên điện thoại hoặc truy cập bản đã phát hành (xem phần *Phát hành*).
 📘 **Hướng dẫn từng bước cho bố mẹ:** [HUONG-DAN.md](HUONG-DAN.md)
@@ -12,7 +12,7 @@ App web tự học từ vựng tiếng Anh cho hai trình độ **Cambridge A1 M
 - **2.233 từ** có nghĩa tiếng Việt và câu ví dụ riêng cho từng từ: Movers 1.344 từ (134 ngày), B1 889 từ (88 ngày).
 - **21 chủ đề** (Động vật, Ăn uống, Cơ thể & sức khoẻ, Trường học, Giao thông, Cảm xúc & tính cách…). Chọn chủ đề nào thì app lấy 10 từ **chưa học** của chủ đề đó, nên nhảy chủ đề mỗi ngày cũng không bao giờ gặp lại từ cũ.
 - **Hai hồ sơ** riêng cho hai con, đổi tên và đổi trình độ được.
-- **Bài kiểm tra 4 kỹ năng**, 20 câu bốc ngẫu nhiên trong 30 từ của 3 ngày vừa học:
+- **Hai vòng kiểm tra 4 kỹ năng**, đều chia đều 5 câu mỗi kỹ năng: **mỗi ngày** 20 câu trên đúng 10 từ vừa học (mỗi từ bị hỏi 2 lần ở 2 kỹ năng khác nhau; đổi được thành 10 câu trong Cài đặt), và **sau 3 ngày** 20 câu bốc ngẫu nhiên trong 30 từ của cả ba ngày. Chưa làm xong bài kiểm tra thì app khoá việc học bài mới.
 
   | Kỹ năng | Dạng câu hỏi |
   |---|---|

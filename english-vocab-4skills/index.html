@@ -2368,14 +2368,14 @@ const TNAME = { all: 'Trộn tất cả chủ đề', etc: 'Khác' }, TICON = { 
 TOPICS.forEach(t => { TNAME[t[0]] = t[1]; TICON[t[0]] = t[2]; });
 
 function freshKid(id, name, level, color) {
-  return { id, name, level, color, log: [], day: 0, tested: 0, cur: null, hist: [] };
+  return { id, name, level, color, log: [], day: 0, tested: 0, cur: null, pending: null, hist: [] };
 }
 const DEFAULT = {
   kids: [
     freshKid('k1', 'Con lớn', 'b1', 'var(--teal)'),
     freshKid('k2', 'Con nhỏ', 'movers', 'var(--coral)')
   ],
-  cfg: { token: '', chat: '', autosend: true }
+  cfg: { token: '', chat: '', autosend: true, dailyQ: 2 }
 };
 
 let S = load();
@@ -2409,9 +2409,11 @@ function migrate(o) {
       for (let d = 1; d <= (k.day || 0); d++) k.log.push({ t: 'seq', ws: b.slice((d - 1) * PERDAY, d * PERDAY).map(w => w[0]) });
     }
     if (k.cur && !k.cur.ws) k.cur = null;
+    if (!k.pending) k.pending = null;
     k.day = k.log.length;
   });
-  if (!o.cfg) o.cfg = { token: '', chat: '', autosend: true };
+  if (!o.cfg) o.cfg = { token: '', chat: '', autosend: true, dailyQ: 2 };
+  if (!o.cfg.dailyQ) o.cfg.dailyQ = 2;
   return o;
 }
 function learnedSet(k) { const s = new Set(); (k.log || []).forEach(e => e.ws.forEach(w => s.add(w))); return s; }
@@ -2521,15 +2523,19 @@ function cardKid(k) {
     + '<div class="bar"><i style="width:' + pct + '%"></i></div>'
     + '<div class="row"><div class="grow sub nums">Đã xong ' + k.log.length + ' ngày</div>'
     + (last ? '<div class="sub nums">Lần kiểm tra gần nhất: ' + last.pct + '%</div>' : '<div class="sub">Chưa có bài kiểm tra</div>') + '</div>'
-    + (due ? '<div class="ex">Đến hẹn kiểm tra ngày ' + a + '–' + b + ': ' + blockWords(k).length + ' từ của chủ đề ' + esc(blockTopics(k)) + '.</div>' : '')
+    + (k.pending ? '<div class="ex">Đã học xong ngày ' + k.pending.day + ' (chủ đề ' + esc(TNAME[k.pending.t] || '') + '). Còn bài kiểm tra ' + k.pending.ws.length + ' từ hôm nay — làm xong bố mẹ mới nhận được báo cáo.</div>'
+      : due ? '<div class="ex">Đủ 3 ngày rồi: kiểm tra lại ngày ' + a + '–' + b + ', ' + blockWords(k).length + ' từ của chủ đề ' + esc(blockTopics(k)) + '.</div>' : '')
     + '<div class="row">'
-    + (due ? '<button class="b-hot grow" data-act="test" data-k="' + k.id + '">Làm bài kiểm tra</button>' : '')
+    + (k.pending ? '<button class="b-hot grow" data-act="daytest" data-k="' + k.id + '">Kiểm tra ' + k.pending.ws.length + ' từ hôm nay</button>' : '')
+    + (!k.pending && due ? '<button class="b-hot grow" data-act="test" data-k="' + k.id + '">Kiểm tra lại 3 ngày</button>' : '')
     + (finished ? '<button class="grow" disabled>Đã học hết bộ từ</button>'
-      : resume ? '<button class="' + (due ? '' : 'b-main') + ' grow" data-act="resume" data-k="' + k.id + '">Tiếp tục ' + esc(TNAME[k.cur.t] || '') + '</button>'
-        : '<button class="' + (due ? '' : 'b-main') + ' grow" data-act="topics" data-k="' + k.id + '">Chọn chủ đề học</button>')
+      : k.pending ? '<button class="grow" disabled>Kiểm tra xong mới học bài mới</button>'
+        : due ? '<button class="grow" disabled>Kiểm tra lại trước đã</button>'
+          : resume ? '<button class="b-main grow" data-act="resume" data-k="' + k.id + '">Tiếp tục ' + esc(TNAME[k.cur.t] || '') + '</button>'
+            : '<button class="b-main grow" data-act="topics" data-k="' + k.id + '">Chọn chủ đề học</button>')
     + '<button class="b-sm" data-act="hist" data-k="' + k.id + '">Lịch sử</button>'
     + '</div>'
-    + (resume && !finished ? '<button class="b-sm" data-act="topics" data-k="' + k.id + '">Bỏ dở, chọn chủ đề khác</button>' : '')
+    + (resume && !finished && !k.pending && !due ? '<button class="b-sm" data-act="topics" data-k="' + k.id + '">Bỏ dở, chọn chủ đề khác</button>' : '')
     + '</div>';
 }
 
@@ -2587,16 +2593,14 @@ function vLearn() {
 function finishDay(k) {
   const n = k.cur.ws.length, tp = TNAME[k.cur.t] || '';
   k.log.push({ t: k.cur.t, ws: k.cur.ws });
+  k.pending = { t: k.cur.t, ws: k.cur.ws, day: k.log.length };
   k.day = k.log.length; k.cur = null; save();
-  const due = testDue(k), [a, b] = blockRange(k);
   app.innerHTML = '<div class="card stack" style="text-align:center">'
     + '<div style="font-size:3rem">🎉</div><h1>Xong ' + n + ' từ hôm nay!</h1>'
     + '<div class="sub">' + esc(k.name) + ' đã học hết ngày ' + k.log.length + ' · chủ đề ' + esc(tp) + '.</div>'
-    + (due ? '<div class="ex" style="text-align:left">Đủ 3 ngày rồi. Làm bài kiểm tra 4 kỹ năng cho ngày ' + a + '–' + b + ' nhé — bố mẹ sẽ nhận báo cáo.</div>' : '<div class="note">Còn ' + (CYCLE - k.day % CYCLE) + ' ngày nữa là tới bài kiểm tra.</div>')
+    + '<div class="ex" style="text-align:left">Giờ kiểm tra ngay ' + n + ' từ này cả 4 kỹ năng — nghe, nói, đọc, viết. Xong là bố mẹ nhận được báo cáo.</div>'
     + '</div>';
-  setFoot(due
-    ? [{ txt: 'Về trang chủ', act: 'home' }, { txt: 'Kiểm tra ngay', act: 'test', cls: 'b-hot' }]
-    : [{ txt: 'Về trang chủ', act: 'home', cls: 'b-main' }]);
+  setFoot([{ txt: 'Để sau', act: 'home' }, { txt: 'Kiểm tra ngay', act: 'daytest', cls: 'b-hot' }]);
   footin.querySelectorAll('button').forEach(b => b.dataset.k = k.id);
 }
 
@@ -2608,21 +2612,39 @@ function blank(w) {
 function wrongs(pool, w, n, field) {
   return shuffle(pool.filter(x => x[0] !== w[0] && x[field] !== w[field])).slice(0, n);
 }
-function buildTest(k) {
-  const pool = blockWords(k), per = 5, qs = [];
-  const picks = s => shuffle(pool).slice(0, s);
-  picks(per).forEach(w => {
-    const opts = shuffle([w].concat(wrongs(pool, w, 3, 1))).map(x => x[1]);
-    qs.push({ skill: 'listen', w, opts, ans: w[1] });
+const SKILLS = ['listen', 'speak', 'read', 'write'];
+function makeQ(skill, w, dpool) {
+  if (skill === 'listen') return { skill, w, opts: shuffle([w].concat(wrongs(dpool, w, 3, 1))).map(x => x[1]), ans: w[1] };
+  if (skill === 'speak' || skill === 'write') return { skill, w };
+  const b = blank(w);
+  return b
+    ? { skill: 'read', w, text: b, opts: shuffle([w].concat(wrongs(dpool, w, 3, 0))).map(x => x[0]), ans: w[0] }
+    : { skill: 'read', w, text: null, opts: shuffle([w].concat(wrongs(dpool, w, 3, 1))).map(x => x[1]), ans: w[1] };
+}
+function maxOf(qs) { const m = { listen: 0, speak: 0, read: 0, write: 0 }; qs.forEach(q => m[q.skill]++); return m; }
+
+/* Kiểm tra ngay sau khi học: mỗi từ của hôm nay bị hỏi dailyQ lần, ở các kỹ năng khác nhau. */
+function buildDaily(k, list, topic) {
+  const per = S.cfg.dailyQ === 1 ? 1 : 2;
+  const own = new Set(list.map(w => w[0]));
+  /* Đáp án nhiễu: ưu tiên từ cùng chủ đề để không quá dễ. */
+  const dpool = list.concat(shuffle(topicAll(k, topic).filter(w => !own.has(w[0]))).slice(0, 40));
+  const off = k.log.length % SKILLS.length, qs = [];
+  shuffle(list).forEach((w, i) => {
+    for (let p = 0; p < per; p++) qs.push(makeQ(SKILLS[(i + off + p * 2) % SKILLS.length], w, dpool));
   });
-  picks(per).forEach(w => qs.push({ skill: 'speak', w }));
-  picks(per).forEach(w => {
-    const b = blank(w);
-    if (b) qs.push({ skill: 'read', w, text: b, opts: shuffle([w].concat(wrongs(pool, w, 3, 0))).map(x => x[0]), ans: w[0] });
-    else qs.push({ skill: 'read', w, text: null, opts: shuffle([w].concat(wrongs(pool, w, 3, 1))).map(x => x[1]), ans: w[1] });
-  });
-  picks(per).forEach(w => qs.push({ skill: 'write', w }));
   return shuffle(qs);
+}
+
+/* Kiểm tra lại sau 3 ngày: 5 câu mỗi kỹ năng, bốc ngẫu nhiên trong 30 từ của 3 ngày. */
+function buildReview(k) {
+  const pool = blockWords(k), qs = [];
+  SKILLS.forEach(s => shuffle(pool).slice(0, 5).forEach(w => qs.push(makeQ(s, w, pool))));
+  return shuffle(qs);
+}
+function startTest(k, t) {
+  t.i = 0; t.score = { listen: 0, speak: 0, read: 0, write: 0 }; t.wrong = []; t.max = maxOf(t.qs);
+  go('test', { kid: k.id, t });
 }
 const SKNAME = { listen: 'Nghe', speak: 'Nói', read: 'Đọc', write: 'Viết' };
 
@@ -2656,7 +2678,7 @@ function vTest() {
       + '<div id="micmsg" class="note" style="text-align:center">' + (SR ? 'Bấm micro rồi đọc to.' : 'Thiết bị không nhận giọng nói — nghe mẫu, đọc to rồi tự chấm.') + '</div>'
       + (SR ? '' : '<div class="row"><button class="grow" data-act="selfno">Đọc chưa đúng</button><button class="b-main grow" data-act="selfok">Đọc đúng</button></div>');
   }
-  app.innerHTML = '<div class="hdr"><div><div class="lbl">' + esc(k.name) + ' · kiểm tra ngày ' + t.a + '–' + t.b + '</div>'
+  app.innerHTML = '<div class="hdr"><div><div class="lbl">' + esc(k.name) + ' · ' + esc(t.label || '') + '</div>'
     + '<h2 class="nums">Câu ' + (t.i + 1) + ' / ' + t.qs.length + ' · ' + SKNAME[q.skill] + '</h2></div>'
     + '<button class="b-sm" data-act="home">Thoát</button></div>'
     + '<div class="bar" style="margin-bottom:12px"><i style="width:' + pct + '%"></i></div>'
@@ -2684,23 +2706,32 @@ function mark(q, ok, said) {
 }
 function gradeTest(k, t) {
   const total = Object.values(t.score).reduce((a, b) => a + b, 0), n = t.qs.length;
+  const daily = t.kind === 'day';
   const rec = {
-    day: t.a + '–' + t.b, a: t.a, b: t.b, ts: Date.now(), score: t.score, n, topics: blockTopics(k),
-    total, pct: Math.round(total / n * 100), wrong: t.wrong, words: blockWords(k).length
+    kind: t.kind, ts: Date.now(), score: t.score, max: t.max, n, total,
+    pct: Math.round(total / n * 100), wrong: t.wrong, words: t.words,
+    day: daily ? String(t.dayNo) : t.a + '–' + t.b,
+    topics: daily ? (TNAME[t.topic] || '') : blockTopics(k)
   };
-  k.hist.push(rec); k.tested += 1; save();
+  k.hist.push(rec);
+  if (daily) k.pending = null; else k.tested += 1;
+  save();
   view = { name: 'result', kid: k.id, rec, sent: 'idle' };
   if (S.cfg.autosend && S.cfg.token && S.cfg.chat) sendReport(k, rec);
   render();
 }
 
 /* ---------- Kết quả + báo cáo ---------- */
+function skMax(r, s) { return (r.max && r.max[s]) || 5; }
 function reportText(k, r) {
-  const per = Object.keys(SKNAME).map(s => SKNAME[s] + ' ' + r.score[s] + '/5').join(' · ');
-  return '📚 BÁO CÁO HỌC TỪ VỰNG\n'
+  const per = Object.keys(SKNAME).map(s => SKNAME[s] + ' ' + r.score[s] + '/' + skMax(r, s)).join(' · ');
+  const daily = r.kind !== 'review';
+  return (daily ? '📚 BÁO CÁO HỌC HÔM NAY\n' : '🔁 BÁO CÁO KIỂM TRA LẠI (sau 3 ngày)\n')
     + '👦 ' + k.name + ' · ' + LVNAME[k.level] + '\n'
     + '🗓 ' + dstr(r.ts) + '\n'
-    + '📖 Kiểm tra ngày ' + r.day + ' (' + r.words + ' từ đã học)\n'
+    + (daily
+      ? '📖 Ngày ' + r.day + ' · học và kiểm tra ' + r.words + ' từ mới\n'
+      : '📖 Ôn lại ngày ' + r.day + ' · ' + r.words + ' từ đã học\n')
     + (r.topics ? '🏷 Chủ đề: ' + r.topics + '\n' : '') + '\n'
     + per + '\n'
     + '➡️ Tổng: ' + r.total + '/' + r.n + ' = ' + r.pct + '% — ' + (r.pct >= PASS ? 'ĐẠT ✅' : 'CHƯA ĐẠT ⚠️') + '\n'
@@ -2720,15 +2751,16 @@ function sendReport(k, r) {
 function vResult() {
   const k = kidById(view.kid), r = view.rec, pass = r.pct >= PASS;
   const msg = { idle: '', sending: 'Đang gửi báo cáo cho bố mẹ…', ok: '✅ Đã gửi báo cáo qua Telegram.', fail: '⚠️ Gửi Telegram không được (mạng chặn hoặc token sai). Anh copy báo cáo bên dưới gửi tay.', nocfg: 'Chưa cài bot Telegram — vào Cài đặt để nhập token và chat ID.' }[view.sent] || '';
-  app.innerHTML = '<div class="hdr"><div><div class="lbl">' + esc(k.name) + ' · ngày ' + r.day + '</div>'
+  app.innerHTML = '<div class="hdr"><div><div class="lbl">' + esc(k.name) + ' · '
+    + (r.kind === 'review' ? 'kiểm tra lại ngày ' + r.day : 'ngày ' + r.day + ' · ' + esc(r.topics || '')) + '</div>'
     + '<h1>' + (pass ? 'Đạt rồi!' : 'Cần ôn thêm') + '</h1></div>'
     + '<button class="b-sm" data-act="home">Trang chủ</button></div>'
     + '<div class="card stack">'
     + '<div class="row"><div class="word nums" style="color:' + (pass ? 'var(--good)' : 'var(--bad)') + '">' + r.pct + '%</div>'
     + '<div class="grow"><div class="nums">' + r.total + '/' + r.n + ' câu đúng</div><div class="sub">Mốc đạt: ' + PASS + '%</div></div></div>'
     + '<div class="sk">' + Object.keys(SKNAME).map(s => {
-      const v = r.score[s], p = v / 5 * 100;
-      return '<div class="skb"><div class="lbl">' + SKNAME[s] + '</div><b class="nums">' + v + '/5</b>'
+      const v = r.score[s], mx = skMax(r, s), p = mx ? v / mx * 100 : 0;
+      return '<div class="skb"><div class="lbl">' + SKNAME[s] + '</div><b class="nums">' + v + '/' + mx + '</b>'
         + '<div class="meter"><i style="width:' + p + '%;background:' + (p >= PASS ? 'var(--good)' : p >= 60 ? 'var(--gold)' : 'var(--bad)') + '"></i></div></div>';
     }).join('') + '</div>'
     + (r.wrong.length ? '<div><div class="lbl">Cần học lại</div>' + r.wrong.map(w => '<span class="tag">' + esc(w) + '</span>').join('') + '</div>' : '<div class="ex">Không sai câu nào. Tuyệt vời!</div>')
@@ -2747,7 +2779,8 @@ function vHist() {
   app.innerHTML = '<div class="hdr"><div><div class="lbl">' + esc(k.name) + '</div><h1>Lịch sử kiểm tra</h1></div>'
     + '<button class="b-sm" data-act="home">Trang chủ</button></div>'
     + '<div class="card">' + (k.hist.length ? k.hist.slice().reverse().map(r =>
-      '<div class="hist"><div><b>Ngày ' + r.day + '</b><div class="sub nums">' + dstr(r.ts) + '</div>'
+      '<div class="hist"><div><b>' + (r.kind === 'review' ? '🔁 Ôn ngày ' + r.day : '📚 Ngày ' + r.day) + '</b>'
+      + '<div class="sub nums">' + dstr(r.ts) + '</div>'
       + '<div class="sub">' + Object.keys(SKNAME).map(s => SKNAME[s] + ' ' + r.score[s]).join(' · ') + '</div>'
       + (r.topics ? '<div class="sub">' + esc(r.topics) + '</div>' : '') + '</div>'
       + '<div style="text-align:right"><b class="nums" style="font-size:1.3rem;color:' + (r.pct >= PASS ? 'var(--good)' : 'var(--bad)') + '">' + r.pct + '%</b>'
@@ -2772,6 +2805,10 @@ function vCfg() {
     + '<input type="text" id="tk" value="' + esc(S.cfg.token) + '" placeholder="Bot token">'
     + '<input type="text" id="ch" value="' + esc(S.cfg.chat) + '" placeholder="Chat ID của bố mẹ">'
     + '<div class="row"><button class="grow ' + (S.cfg.autosend ? 'b-main' : '') + '" data-act="auto">Tự gửi sau mỗi bài: ' + (S.cfg.autosend ? 'BẬT' : 'TẮT') + '</button></div>'
+    + '<div class="lbl">Bài kiểm tra mỗi ngày</div>'
+    + '<div class="note">20 câu: mỗi từ được hỏi 2 lần ở 2 kỹ năng khác nhau, đều 5 câu mỗi kỹ năng. 10 câu: mỗi từ hỏi 1 lần, nhẹ hơn cho cháu nhỏ.</div>'
+    + '<div class="row"><button class="grow ' + (S.cfg.dailyQ === 2 ? 'b-main' : '') + '" data-act="dq" data-v="2">20 câu</button>'
+    + '<button class="grow ' + (S.cfg.dailyQ === 1 ? 'b-main' : '') + '" data-act="dq" data-v="1">10 câu</button></div>'
     + '<button class="b-sm" data-act="testtg">Gửi tin thử</button>'
     + '<div id="tgmsg" class="note"></div></div>'
     + '</div>';
@@ -2818,10 +2855,23 @@ function handle(act, el) {
     return;
   }
 
+  if (act === 'daytest') {
+    if (!kid.pending) { go('home'); return; }
+    const list = kid.pending.ws.map(w => entryOf(kid, w)).filter(Boolean);
+    if (!list.length) { kid.pending = null; save(); go('home'); return; }
+    startTest(kid, {
+      kind: 'day', qs: buildDaily(kid, list, kid.pending.t),
+      label: 'kiểm tra hôm nay · ' + (TNAME[kid.pending.t] || ''),
+      dayNo: kid.pending.day, topic: kid.pending.t, words: list.length
+    });
+    return;
+  }
   if (act === 'test') {
     const [a, b] = blockRange(kid);
-    const qs = buildTest(kid);
-    go('test', { kid: kid.id, t: { qs, i: 0, a, b, score: { listen: 0, speak: 0, read: 0, write: 0 }, wrong: [] } });
+    startTest(kid, {
+      kind: 'review', qs: buildReview(kid), label: 'kiểm tra lại ngày ' + a + '–' + b,
+      a, b, words: blockWords(kid).length
+    });
     return;
   }
   if (act === 'ans') {
@@ -2860,8 +2910,9 @@ function handle(act, el) {
   }
   if (act === 'resend') { sendReport(kidById(view.kid), view.rec); return; }
 
-  if (act === 'lv') { kid.level = el.dataset.v; kid.log = []; kid.day = 0; kid.tested = 0; kid.cur = null; kid.hist = []; readCfg(); render(); return; }
+  if (act === 'lv') { kid.level = el.dataset.v; kid.log = []; kid.day = 0; kid.tested = 0; kid.cur = null; kid.pending = null; kid.hist = []; readCfg(); render(); return; }
   if (act === 'auto') { readCfg(); S.cfg.autosend = !S.cfg.autosend; save(); render(); return; }
+  if (act === 'dq') { readCfg(); S.cfg.dailyQ = parseInt(el.dataset.v, 10); save(); render(); return; }
   if (act === 'reset') {
     if (el.dataset.sure) {
       const i = S.kids.findIndex(x => x.id === kid.id);

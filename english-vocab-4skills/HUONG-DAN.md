@@ -48,14 +48,26 @@ Vào **Cài đặt** đổi tên "Con lớn" / "Con nhỏ" thành tên thật, v
    - Thẻ đầu tiên **Trộn tất cả chủ đề** dành cho hôm nào con không muốn chọn.
 3. Bấm một chủ đề → app lấy ngay **10 từ chưa học** của chủ đề đó.
 4. Mỗi từ: nghe từ → nghe câu ví dụ → đọc nghĩa → bấm **🎤** đọc to theo (app chấm ngay xem đọc có giống không).
-5. Bấm **Từ tiếp theo** cho đến hết 10 từ → app chốt xong ngày đó.
+5. Bấm **Từ tiếp theo** cho đến hết 10 từ → app chốt xong ngày đó và **chuyển ngay sang bài kiểm tra** (mục 5).
 6. Bỏ dở giữa đường vẫn được: lần sau mở lên có nút **Tiếp tục <tên chủ đề>** đúng chỗ đang dở, hoặc **Bỏ dở, chọn chủ đề khác**.
 
 App tự nhớ từ nào đã học rồi, nên **không bao giờ phát lại từ cũ** — dù con nhảy chủ đề mỗi ngày.
 
-## 5. Bài kiểm tra 3 ngày một lần
+## 5. Hai loại bài kiểm tra
 
-Học xong ngày 3, 6, 9… app hiện nút **Làm bài kiểm tra** (màu cam). Đề **20 câu, bốc ngẫu nhiên trong 30 từ của 3 ngày vừa học** — tức là **trộn cả 3 chủ đề con đã chọn trong 3 ngày đó** — chia đều 4 kỹ năng:
+### 5a. Mỗi ngày: học xong là kiểm tra ngay 10 từ vừa học
+
+Hết từ thứ 10, app hiện nút cam **Kiểm tra ngay**. Đề **20 câu trên đúng 10 từ hôm nay**: mỗi từ bị hỏi **2 lần ở 2 kỹ năng khác nhau**, nên chia đều **5 câu mỗi kỹ năng** và không từ nào bị bỏ qua. Xong là **bố mẹ nhận báo cáo Telegram ngay trong ngày**.
+
+Con bấm **Để sau** cũng được, nhưng app sẽ **khoá việc học bài mới** cho tới khi làm xong bài kiểm tra của hôm đó — trang chủ hiện nút cam *"Kiểm tra 10 từ hôm nay"* và nút học bài mới chuyển thành *"Kiểm tra xong mới học bài mới"*.
+
+> Thấy 20 câu mỗi ngày là nhiều với cháu nhỏ thì vào **Cài đặt → Bài kiểm tra mỗi ngày → 10 câu**: mỗi từ chỉ hỏi 1 lần, vẫn đủ cả 4 kỹ năng.
+
+### 5b. Sau 3 ngày: kiểm tra lại 30 từ của cả 3 ngày
+
+Học xong ngày 3, 6, 9… app hiện nút cam **Kiểm tra lại 3 ngày**. Đề **20 câu bốc ngẫu nhiên trong 30 từ của 3 ngày vừa học** — tức là **trộn cả 3 chủ đề** con đã chọn trong 3 ngày đó — chia đều 5 câu mỗi kỹ năng. Bài này cũng **khoá việc học bài mới** cho tới khi làm xong, và cũng gửi báo cáo riêng cho bố mẹ.
+
+### Cả hai bài dùng chung 4 dạng câu hỏi
 
 | Kỹ năng | Dạng câu hỏi |
 |---|---|
@@ -66,14 +78,16 @@ Học xong ngày 3, 6, 9… app hiện nút **Làm bài kiểm tra** (màu cam).
 
 Mỗi câu trả lời xong hiện đáp án + câu ví dụ để con học lại ngay. Mốc đạt: **80%**.
 
-Báo cáo gửi bố mẹ có dạng:
+## 6. Hai mẫu báo cáo bố mẹ nhận được
+
+Mỗi ngày, ngay sau khi con học và kiểm tra:
 
 ```
-📚 BÁO CÁO HỌC TỪ VỰNG
+📚 BÁO CÁO HỌC HÔM NAY
 👦 Minh · B1 (PET)
 🗓 03/10/2026 20:15
-📖 Kiểm tra ngày 1–3 (30 từ đã học)
-🏷 Chủ đề: Động vật, Ăn uống, Thể thao & sở thích
+📖 Ngày 7 · học và kiểm tra 10 từ mới
+🏷 Chủ đề: Cảm xúc & tính cách
 
 Nghe 5/5 · Nói 4/5 · Đọc 5/5 · Viết 3/5
 ➡️ Tổng: 17/20 = 85% — ĐẠT ✅
@@ -84,16 +98,31 @@ Nghe 5/5 · Nói 4/5 · Đọc 5/5 · Viết 3/5
 • persuade (Nói)
 ```
 
-Nếu mạng chặn Telegram, app hiện nguyên văn báo cáo kèm nút **Copy báo cáo** để gửi tay.
+Cứ 3 ngày thêm một bản nữa:
 
-## 6. Những điểm cần biết
+```
+🔁 BÁO CÁO KIỂM TRA LẠI (sau 3 ngày)
+👦 Minh · B1 (PET)
+🗓 05/10/2026 20:30
+📖 Ôn lại ngày 7–9 · 30 từ đã học
+🏷 Chủ đề: Cảm xúc & tính cách, Trường học, Giao thông & đi lại
+
+Nghe 5/5 · Nói 5/5 · Đọc 4/5 · Viết 4/5
+➡️ Tổng: 18/20 = 90% — ĐẠT ✅
+```
+
+Nhìn hai bản cạnh nhau là biết con **học xong thì nhớ bao nhiêu** và **ba ngày sau còn nhớ bao nhiêu** — chính chỗ đó mới cho biết con có thật sự nhớ từ hay không.
+
+Nếu mạng chặn Telegram, app hiện nguyên văn báo cáo kèm nút **Copy báo cáo** để gửi tay. Lịch sử cả hai loại bài xem ở nút **Lịch sử** trên trang chủ (📚 là bài hằng ngày, 🔁 là bài ôn lại).
+
+## 7. Những điểm cần biết
 
 - **Micro**: dùng được trên Chrome Android và Safari iOS (iOS 14.5+), lần đầu phải bấm **Cho phép** micro. Máy nào không nhận giọng thì câu "Nói" chuyển sang **tự chấm** (nghe mẫu, đọc to, bấm Đọc đúng / Đọc chưa đúng) — nên với trẻ nhỏ bố mẹ ngồi cạnh chấm giúp sẽ thật hơn.
 - **Giọng đọc**: dùng giọng Anh có sẵn trong điện thoại. Máy nào chưa có giọng tiếng Anh thì vào Cài đặt điện thoại tải thêm giọng (Android: Cài đặt → Ngôn ngữ → Đầu ra văn bản thành giọng nói).
 - **Tiến độ không đồng bộ giữa 2 máy.** Con nào học trên điện thoại nào thì giữ nguyên máy đó. Muốn chung dữ liệu thì phải nối Google Sheets (xem mục sau).
 - Xóa dữ liệu trình duyệt = **mất tiến độ**. Lịch sử kiểm tra đã gửi Telegram thì vẫn còn trong Telegram.
 
-## 7. Nâng cấp sau này (khi cần)
+## 8. Nâng cấp sau này (khi cần)
 
 1. **Nối Google Sheets** (Apps Script như app CS Wind): bố mẹ xem được tiến độ cả 2 con trên một bảng, đổi điện thoại không mất dữ liệu.
 2. **Nhắc học hằng ngày**: bot Telegram ở `telegram-bot-sinh` gắn trigger 19h mỗi ngày, con nào chưa học thì nhắc.
