@@ -1,7 +1,7 @@
 # Sổ Từ Mỗi Ngày
 
-
 🔗 **Bản đang chạy:** https://sinhim.github.io/Vocabulary/english-vocab-4skills/
+
 App web tự học từ vựng tiếng Anh cho hai trình độ **Cambridge A1 Movers** và **B1 (PET)**: mỗi ngày 10 từ theo chủ đề người học tự chọn, cứ đủ 3 ngày thì kiểm tra **nghe – nói – đọc – viết** trên đúng số từ vừa học, rồi gửi báo cáo kết quả về Telegram cho bố mẹ.
 
 👉 **Dùng ngay:** mở `index.html` trên điện thoại hoặc truy cập bản đã phát hành (xem phần *Phát hành*).
